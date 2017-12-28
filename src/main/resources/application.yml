@@ -1,0 +1,23 @@
+#BANNER
+banner:
+  location: classpath:ttschool.txt
+
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ttschool?useSSL=false # JDBC url of the database.
+    username: root # Login user of the database.
+    password: root # Password user of the database
+    
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)    
+  jpa:
+    show-sql: true # Enable logging of SQL statements.
+    hibernate:
+      ddl-auto: update   #DDL mode. This is actually a shortcut for the "hibernate.hbm2ddl.auto" property. Default to "create-drop" when using an embedded database, "none" otherwise.
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy # Hibernate 4 naming strategy fully qualified name. Not supported with Hibernate 5.
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        
+              
