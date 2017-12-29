@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Backend Ninja - Add/modify Contact</title>
+	<title>TTSchool - Add/modify Students</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet"
@@ -17,25 +17,29 @@
 
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Contact Form</h1>
+			<h1>Student Form</h1>
 			<br/>
-			<form action="#">
-				First Name: <input type="text" class="form-control"></input>
+			<form action="#" th:action="@{/student/addstudent}" th:object="${studentModel}" method="post">
+				First Name: <input type="text" class="form-control" th:field="*{firstname}"></input>
 				<br/>
-				Last Name: <input type="text" class="form-control"></input>
+				Last Name: <input type="text" class="form-control" th:field="*{lastname}"></input>
 				<br/>
-				Telephone: <input type="text" class="form-control"></input>
+				Clase: <input type="text" class="form-control" th:field="*{clase}"></input>
 				<br/>
-				City: <input type="text" class="form-control"></input>
+				Curso: <input type="text" class="form-control" th:field="*{curso}"></input>
 				<br/>
 				<br/>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Accept
 				</button>
+				
+				
+			</form>
+			<a href="#" th:href="@{/student/cancel}">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Accept
 				</button>
-			</form>
+				</a>
 		</div>
 	</div>
 

@@ -1,41 +1,26 @@
-package com.acilia.ttschool.entity;
-
-import java.util.List;
+package com.acilia.ttschool.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "student")
-public class Student {
+public class StudentModel {
 
-	@Id
-	@GeneratedValue
-	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="firstname")
 	private String firstname;
-	@Column(name="lastname")
+	
 	private String lastname;
-	@Column(name="curso")
+	
 	private String curso;
-	@Column(name="clase")
+	
 	private String clase;
+	
+	
 
-	/*@OneToMany(targetEntity = Parent.class)
-	private List parentlist;*/
-
-	public Student() {
-
+	public StudentModel() {
+		
 	}
 
-	
-	public Student(Integer id, String firstname, String lastname, String curso, String clase) {
+	public StudentModel(Integer id, String firstname, String lastname, String curso, String clase) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -43,8 +28,6 @@ public class Student {
 		this.curso = curso;
 		this.clase = clase;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -86,4 +69,11 @@ public class Student {
 		this.clase = clase;
 	}
 
+	@Override
+	public String toString() {
+		return "StudentModel [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", curso=" + curso
+				+ ", clase=" + clase + "]";
+	}
+	
+	
 }
