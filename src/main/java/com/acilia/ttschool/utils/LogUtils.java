@@ -4,9 +4,11 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.apache.commons.logging.Log;
+import org.springframework.stereotype.Component;
 
 import com.acilia.ttschool.constant.ViewConstant;
 
+@Component("logutils")
 public class LogUtils {
 
 
@@ -15,7 +17,7 @@ public class LogUtils {
 		return new Exception().getStackTrace()[1].getMethodName();
 	}
 
-	public static void inMetodo(Log LOG, String nombreMetodo, Hashtable<String, String> params) {
+	public  void inMetodo(Log LOG, String nombreMetodo, Hashtable<String, String> params) {
 		StringBuilder stb = new StringBuilder();
 		try {
 			stb.append("IN METHOD: " + nombreMetodo);
@@ -40,7 +42,7 @@ public class LogUtils {
 
 	}
 	
-	public static void outMetodo(Log LOG, String nombreMetodo, String view) {
+	public  void outMetodo(Log LOG, String nombreMetodo, String view) {
 		//LOG.info("Returning to "+ ViewConstant.LOGIN_VIEW +" view");
 		StringBuilder stb = new StringBuilder();
 		try {

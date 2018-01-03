@@ -9,5 +9,7 @@ import com.acilia.ttschool.entity.Student;
 
 @Repository("studentrepository")
 public interface StudentRepository extends JpaRepository<Student,Serializable> {
+	
+	public abstract Student findById(int id);
 
 }
