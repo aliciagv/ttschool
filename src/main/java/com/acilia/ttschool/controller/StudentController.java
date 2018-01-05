@@ -88,7 +88,7 @@ public class StudentController {
 		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //
 		mav.addObject("username",user.getUsername());
-		mav.addObject("students",studentService.listAllStudent());
+		mav.addObject("students",studentService.listAllStudentCustom());
 		return mav;
 	}
 	

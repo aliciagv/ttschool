@@ -52,9 +52,11 @@ public class LoginController {
 		LOG.info("Redirect to "+ ViewConstant.STUDENTS_VIEW + " view");
 		
 		//return ViewConstant.STUDENTS_VIEW;
-		 return "redirect:/student/showstudent";
+		// return "redirect:/student/showstudent";
 		 //si hay error 
 		 //return "redirect:/login?error";
+		return "index2";
+		//return "student";
 	}
 	
 	

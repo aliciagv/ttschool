@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Estudiantes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<!-- Archivos CSS BOOTSTRAP -->
+	<link href="#" th:href="@{/bootstrap-3.3.7/css/bootstrap-theme.css}" rel="stylesheet" type="text/css"/>
+	<link href="#" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+	
+</head>
+<body>
+        <div class="container">
+        	<h2>Estudiantes</h2>
+        	<ul class="nav nav-tabs" role="tablist">
+        		<li class="active"><a href="#">Nuevo</a></li>
+        <!--    <li><a href="liststudent.html">Listar</a></li>-->
+    			<li><a href="#">Listar</a></li>
+    			<li><a href="#">Editar</a></li>
+    			<li><a href="#">Borrar</a></li>
+    			<li><a href="#">Asignar asignaturas</a></li>
+  
+  			</ul>
+        </div>
+        
+        <!--  <div id="page-wrapper">-->
+         <div class="container">
+        	<div class="row">
+        		<div class="col-lg-12">
+                    <h3 class="page-header">Registrar nuevo estudiante</h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Datos del estudiante
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form">
+                                        
+                                        <div class="form-group">
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control"  placeholder="Escribe aquí los nombres del alumno" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50"></input>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Apellidos</label>
+                                            <input type="text" class="form-control" placeholder="Escribe aquí los apellidos del alumno" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50"></input>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        	<label>Curso</label>
+                                			<select class="form-control" data-toggle="tooltip" data-placement="top" title="Elige el curso al que pertenece el alumno">
+                                    			<option value="" disabled="" selected="">Selecciona un curso</option>
+                                    			<option value="1">1</option>
+                                			</select>
+                           				</div>
+                                        
+                           				<p class="text-center">
+                                			<button type="reset" class="btn btn-info" style="margin-right: 20px">Limpiar</button>
+                                			<button type="submit" class="btn btn-primary">Guardar</button>
+                            			</p> 
+                      				</form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+     <script src="/js/student.js"></script>
+</body>
+</html>

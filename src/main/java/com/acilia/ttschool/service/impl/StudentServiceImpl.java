@@ -34,6 +34,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<StudentModel> listAllStudent() {
 		List<Student> lstudent = studentRepository.findAll();
+		
 		List<StudentModel> studentmodel = new ArrayList<StudentModel>();
 		for (Student student : lstudent) {
 			studentmodel.add(studentConverter.convetStudent2StudentModel(student));
@@ -59,6 +60,20 @@ public class StudentServiceImpl implements StudentService {
 	public StudentModel findStudentByIdModel(int id){
 		return studentConverter.convetStudent2StudentModel(findStudentById(id));
 		
+	}
+
+	@Override
+	public List<StudentModel> listAllStudentCustom() {
+		// TODO Auto-generated method stub
+		
+		List<Student> lstudent = studentRepository.misConsultas();
+		
+		List<StudentModel> studentmodel = new ArrayList<StudentModel>();
+		for (Student student : lstudent) {
+			studentmodel.add(studentConverter.convetStudent2StudentModel(student));
+
+		}
+		return studentmodel;
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.acilia.ttschool.entity.Student;
 
 @Repository("studentrepository")
-public interface StudentRepository extends JpaRepository<Student,Serializable> {
+public interface StudentRepository extends JpaRepository<Student,Serializable>,StudentRepositoryCustom {
 	
 	public abstract Student findById(int id);
 

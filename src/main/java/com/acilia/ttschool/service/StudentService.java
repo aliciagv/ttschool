@@ -10,6 +10,8 @@ public interface StudentService {
 	public abstract StudentModel addStudent(StudentModel studentmodel);
 	
 	public abstract List<StudentModel>listAllStudent();
+	
+	public abstract List<StudentModel>listAllStudentCustom();
 
 	public abstract Student findStudentById(int id);
 	
