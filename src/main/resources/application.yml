@@ -21,4 +21,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         
   thymeleaf:
-    cache: false               
+    cache: false          
+    
+  mvc:
+    view:
+      suffix: .jsp         
