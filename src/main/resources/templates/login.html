@@ -16,15 +16,18 @@
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="/imgs/ttschool.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin">
+            <form class="form-signin" th:action="@{/logincheckx}" method="POST">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"></input>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password"></input>
+                <input type="email"  class="form-control" placeholder="Email address" name="username" id="username"></input>
+                <input type="password" class="form-control" placeholder="Password" name="password" id="password"></input>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me </input>
                     </label>
                 </div>
+                 <div th:if="${error!=null}" class="alert alert-danger" role="alert">Invalid username or password</div>
+        		 <div th:if="${logout!=null}" class="alert alert-info" role="alert">Logout successfully!</div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form><!-- /form -->
             <a href="#" class="forgot-password">

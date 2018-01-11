@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
 	<meta charset="UTF-8"/>
 	<title>Estudiantes</title>
@@ -12,12 +14,22 @@
 <body>
         <div class="container">
         	<h2>Estudiantes</h2>
+
+        	<span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="name"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+
+<div class="row" sec:authorize="hasAuthority('ADMIN')">
+    <div class="col-md-10 col-md-offset-2">
+        <h2>User Has Authority Admin</h2>
+    </div>
+</div>
         	<ul class="nav nav-tabs" role="tablist">
-        		<li class="active"><a href="#">Nuevo</a></li>
-        <!--    <li><a href="liststudent.html">Listar</a></li>-->
-    			<li><a href="#" th:href="@{/student/showstudent}">Listar</a></li>
+  				<li class="active"><a href="#">Nuevo</a></li>
+  				<li><a href="#" th:href="@{/student/showstudent}">Listar</a></li>
     			<li><a href="#">Asignar asignaturas</a></li>
-  
   			</ul>
         </div>
         

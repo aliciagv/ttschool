@@ -16,6 +16,8 @@ public class LogUtils {
 		// Retorna el nombre del metodo desde el cual se hace el llamado
 		return new Exception().getStackTrace()[1].getMethodName();
 	}
+	
+
 
 	public  void inMetodo(Log LOG, String nombreMetodo, Hashtable<String, String> params) {
 		StringBuilder stb = new StringBuilder();

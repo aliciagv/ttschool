@@ -6,7 +6,7 @@ import com.acilia.ttschool.model.AlumnoModel;
 
 public interface AlumnoService {
 	
-public abstract AlumnoModel addAlumno(AlumnoModel alumnomodel);
+	public abstract AlumnoModel addAlumno(AlumnoModel alumnomodel);
 	
 	public abstract List<AlumnoModel>listAllAlumno();
 	

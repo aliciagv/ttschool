@@ -25,4 +25,5 @@ spring:
     
   mvc:
     view:
+      preffix: /
       suffix: .jsp         

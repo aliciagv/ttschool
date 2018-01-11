@@ -11,34 +11,38 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.acilia.ttschool.service.impl.AuthenticatorServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	@Qualifier("userServiceImpl")
-	private UserDetailsService userService;
+	@Qualifier("authenticatorServiceImpl")
+	private AuthenticatorServiceImpl authenticatorService;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(authenticatorService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		  http.csrf().disable();
-		/*
+		 // http.csrf().disable();
+	
 		http.authorizeRequests()
 		.antMatchers("/css/*","/imgs/*","/bootstrap-3.3.7/**","/js/*","/alumnos/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
+		.formLogin().loginPage("/login").loginProcessingUrl("/logincheckx")
 		.usernameParameter("username").passwordParameter("password")
 		.defaultSuccessUrl("/loginsucess").permitAll()
 		.and()
 		.logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
 		.permitAll();
-		*/
+		 
+		http.csrf().disable();
+	     http.headers().frameOptions().disable();
 		
 	}
 

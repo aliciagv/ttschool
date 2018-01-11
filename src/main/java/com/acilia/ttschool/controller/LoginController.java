@@ -56,7 +56,7 @@ public class LoginController {
 		 //si hay error 
 		 //return "redirect:/login?error";
 		//return "index2";
-		return "student";
+		return "nav";
 	}
 	
 	

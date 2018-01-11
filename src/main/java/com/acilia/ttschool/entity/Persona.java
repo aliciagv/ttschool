@@ -21,7 +21,7 @@ public abstract class Persona {
 	@Id
 	@GeneratedValue
 	@Column(name="id", nullable=false)
-	Long id;
+	private Long id;
 	
 	@Column (name="nif", length=50, unique=true)
 	private String nif;

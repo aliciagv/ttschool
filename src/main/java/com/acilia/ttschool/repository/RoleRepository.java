@@ -3,15 +3,15 @@
  */
 package com.acilia.ttschool.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.acilia.ttschool.entity.Role;
 
-import com.acilia.ttschool.entity.User;
 
 
-@Repository("userrepository")
-public interface UserRepository extends JpaRepository<User,Long> {
+@Repository("rolerepository")
+public interface RoleRepository extends JpaRepository<Role,Long> {
 	
-	public abstract User findByUsername(String username);
-
+	
 }
