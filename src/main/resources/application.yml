@@ -8,6 +8,12 @@ spring:
     url: jdbc:mysql://localhost:3306/ttschool?useSSL=false # JDBC url of the database.
     username: root # Login user of the database.
     password: root # Password user of the database
+  mvc:
+    view:
+      preffix: /WEB-INF/jsp/
+      suffix: .jsp         
+    
+    
     
 # JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)    
   jpa:
@@ -20,10 +26,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         
-  thymeleaf:
-    cache: false          
-    
-  mvc:
-    view:
-      preffix: /
-      suffix: .jsp         
+ # thymeleaf:
+ #   cache: false          
+      
+
+      
