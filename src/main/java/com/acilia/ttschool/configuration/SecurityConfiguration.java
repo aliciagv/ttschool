@@ -29,20 +29,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		 // http.csrf().disable();
-	
+		 //http.httpBasic().and().authorizeRequests().anyRequest().authenticated();
 		http.authorizeRequests()
 		.antMatchers("/css/*","/imgs/*","/bootstrap-3.3.7/**","/js/*","/alumnos/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/login").loginProcessingUrl("/logincheckx")
+		 .formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
 		.usernameParameter("username").passwordParameter("password")
 		.defaultSuccessUrl("/loginsucess").permitAll()
 		.and()
 		.logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
-		.permitAll();
+		.permitAll().and().csrf();
 		 
-		http.csrf().disable();
-	     http.headers().frameOptions().disable();
+		/*http.csrf().disable();
+	     http.headers().frameOptions().disable();*/
 		
 	}
 

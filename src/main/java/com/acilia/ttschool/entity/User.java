@@ -47,6 +47,7 @@ public class User implements Serializable{
 	@ManyToOne(optional = false)
 	private Persona persona;
 	
+	
 	public User() {
 
 	}

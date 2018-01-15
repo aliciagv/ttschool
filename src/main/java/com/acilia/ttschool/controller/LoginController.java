@@ -35,13 +35,13 @@ public class LoginController {
 		
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(),params);
 		
-		/*if (error!=null){
+		if (error!=null){
 			model.addAttribute("error","Invalid username or password");
 		}
 		
 		if (logout!=null){
 			model.addAttribute("logout", "Logout successfully!");
-		}*/
+		}
 		
 		LOG.info("Returning to "+ ViewConstant.LOGIN_VIEW +" view");
 		
@@ -61,7 +61,7 @@ public class LoginController {
 		 //si hay error 
 		 //return "redirect:/login?error";
 		//return "index2";
-		return "test";
+		return "student";
 	}
 	
 	
