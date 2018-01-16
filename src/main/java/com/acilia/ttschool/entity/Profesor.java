@@ -12,9 +12,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Profesor extends Persona {
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="idcurso")
-	private Curso curso;
+
 
 	public Profesor() {
 		super();
@@ -26,13 +24,6 @@ public class Profesor extends Persona {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
 	
 	
 

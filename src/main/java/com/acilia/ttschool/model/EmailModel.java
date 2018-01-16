@@ -1,8 +1,18 @@
 package com.acilia.ttschool.model;
 
-public class EmailModel {
+import java.io.Serializable;
 
-	private Long id;
+import org.springframework.hateoas.ResourceSupport;
+
+public class EmailModel extends ResourceSupport implements Serializable{
+
+	/**
+	 * 
+	 */
+
+	private static final long serialVersionUID = 4219481214145925991L;
+
+	private Long idEmail;
 	
 	private String email;
 	
@@ -13,21 +23,25 @@ public class EmailModel {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public EmailModel(Long id, String email) {
+
+	public EmailModel(Long idEmail, String email) {
 		super();
-		this.id = id;
+		this.idEmail = idEmail;
 		this.email = email;
 	}
+	
 
-
-	public Long getId() {
-		return id;
+	public Long getIdEmail() {
+		return idEmail;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setIdEmail(Long idEmail) {
+		this.idEmail = idEmail;
 	}
+
+
+
 
 	public String getEmail() {
 		return email;

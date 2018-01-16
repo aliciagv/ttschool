@@ -14,7 +14,7 @@ public class EmailConverter {
 	
 	public Email convetEmailModel2Email(EmailModel emailModel) {
 		Email email = new Email();
-		email.setId(emailModel.getId());
+		email.setId(emailModel.getIdEmail());
 		email.setEmail(emailModel.getEmail());
 		
 		return email;
@@ -22,7 +22,7 @@ public class EmailConverter {
 
 	public EmailModel convetEmail2EmailModel(Email email) {
 		EmailModel emailModel = new EmailModel();
-		emailModel.setId(email.getId());
+		emailModel.setIdEmail(email.getId());
 		emailModel.setEmail(email.getEmail());
 		return emailModel;
 	}

@@ -1,10 +1,18 @@
 package com.acilia.ttschool.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class PersonaModel {
+import org.springframework.hateoas.ResourceSupport;
 
-	Long id;
+public abstract class PersonaModel extends ResourceSupport implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5964624344994118158L;
+
+	Long idPersona;
 	
 	private String nif;
 	
@@ -21,10 +29,12 @@ public abstract class PersonaModel {
 		
 	}
 
-	public PersonaModel(Long id, String nif, String nombre, String apellidos, List<EmailModel> emails,
+
+
+	public PersonaModel(Long idPersona, String nif, String nombre, String apellidos, List<EmailModel> emails,
 			List<TelefonoModel> telefonos) {
 		super();
-		this.id = id;
+		this.idPersona = idPersona;
 		this.nif = nif;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -32,13 +42,19 @@ public abstract class PersonaModel {
 		this.telefonos = telefonos;
 	}
 
-	public Long getId() {
-		return id;
+
+
+	public Long getIdPersona() {
+		return idPersona;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+
+	public void setIdPersona(Long idPersona) {
+		this.idPersona = idPersona;
 	}
+
+
 
 	public String getNif() {
 		return nif;

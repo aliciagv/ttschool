@@ -7,7 +7,8 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(72, 72, 85), rgb(62, 62, 146));
+/*    background-image: linear-gradient(rgb(72, 72, 85), rgb(62, 62, 146));*/
+background-image: linear-gradient(rgb(102, 102, 144), rgb(204, 204, 218));
 }
 
 .card-container.card {
@@ -108,7 +109,8 @@ body, html {
 
 .btn.btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(72, 72, 85);
+      /* background-color: rgb(72, 72, 85);*/
+    background-color: #00bcd4;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
@@ -127,15 +129,18 @@ body, html {
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(62, 62, 146);
+    /*background-color: rgb(62, 62, 146);*/
+    background-color:rgb(102, 102, 144);
 }
 
 .forgot-password {
-    color: rgb(72, 72, 85);
+   /* color: rgb(72, 72, 85);*/
+   color: #00bcd4;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
-    color: rgb(62, 62, 146);
+    /*color: rgb(62, 62, 146);*/
+    color:rgb(102, 102, 144);
 }

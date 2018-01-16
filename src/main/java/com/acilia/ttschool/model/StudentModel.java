@@ -1,7 +1,5 @@
 package com.acilia.ttschool.model;
 
-import javax.persistence.Column;
-
 public class StudentModel {
 
 	private Integer id;

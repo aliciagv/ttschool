@@ -3,12 +3,11 @@ package com.acilia.ttschool.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -29,6 +28,15 @@ public class Alumno extends Persona{
 	@ManyToMany
 	private List<Asignatura> asignaturas;
 
+	@JoinColumn(name = "curso_id", referencedColumnName = "id")
+	@ManyToOne(optional = true)
+	private Curso curso;
+	
+	
+	
+	@ManyToMany
+	private List<Notificaciones> notificaciones;
+	
 	
 	public Alumno() {
 		super();
@@ -74,6 +82,16 @@ public class Alumno extends Persona{
 	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
+
+	public List<Notificaciones> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(List<Notificaciones> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+	
+	
 	
 
 

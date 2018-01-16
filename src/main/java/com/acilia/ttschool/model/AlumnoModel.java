@@ -7,6 +7,12 @@ import java.util.List;
 public class AlumnoModel extends PersonaModel {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 980511289615583102L;
+
+
 	private Date fNacimiento;
 	
 	
