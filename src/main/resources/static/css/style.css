@@ -82,7 +82,7 @@
         border-radius: 0;
         border-top: 1px rgba(0,0,0,.5) solid;
         overflow-y: auto;
-        background-color: #5bc0de6e;
+        background-color: #fcf8e352;
         /*background-color: #5A6B7D;*/
         bottom: 0;
         overflow-x: hidden;
@@ -97,7 +97,7 @@
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #1a242f !important;
+        background-color: #666690!important;
     }
 }
 
@@ -173,5 +173,10 @@
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #333;
-    background: #582cbdc7;
+    /*background: #582cbdc7;*/
+    background-image:linear-gradient(rgb(102, 102, 144), rgb(204, 204, 218));
+}
+
+#page-wrapper {
+	background-color: rgba(232, 232, 232, 0.17);
 }

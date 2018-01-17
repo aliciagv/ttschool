@@ -1,5 +1,7 @@
-(function ($) {
-    $(function () {
+
+
+
+$(document).ready(function() { 
 
         var addFormGroup = function (event) {
             event.preventDefault();
@@ -44,12 +46,79 @@
         
         $(".input").focus(function() {
     		$(this).parent().addClass("focus");
-    	})
+    	});
     	
     	$(".inputplus").focus(function() {
     		$(this).parent().parent().addClass("focus");
-    	})
+    	});
+    	
+      	$("#formprofesor").validate({
+            rules: {
+            	nombre: { 
+            		required: true, 
+            		minlength:1,
+            		maxlength: 50,
+            		customname:true
+            		},
+            	
+            	apellidos: {
+            		required:true, 
+            		minlength:1, 
+            		maxlength: 100,
+            		customname:true
+            		},
+            	
+            	nif: {
+            		required:false,
+            		customnif:true
+            		},
+            	
+            	"telefono[]":{
+            		required:false,
+            		customphone:true
+            		}
+            		
+            	
+            	
+            },
+            messages: {
+    			
+    			nombre: {
+    				required: 'El campo es requerido', 
+    				minlength: 'El mínimo permitido es 1 caracter', 
+    				maxlength: 'El máximo permitido son 50 caracteres'
+    					},
+    			
+            	apellidos: {
+            		required: 'El campo es requerido', 
+            		minlength: 'El mínimo permitido es 1 caracter', 
+            		maxlength: 'El máximo permitido son 100 caracteres'
+            			}	
+            	},
+            	
+    	     errorPlacement : function(error, element) {
+    	         $(element).closest('.inputBox').find('.help-block').html(error.html());
+    	         },
+    	         highlight : function(element) {
+    	         $(element).closest('.inputBox').removeClass('has-success').addClass('has-error');
+    	         },
+    	         unhighlight: function(element, errorClass, validClass) {
+    	         $(element).closest('.inputBox').removeClass('has-error').addClass('has-success');
+    	         $(element).closest('.inputBox').find('.help-block').html('');
+    	         },
+    	         
+    		submitHandler: function(form)
+            {
+              alert('El formulario ha sido validado correctamente!');
+              form.submit();
+            }
+        });
 
-    });
-})(jQuery);
+    	
+
+
+
+
+});
+
 

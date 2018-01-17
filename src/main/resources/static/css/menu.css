@@ -1,0 +1,23 @@
+body{
+	background: #252528;
+}
+
+.menu {
+	list-style:none;
+	line-height:42px;
+	margin: 2m auto;
+	/*outline: 1px solid red;*/
+	width:em;
+}
+
+.menu a {
+	color: #ddd;
+	text-decoration:none;
+	text-transform:uppercase;
+}
+
+.menu li {
+	border-left: 3px solid rgba(225,255,255,.2)
+	padding
+	/*outline: 1px solid green;*/
+}

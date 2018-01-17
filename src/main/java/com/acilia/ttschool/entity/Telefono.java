@@ -17,7 +17,7 @@ public class Telefono {
 	@Column(name="id", nullable=false)
 	Long id;
 	
-	@Column(name="numero",length=15, unique=true)
+	@Column(name="numero",length=9, unique=true)
 	private String numero;
 	
 	@ManyToOne
