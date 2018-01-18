@@ -1,23 +1,80 @@
-body{
-	background: #252528;
+body{font-family: "Comic Sans MS", cursive, sans-serif;}
+
+
+.container {
+    width: 100%;
+    padding-left: 5px;
+    padding-right:5px;
+    margin-top: 5px;
 }
 
-.menu {
-	list-style:none;
-	line-height:42px;
-	margin: 2m auto;
-	/*outline: 1px solid red;*/
-	width:em;
+.principal {
+	padding: 5px 5px 0px 5px;
 }
 
-.menu a {
-	color: #ddd;
-	text-decoration:none;
-	text-transform:uppercase;
+.navbar {
+	border-color: #333;
+    background-image:linear-gradient(rgb(102, 102, 144), rgb(204, 204, 218));
+}
+.navbar-brand {
+	padding:0px;
+	height:120px;
+}
+.nav {
+	padding:0px;
+	height:120px;
+}
+.navbar-brand>img {
+	height:100%;
+	padding: 15px 0px 15px 60px; 
+	width:auto;
 }
 
-.menu li {
-	border-left: 3px solid rgba(225,255,255,.2)
-	padding
-	/*outline: 1px solid green;*/
+.cabecera .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.cabecera .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+.cabecera .dropdown-toggle {
+  padding: 10px;
+  margin: 40px 15px 25px 0;
+}
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}
+
+
+.glyphicon { 
+	margin-right:10px; 
+}
+
+.panel-body { 
+	padding:0px; 
+}
+
+.panel-body table tr td { 
+	padding-left: 15px 
+}
+
+.panel-body .table {
+	margin-bottom: 0px; 
 }
