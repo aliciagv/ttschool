@@ -1,67 +1,166 @@
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-                <img src="imgs/ttschool.png" alt="LOGO"">
-            </a>
-        </div>
-        <!-- Top Menu Items -->
-        <ul id="navbar1" class="nav navbar-right top-nav">
-                  
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
-                    <li class="divider"></li>
-                    <li>
-                    <form action="login?logout" method="post">
-   <input type="submit" value="Log out" />
-   <input type="hidden"
-          name="${_csrf.parameterName}"
-          value="${_csrf.token}"/>
-</form>
-                    
-                  
-                </ul>
-            </li>
-        </ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home"></i> MENU 1 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
-                    <ul id="submenu-1" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  MENU 2 <i class="fa fa-fw fa-angle-down pull-right"></i></a>
-                    <ul id="submenu-2" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-user-plus"></i>  MENU 3</a>
-                </li>
-                <li>
-                    <a href="sugerencias"><i class="fa fa-fw fa-paper-plane-o"></i> MENU 4</a>
-                </li>
-                <li>
-                    <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> MENU 5</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </nav>
+<div class="navegador">
+	<div class="col-sm-3 col-md-3">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+            	
+            	<div class="panel-heading">
+            		<h4 class="panel-title">
+            			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            				<span class="glyphicon glyphicon-folder-close"></span>Administración
+            			</a>
+					</h4> <!-- panel-title -->
+				</div> <!--  div panel-heading -->
+				
+				<div id="collapseOne" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<table class="table">
+	               			<tr>
+	               				<td>
+	               					<span class="glyphicon glyphicon-info-sign text-info"></span>
+	               					<a href="http://www.jquery2dotnet.com">Información</a>
+	                    		</td>
+	                		</tr>
+	                		<tr>
+	                			<td>
+	                				<span class="glyphicon glyphicon-flash text-info"></span>
+	                				<a href="http://www.jquery2dotnet.com">Servicios</a>
+	                    		</td>
+	                		</tr>
+	                		<tr>
+	                			<td>
+	                				<span class="glyphicon glyphicon-book text-info"></span>
+	                				<a href="http://www.jquery2dotnet.com">Libros de Texto</a>
+	                        			
+								</td>
+							</tr>
+	                 		<tr>
+	                 			<td>
+	                 				<span class="glyphicon glyphicon-paperclip text-info"></span>
+	                 				<a href="http://www.jquery2dotnet.com">Impresos y Autorizaciones</a>-->
+	                         	</td>
+	                 		</tr>
+	                 	</table>
+                      </div><!-- panel-body -->
+                 	</div><!-- collapseOne -->
+               	</div><!-- panel panel-default -->
+                
+                <div class="panel panel-default">
+                	<div class="panel-heading">
+                        		<h4 class="panel-title">
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            		</span>Registro</a>
+                        		</h4>
+                    		</div> <!-- pannel-heading -->
+                    		
+                    		<div id="collapseTwo" class="panel-collapse collapse">
+                    			<div class="panel-body">
+                            		<table class="table">
+                                		<tr>
+                                    		<td>
+                                    		<span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Administrador</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Profesor</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		 <span class="glyphicon glyphicon-education"></span><a href="http://www.jquery2dotnet.com">Alumno</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<span class="glyphicons glyphicons-parents"></span><a href="http://www.jquery2dotnet.com">Tutor</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Asignaturas</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Cursos</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Notas</a>
+                                    		</td>
+                                		</tr>
+                            		</table>
+                        		</div><!-- panel-body -->
+                    		</div> <!--  collapseTwo -->
+                		</div><!-- panel panel-default -->
+                		
+                		<div class="panel panel-default">
+                    		
+                    		<div class="panel-heading">
+                        		<h4 class="panel-title">
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-bullhorn">
+                            		</span>Notificaciones</a>
+                        		</h4>
+                    		</div> <!-- panel-heading -->
+                    		
+                    		<div id="collapseThree" class="panel-collapse collapse">
+                        		<div class="panel-body">
+                            		<table class="table">
+                                		<tr>
+                                    		<td>
+                                    			<a href="http://www.jquery2dotnet.com">Globales</a>
+                                    		</td>
+                               		 	</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Curso</a>
+                                    		</td>
+                                		</tr>
+                                		<tr>
+                                    		<td>
+                                        		<a href="http://www.jquery2dotnet.com">Personales</a> 
+                                    		</td>
+                                		</tr>
+                            		</table>
+                        		</div><!-- panel body -->
+                    		</div><!-- collapseThree -->
+                		</div> <!--  panel-default-->
+                		
+                		<div class="panel panel-default">
+                    		
+                    		<div class="panel-heading">
+                        		<h4 class="panel-title">
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                            		</span>Informes</a>
+                        		</h4>
+                    		</div><!-- panel-heading -->
+                    		
+                    		<div id="collapseFour" class="panel-collapse collapse">
+                        		<div class="panel-body">
+                            		<table class="table">
+	                                	<tr>
+    		                                <td>
+            		                            <span class="glyphicon glyphicon-user"></span>
+            		                            <a href="http://www.jquery2dotnet.com">Profesores</a>
+                    		                </td>
+                            		    </tr>
+                                		<tr>
+                              		      	<td>
+	                                	        <span class="glyphicon glyphicon-education"></span>
+	                                	        <a href="http://www.jquery2dotnet.com">Alumnos</a>
+    	                                	</td>
+        		                        </tr>
+                                		<tr>
+                                    		<td>
+                                        		<span class="glyphicon glyphicon-shopping-cart"></span>
+                                        		<a href="http://www.jquery2dotnet.com">Notas</a>
+                                    		</td>
+                                		</tr>
+                            		</table>
+                        		</div> <!-- panel body -->
+                    		</div> <!-- collapseFour -->
+                		</div> <!-- panelDefault -->
+		</div> <!--  panel-group -->
+	</div> <!-- div col3 -->
+</div><!-- div navegador -->

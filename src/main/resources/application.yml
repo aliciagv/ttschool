@@ -2,6 +2,9 @@
 banner:
   location: classpath:ttschool.txt
 
+server:
+  servlet.context-path: /TTSchool # Path of the main dispatcher servlet.
+
 # DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:

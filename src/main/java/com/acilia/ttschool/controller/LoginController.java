@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.acilia.ttschool.constant.ViewConstant;
@@ -25,6 +27,7 @@ public class LoginController {
 	
 	
 	@GetMapping("/login")
+	@PostMapping("/login")
 	public String showLoginForm(Model model, 
 			@RequestParam(name="error", required=false) String error, 
 			@RequestParam(name="logout", required=false) String logout) {
@@ -51,17 +54,11 @@ public class LoginController {
 	@GetMapping({"/loginsucess","/"})
 	public String loginCheck(){
 		
-		
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
-		LOG.info("Redirect to "+ ViewConstant.STUDENTS_VIEW + " view");
+		LOG.info("Redirect to "+ ViewConstant.HOME_VIEW + " view");
 		
-		//return ViewConstant.STUDENTS_VIEW;
-		// return "redirect:/student/showstudent";
-		 //si hay error 
-		 //return "redirect:/login?error";
-		//return "index2";
-		return "student";
+		return ViewConstant.HOME_VIEW;
 	}
 	
 	

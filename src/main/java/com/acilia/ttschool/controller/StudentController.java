@@ -43,7 +43,7 @@ public class StudentController {
 		
 		logutils.inMetodo(LOG,LogUtils.getNombreMetodo(), null);
 		
-		logutils.outMetodo(LOG, LogUtils.getNombreMetodo(),  ViewConstant.STUDENTS_VIEW);
+		//logutils.outMetodo(LOG, LogUtils.getNombreMetodo(),  ViewConstant.STUDENTS_VIEW);
 		
 		return "redirect:/student/showstudent";
 	}

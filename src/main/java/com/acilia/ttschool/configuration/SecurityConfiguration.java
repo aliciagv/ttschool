@@ -34,12 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/css/*","/imgs/*","/bootstrap-3.3.7/**","/js/*","/alumnos/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		 .formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
+		.formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
 		.usernameParameter("username").passwordParameter("password")
 		.defaultSuccessUrl("/loginsucess").permitAll()
 		.and()
 		.logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
-		.permitAll().and().csrf();
+		.permitAll();
+		//.and().csrf();
 		 
 		/*http.csrf().disable();
 	     http.headers().frameOptions().disable();*/
