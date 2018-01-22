@@ -23,6 +23,8 @@ public class UserModel  extends ResourceSupport implements Serializable {
 	private boolean enabled;
 
 	private RoleModel role;
+	
+	private PersonaModel persona;
 
 	public UserModel() {
 
@@ -75,11 +77,23 @@ public class UserModel  extends ResourceSupport implements Serializable {
 	}
 	
 
+	public PersonaModel getPersona() {
+		return persona;
+	}
+
+	public void setPersona(PersonaModel persona) {
+		this.persona = persona;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "UserModel [idUser=" + idUser + ", username=" + username + ", password=" + password + ", enabled="
-				+ enabled + ", role=" + role + "]";
+				+ enabled + ", role=" + role + ", persona=" + persona + "]";
 	}
+
+
 
 
 

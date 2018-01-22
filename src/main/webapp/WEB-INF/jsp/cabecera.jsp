@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="cabecera"> 
 	<div class="navbar" role="navigation">
     	<div class="container"> 
@@ -17,7 +18,8 @@
                 	<li class="dropdown">
                     	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         	<span class="glyphicon glyphicon-user"></span> 
-                        	<strong><sec:authentication property="principal.username"/></strong>
+            	          	  <strong>${usermodel.persona.nombre}</strong> 
+            	        
                         	<span class="glyphicon glyphicon-chevron-down"></span>
                     	</a>
                     <ul class="dropdown-menu">
@@ -30,8 +32,8 @@
                                         </p>
                                     </div> <!-- col-lg4 -->
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong>Nombre Apellido</strong></p>
-                                        <p class="text-left small">correoElectronico@email.com</p>
+                                        <p class="text-left"><strong>${usermodel.persona.nombre} ${usermodel.persona.apellidos}</strong></p>
+                                        <p class="text-left small"><sec:authentication property="principal.username" /></p>
                                         <p class="text-left">
                                             <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
                                         </p>

@@ -4,7 +4,8 @@ banner:
 
 server:
   servlet.context-path: /TTSchool # Path of the main dispatcher servlet.
-
+  connection-timeout: 1000
+  
 # DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:

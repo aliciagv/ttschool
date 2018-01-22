@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @Entity
 @Table (name="persona")
 @Inheritance(strategy = InheritanceType.JOINED)
-public  class Persona {
+public class Persona {
 
 	@Id
 	@GeneratedValue

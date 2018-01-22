@@ -12,8 +12,10 @@ import org.springframework.stereotype.Component;
 
 import com.acilia.ttschool.entity.Alumno;
 import com.acilia.ttschool.entity.Email;
+import com.acilia.ttschool.entity.Persona;
 import com.acilia.ttschool.entity.Profesor;
 import com.acilia.ttschool.entity.Telefono;
+import com.acilia.ttschool.entity.User;
 import com.acilia.ttschool.model.AlumnoModel;
 import com.acilia.ttschool.model.EmailModel;
 import com.acilia.ttschool.model.ProfesorModel;
@@ -86,6 +88,31 @@ public class ProfesorConverter {
 			profesorModel.setTelefonos(telefonos);
 			for (int i=0; i<profesor.getEmails().size();i++){
 				profesorModel.getTelefonos().add(telefonoConverter.convetTelefono2TelefonoModel(profesor.getTelefonos().get(i)));
+			}
+		}
+		
+		return profesorModel;
+	}
+
+	public ProfesorModel convetUser2ProfesorModel(Persona persona) {
+		ProfesorModel profesorModel = new ProfesorModel();
+		profesorModel.setIdPersona(persona.getId());
+		profesorModel.setNombre(persona.getNombre());
+		profesorModel.setApellidos(persona.getApellidos());
+		profesorModel.setNif(persona.getNif());
+		
+		if (persona.getEmails()!=null && persona.getEmails().size()>0){
+			List<EmailModel> emails = new ArrayList<EmailModel>();
+			profesorModel.setEmails(emails);
+			for (int i=0; i<persona.getEmails().size();i++){
+				profesorModel.getEmails().add(emailConverter.convetEmail2EmailModel(persona.getEmails().get(i)));
+			}
+		}
+		if (persona.getTelefonos()!=null && persona.getTelefonos().size()>0){
+			List<TelefonoModel> telefonos = new ArrayList<TelefonoModel>();
+			profesorModel.setTelefonos(telefonos);
+			for (int i=0; i<persona.getEmails().size();i++){
+				profesorModel.getTelefonos().add(telefonoConverter.convetTelefono2TelefonoModel(persona.getTelefonos().get(i)));
 			}
 		}
 		

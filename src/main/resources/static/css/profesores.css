@@ -56,3 +56,8 @@ textarea{
     background: #03A9F4;
     color: #fff;
 }
+
+#navtabs {
+    padding: 0px;
+    height: 50px;
+}

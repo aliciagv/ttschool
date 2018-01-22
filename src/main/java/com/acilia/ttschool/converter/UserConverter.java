@@ -22,6 +22,9 @@ public class UserConverter {
 	@Qualifier("roleConverter")
 	private RoleConverter roleConverter;
 	
+	@Autowired
+	@Qualifier("personaConverter")
+	private PersonaConvert personaConverter;
 	/**
 	 * Convert user model 2 user.
 	 *
@@ -50,6 +53,7 @@ public class UserConverter {
 		usermodel.setUsername(user.getUsername());
 		usermodel.setPassword(user.getPassword());
 		usermodel.setRole(roleConverter.convertRole2RoleModel(user.getRole()));
+		usermodel.setPersona(personaConverter.convetPersona2PersonaModel(user.getPersona(), user.getRole().getName()));
 		return usermodel;
 		
 	}

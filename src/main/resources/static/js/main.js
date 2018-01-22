@@ -114,7 +114,17 @@ $(document).ready(function() {
             }
         });
 
-    	
+      	$('#profesor').click(function() {
+      	    $.ajax({
+      	         type: "GET",
+      	         cache: false,
+      	         url: "profesor/form",
+      	         data: "",
+      	         success: function(response){
+      	             $('#cuerpo').html(response);
+      	         }
+      	    });
+      	});
 
 
 

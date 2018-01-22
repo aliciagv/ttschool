@@ -12,7 +12,6 @@
       	<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Archivos CSS Propios -->
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
-        <link href="css/profesores.css" rel="stylesheet" type="text/css"/>
         <!-- Icono -->
          <link rel="shortcut icon" href="imgs/ttschool.png">
 	</head>
@@ -22,7 +21,7 @@
     		<div class="wrapper principal">
     			<div class="row">
     				<jsp:include page="menu.jsp"/>
-    				<div id="cuerpo" class="cuerpo">
+    				<div class="cuerpo">
         				<div class="col-sm-9 col-md-9">
             				<div class="well">
 	            				<div class="container">
@@ -41,10 +40,7 @@
  		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
-    	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     	<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    	<script src="js/validation.js"></script>
-    	<script src="js/main.js"></script>
 
 	</body>
 </html>

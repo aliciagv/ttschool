@@ -6,6 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.acilia.ttschool.constant.ViewConstant;
+import com.acilia.ttschool.model.UserModel;
+import com.acilia.ttschool.service.UserService;
 import com.acilia.ttschool.utils.LogUtils;
 
 @Controller
@@ -24,6 +28,10 @@ public class LoginController {
 	@Autowired
 	@Qualifier("logutils")
 	private LogUtils logutils;
+	
+	@Autowired
+	@Qualifier("userserviceImpl")
+	private UserService userservice;
 	
 	
 	@GetMapping("/login")
@@ -52,11 +60,21 @@ public class LoginController {
 	}
 	
 	@GetMapping({"/loginsucess","/"})
-	public String loginCheck(){
+	public String loginCheck(Model model){
 		
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
 		LOG.info("Redirect to "+ ViewConstant.HOME_VIEW + " view");
+		
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 
+		 model.addAttribute("nombre_usuario", auth.getName());
+		 UserModel usermodel= userservice.findUserModelByname(auth.getName());
+		 model.addAttribute("usermodel",usermodel);
+		 
+		 model.addAttribute("auth_usuario", auth.getAuthorities());
+
+	      
 		
 		return ViewConstant.HOME_VIEW;
 	}

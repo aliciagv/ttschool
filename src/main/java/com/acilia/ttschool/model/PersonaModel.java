@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.hateoas.ResourceSupport;
 
-public abstract class PersonaModel extends ResourceSupport implements Serializable {
+public  class PersonaModel extends ResourceSupport implements Serializable {
 
 	/**
 	 * 

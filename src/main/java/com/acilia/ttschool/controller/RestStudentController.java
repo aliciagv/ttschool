@@ -23,6 +23,7 @@ public class RestStudentController {
 	
 	private static final Log LOG = LogFactory.getLog(StudentController.class);
 
+	
 	@Autowired
 	@Qualifier("studentServiceImpl")
 	private StudentService studentService;

@@ -62,7 +62,8 @@
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<a href="http://www.jquery2dotnet.com">Profesor</a>
+                                        		<!--  <a href="${pageContext.servletContext.contextPath}/profesor/form">Profesor</a>-->
+                                        		<a id="profesor" href="#">Profesor</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
