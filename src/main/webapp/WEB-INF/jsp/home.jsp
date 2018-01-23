@@ -10,6 +10,7 @@
 		<!-- Archivos CSS BOOTSTRAP -->
 		<link href="bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/> <!--TEMA POR DEFECTO -->
       	<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+      	 <link href="stacktable-1.0.2-13/stacktable.css" rel="stylesheet">
         <!-- Archivos CSS Propios -->
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
         <link href="css/profesores.css" rel="stylesheet" type="text/css"/>
@@ -43,6 +44,7 @@
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     	<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    	<script src="stacktable-1.0.2-13/stacktable.js"></script>
     	<script src="js/validation.js"></script>
     	<script src="js/main.js"></script>
 

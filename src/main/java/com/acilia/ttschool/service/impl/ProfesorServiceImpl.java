@@ -41,7 +41,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 		// TODO Auto-generated method stub
 		List<Profesor> listaprofesor=profesorRepository.findAll();
 		List<ProfesorModel> listaprofesorModel = new ArrayList<ProfesorModel>();
-		for (int i=0;i<listaprofesorModel.size();i++){
+		for (int i=0;i<listaprofesor.size();i++){
 			listaprofesorModel.add(profesorConverter.convetProfesor2ProfesorModel(listaprofesor.get(i)));
 		}
 		return listaprofesorModel;

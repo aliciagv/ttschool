@@ -118,7 +118,7 @@ $(document).ready(function() {
       	    $.ajax({
       	         type: "GET",
       	         cache: false,
-      	         url: "profesor/form",
+      	         url: "profesor/",
       	         data: "",
       	         success: function(response){
       	             $('#cuerpo').html(response);
@@ -126,9 +126,29 @@ $(document).ready(function() {
       	    });
       	});
 
+      	$('#listado').stacktable();
+      	 
+     	$('.eliminar').click(function() {
+     		var idEliminar=$(this).attr("data-id")
+     		var idUrl=$(this).attr("data-url")
+     		alert("Eliminar "+ idEliminar)
 
-
+      	});
 
 });
+
+/**function editProfesor(id){
+    $.ajax({
+	         type: "GET",
+	         cache: false,
+	         url: "profesor/edit/"+id,
+	         data: "",
+	         success: function(response){
+	        	$('#modalProfesor').html(response); 
+	        	$('#editprofesorModal').modal("show");
+	         }
+	    });
+}*/
+
 
 
