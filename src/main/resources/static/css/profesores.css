@@ -3,12 +3,12 @@ body{
 	padding: 0;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
-.formBox{
+.modal-body{
 	margin-top: 10px;
 	padding: 20px;
 }
 
-#mypanelId{
+.modal-header{
     background-image: none;
     background: #666690;
     /*background-image:linear-gradient(rgb(102, 102, 144), rgb(204, 204, 218));*/
@@ -20,6 +20,7 @@ body{
 	box-sizing: border-box;
 	margin-bottom: 50px;
 }
+
 .inputBox .inputText{
 	position: absolute;
     font-size: 20px;
@@ -36,8 +37,8 @@ body{
     outline: none;
     font-size: 20px;
     border-bottom: 1px solid rgba(0,0,0,.5);
-
 }
+
 .focus .inputText{
 	transform: translateY(-30px);
 	font-size: 16px;
@@ -45,22 +46,11 @@ body{
 	color: #00bcd4;
 
 }
-textarea{
-	height: 100px !important;
-}
-.button{
-	width: 100%;
+.btmodal{
     height: 50px;
-    border: none;
-    outline: none;
-    background: #03A9F4;
-    color: #fff;
+    font-size: 16px;
 }
 
-#navtabs {
-    padding: 0px;
-    height: 40px;
-}
 
 .page-header {
  	border-bottom: 2px solid #2e6da4;
@@ -101,4 +91,6 @@ textarea{
 	border-top-width:1px;
 	border-bottom-width:1px;
 	}
-#listados th,td{vertical-align:top}
+#listados th,td{
+	vertical-align:top;
+	}

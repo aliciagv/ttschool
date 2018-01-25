@@ -1,5 +1,6 @@
 package com.acilia.ttschool.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -31,6 +34,10 @@ public class Persona {
 	
 	@Column (name="apellidos", length=100 )
 	private String apellidos;
+	
+	@Column(name="fcreacion")
+	@Temporal(TemporalType.DATE)
+	private Date fcreacion;
 	
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="idpersona")

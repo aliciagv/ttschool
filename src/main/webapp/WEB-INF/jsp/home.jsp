@@ -29,8 +29,6 @@
 	            				<div class="container">
 		           					 <div class="page-header">
 		             					 <h1 class="all-tittles">TTSchool <small>Inicio</small></h1>
-		             					  Usuario: <sec:authentication property="principal.username" /> |
-                   						 Roles: <sec:authentication property="principal.authorities" /> |
 		           					</div>
 	        					</div><!-- container -->
             				</div><!-- well -->
@@ -45,8 +43,9 @@
     	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     	<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
     	<script src="stacktable-1.0.2-13/stacktable.js"></script>
-    	<script src="js/validation.js"></script>
+    	  <!--  <script src="js/validation.js"></script>--> 
     	<script src="js/main.js"></script>
+    	<!--  <script src="js/teacher.js"></script> -->
 
 	</body>
 </html>

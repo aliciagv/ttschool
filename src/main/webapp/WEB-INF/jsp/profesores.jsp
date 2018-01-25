@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <div class="col-sm-9 col-md-9">
 	<ul id="navtabs" class="nav nav-tabs">
 		
@@ -31,21 +32,23 @@
                             <div class="row">
                                 <div class="col-lg-10">
 									<div class="formBox">
-										<form id="formprofesor" role="form">
+									<c:url var="addAction" value="/profesor/add" ></c:url>
+										
+										<form:form action="${addAction}" commandName="profesorModel">
 											<div class="inputBox">
 												<div class="inputText">Nombre</div>
-												<input type="text" name="nombre" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50"/>
+												<form:input path="nombre" type="text" name="nombre" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
 											<div class="inputBox">
 												<div class="inputText">Apellidos</div>
-												<input type="text" name="apellidos" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,100}" maxlength="100"/>
+												<form:input path="apellidos" type="text" name="apellidos" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,100}" maxlength="100"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
 											
 											<div class="inputBox">
 												<div class="inputText">Nif</div>
-												<input type="text" name="nif" class="input"/>
+												<form:input path="nif" type="text" name="nif" class="input"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
 											
@@ -53,7 +56,7 @@
 												<div class="inputBox">
 												<div class="inputText">Teléfono</div>
 												<div class="form-group input-group">
-													<input type="text" name="telefono[]" class="inputplus" pattern="^[9|8|7|6]\d{8}$" maxlength="9" title="Teléfono con formato inválido. 9 dígitos comenzando con 9,8,7 ó 6"/>
+													<form:input path="telefonos" type="text" name="telefono[]" class="inputplus" pattern="^[9|8|7|6]\d{8}$" maxlength="9" title="Teléfono con formato inválido. 9 dígitos comenzando con 9,8,7 ó 6"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default btn-add">+</button>
 													</span>
@@ -66,7 +69,7 @@
 												<div class="inputBox">
 													<div class="inputText">Email</div>
 													<div class="form-group input-group">
-													<input type="email" name="email[]" class="inputplus" title="El email introducido no es válido"/>
+													<form:input path="emails" type="email" name="email[]" class="inputplus" title="El email introducido no es válido"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default btn-add">+</button>
 													</span>
@@ -84,7 +87,7 @@
                             			</p> 
 
 					
-				</form>
+				</form:form>
 			</div>
 			 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -154,8 +157,34 @@
           </td>
 														
            <sec:authorize access="hasRole('ADMIN')">
-          	<td><a id="editarProfesor" href="#"  onclick=\"editProfesor('" + ${profesorModel.idPersona}+ "');\" >Editar</a></td>
-          	<td><button class="eliminar" data-id="${profesorModel.idPersona}" data-url="profesor/delete">Eliminar</button></td>
+          	<td>
+          	  <a id="editarProfesor" href="#"  onclick="editProfesor(${profesorModel.idPersona})" >Editar</a></td>
+          	<!--   <a href="#editTeacher_${profesorModel.idPersona}" role="button" class="btn btn-large btn-primary" data-toggle="modal">Editar</a>-->
+    
+          	
+          	<td>
+          	
+          	<button class="eliminar" data-id="${profesorModel.idPersona}" data-url="profesor/delete">Eliminar</button></td>
+          	
+          		<!--  <div class="modal fade" id="editTeacher_${profesorModel.idPersona}">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="ModalTitle">Esto es un modal</h4>
+			</div>
+			<div class="modal-body">
+				Texto del modal
+				${profesorModel.idPersona}
+				${profesorModel.nombre}
+				${profesorModel.apellidos}
+			</div>
+		</div>
+	</div>
+</div>     -->
+
           </sec:authorize>
      </tr>
  </c:forEach>
@@ -172,29 +201,21 @@
                                 
                             </div>
                             
+                  <!-- profesorModel -->
+                  <div id="modalProfesor">
+                  	
+                  	<jsp:include page="profesores_details.jsp"/>
+                  </div>
+
+
                   
                 </div>
                 <!-- /.col-lg-12 -->
 
             </div>
             <!-- /.row -->
-    <div id="modalProfesor">
 
         
-	<div class="modal fade" id="editprofesorModal" tabindex="-1" role="dialog" aria-labelledby="editprofesorLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">Esto es un modal</h4>
-			</div>
-			<div class="modal-body">
-				Texto del modal
-			</div>
-		</div>
-	</div>
-</div>            
-		</div> <!-- container -->
+       
+
 </div>

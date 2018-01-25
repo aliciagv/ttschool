@@ -36,8 +36,8 @@ body{
     outline: none;
     font-size: 20px;
     border-bottom: 1px solid rgba(0,0,0,.5);
-
 }
+
 .focus .inputText{
 	transform: translateY(-30px);
 	font-size: 16px;
@@ -45,6 +45,7 @@ body{
 	color: #00bcd4;
 
 }
+
 textarea{
 	height: 100px !important;
 }
@@ -59,10 +60,46 @@ textarea{
 
 #navtabs {
     padding: 0px;
-    height: 50px;
+    height: 40px;
 }
 
-#websendeos table  {border-collapse:collapse;border-spacing:0;border-color:#999;margin-bottom: 50px;}
-#websendeos td{font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#337ab7;color:#444;background-color:#F7FDFA;border-top-width:1px;border-bottom-width:1px;}
-#websendeos th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#01338d;border-top-width:1px;border-bottom-width:1px;}
-#websendeos th,td{vertical-align:top}
+.page-header {
+ 	border-bottom: 2px solid #2e6da4;
+}
+#listado {
+	 width: 100%;
+}
+#listado table  {
+	border-collapse:collapse;
+	border-spacing:0;
+	border-color:#999;
+	margin-bottom: 50px;
+	}
+#listado td{
+	font-size:14px;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:0px;
+	overflow:hidden;
+	word-break:normal;
+	border-color:#337ab7;
+	color:#444;
+	background-color:#fff;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	}
+#listado th{
+	font-size:14px;
+	font-weight:normal;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:0px;
+	overflow:hidden;
+	word-break:normal;
+	border-color:#999;
+	color:#fff;
+	background-color:#666690;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	}
+#listados th,td{vertical-align:top}

@@ -36,7 +36,7 @@
 	                 		<tr>
 	                 			<td>
 	                 				<span class="glyphicon glyphicon-paperclip text-info"></span>
-	                 				<a href="http://www.jquery2dotnet.com">Impresos y Autorizaciones</a>-->
+	                 				<a href="http://www.jquery2dotnet.com">Impresos y Autorizaciones</a>
 	                         	</td>
 	                 		</tr>
 	                 	</table>
