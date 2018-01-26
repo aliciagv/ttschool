@@ -66,6 +66,7 @@
       	$('#listado').stacktable();
       	
       	 xphone = 0; //Initial field counter is 1
+      	 xemail =0;
          $(".input").focus(function() {
      		$(this).parent().addClass("focus");
      	});
@@ -79,9 +80,39 @@
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
-    		$('.modal-body').find('.help-block').text('');
+    		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
+    		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
+    		var modelatt,valor;
     		
+    		if (xphone>0){
+    			modelatt="numero";
+    			valor="telefonos";
+    				
+    			for (i = xphone; i < 0; i--) { 
+    				 var $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
+    				 $inputplus.closest('.form-group');
+    				 $formGroup.remove();
+    				
+    			}
+    		}
+    		
+    		if (xemail>0){
+    			modelatt="email";
+    			valor="emails";
+    			for (i = xemail; i < 0; i--) { 
+    				 var $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
+    				 $inputplus.closest('.form-group');
+    				 $formGroup.remove();
+    			}
+    		}
+
+            
+       	 	xphone = 0; //Initial field counter is 1
+       	 	xemail =0;
+       	 	
     	});
+     	
+    	
 		
 });
 	 
@@ -90,10 +121,21 @@
 	 var addFormGroup = function (event) {
      		
 		 	event.preventDefault();
-		 	alert("XPHONE "+xphone);
-     		 xphone++;
-            
-
+		 	var xaux,modelatt;
+     		var valor = $(this).attr('value');
+     		if(valor == "telefonos"){
+     			alert("XPHONE "+xphone);
+     			xphone++;
+     			xaux=xphone;
+     			modelatt="numero";     			
+     		}
+     		if(valor == "emails"){
+     			alert("XEMAIL "+xemail);
+     			xemail++;
+     			xaux=xemail;
+     			modelatt="email";
+     		}
+     		// "index.htm\" target:\"_self\""
              var $formGroup = $(this).closest('.form-group');
              var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
              var $formGroupClone = $formGroup.clone();
@@ -101,10 +143,10 @@
              $(this)
                  .toggleClass('btn-default btn-add btn-danger btn-remove')
                  .html('–');
-
+             
              $formGroupClone.find('input').val('');
-             $formGroupClone.find('input').attr("id","telefonos"+xphone+".numero");
-             $formGroupClone.find('input').attr("name","telefonos["+xphone+"].numero");
+             $formGroupClone.find('input').attr("id",valor+xaux+"."+modelatt);
+             $formGroupClone.find('input').attr("name",valor+"["+xaux+"]."+modelatt);
              $formGroupClone.insertAfter($formGroup);
 
              var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
@@ -119,16 +161,60 @@
 
      var removeFormGroup = function (event) {
          event.preventDefault();
-         xphone--;
-         var $formGroup = $(this).closest('.form-group');
+  		var valor = $(this).attr('value');
+  		
+  		var modelatt;
+		 
+  		var $formGroup = $(this).closest('.form-group');
+        var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+        
+ 		if(valor == "telefonos"){
+ 			alert("XPHONE remove "+xphone);
+ 			modelatt="numero"; 
+ 			var $inputplus= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
+ 			var $formGroup = $inputplus.closest('.form-group');
+ 			console.log("$formGroup length " +$formGroup.length);
+ 			$formGroup.remove();
+ 			xphone --;
+ 			//anterior se convierte en +
+ 			var $inputplusant= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
+ 			//$inputplusant.find('button').toggleClass('btn-default btn-add btn-danger btn-remove').html('+')
+
+ 			 //$lastFormGroupLast.find('.btn-add').attr('disabled', true);
+ 			
+ 		}
+ 		if(valor == "emails"){
+ 			alert("XEMAIL remove "+xemail);
+ 			modelatt="email";
+ 			var $inputplus= $('.input-group').find('#'+valor+xemail+"."+modelatt);
+  			var $formGroup= $inputplus.closest('.form-group');
+  			 $formGroup.remove();
+ 			xemail--;
+ 			//anterior se convierte en +
+ 			//$(this).toggleClass('btn-default btn-add btn-danger btn-remove').html('–');
+ 			
+ 			
+ 		}
+
+         
+        /* var $formGroup = $(this).closest('.form-group');
          var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
 
          var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
          if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
-             $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+            // $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+        	 //$formGroup.find('.btn-add').attr('disabled', false);
+        	 
          }
-
-         $formGroup.remove();
+         
+         //$formGroup.remove();
+         
+         $lastFormGroupLast.remove();
+         
+         //var $multipleFormGroupnextDelete=$('.modal-body').find('.inputBox');
+         //  $(this).toggleClass('btn-default btn-add btn-danger btn-remove').html('–');
+         
+         xphone--;*/
      };
 
      var countFormGroup = function ($form) {

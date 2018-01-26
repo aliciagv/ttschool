@@ -1,6 +1,6 @@
 $(document).ready(function() { 
 	var xphone = 0; 
-
+	var xemail = 0;
       	$('#profesor').click(function() {
       	    $.ajax({
       	         type: "GET",

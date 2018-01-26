@@ -126,7 +126,7 @@
 													<div class="form-group input-group">
 													<form:input path="emails[0].email" type="email" name="email[]" class="inputplus" title="El email introducido no es válido"/>
 													<span class="input-group-btn">
-														<button type="button" class="btn btn-default btn-add-email" value="emails">+</button>
+														<button type="button" class="btn btn-default btn-add" value="emails" modelatt="email">+</button>
 													</span>
 													</div>
 													<span class="help-block" id="error"></span>  

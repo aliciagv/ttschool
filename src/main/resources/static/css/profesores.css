@@ -46,6 +46,12 @@ body{
 	color: #00bcd4;
 
 }
+
+.outfocus {
+	
+}
+
+.outfocus .inputText{}
 .btmodal{
     height: 50px;
     font-size: 16px;
