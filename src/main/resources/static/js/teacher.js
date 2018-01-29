@@ -1,5 +1,5 @@
  $(document).ready(function() {
-	
+	 
 	$("#AddModalProfesor form").validate({
             rules: {
             	nombre: { 
@@ -20,12 +20,22 @@
             		required:false,
             		customnif:true
             		},
+            		
+            	"telefonos[0].numero":{
+                		required:false,
+                		customphone:true
+                		},	
             	
-            	"telefono[]":{
+            	"telefonos[]":{
             		required:false,
             		customphone:true
-            		}
-            	
+            		},
+            		
+            	"emails[]":{
+                		required:false,
+                		customemail:true
+                		},            		
+
             		
             	
             	
@@ -59,7 +69,22 @@
     		submitHandler: function(form)
             {
               alert('El formulario ha sido validado correctamente!');
-              form.submit();
+              //form.submit();
+              var theURL = form.action;
+              var type = form.methd;
+              var data = $(this).serialize();
+              $.ajax({
+            	  url: theURL,
+                  type: type,
+                  cache: false,
+                  data: data,
+       	          success: function(response){
+       	        	  $('#info').html(response);
+
+//       	        	 $('#AddModalProfesor').modal('hide');
+       	             $('#cuerpo').load(response);
+       	         }
+       	    });
             }
         });
 
@@ -83,32 +108,43 @@
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
     		var modelatt,valor;
-    		
+    		var $formGroup,$inputplus;
     		if (xphone>0){
     			modelatt="numero";
     			valor="telefonos";
     				
-    			for (i = xphone; i < 0; i--) { 
-    				 var $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
-    				 $inputplus.closest('.form-group');
+    			for (i = xphone; i > 0; i--) { 
+    				 $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
+    				 console.log("$inputplus length " +$inputplus.length);
+    				 $formGroup=$inputplus.closest('.form-group');
     				 $formGroup.remove();
     				
     			}
+    			xphone = 0; //Initial field counter is 1
+    			$inputplus= $('.input-group').find('#'+valor+xphone+"\\."+modelatt);
+				$formGroup=$inputplus.closest('.form-group');
+				$formGroup.find('.btn').toggleClass('btn-default btn-add btn-danger btn-remove').html("+");
+				 
+				
+    			
     		}
     		
     		if (xemail>0){
     			modelatt="email";
     			valor="emails";
-    			for (i = xemail; i < 0; i--) { 
-    				 var $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
-    				 $inputplus.closest('.form-group');
+    			for (i = xemail; i > 0; i--) { 
+    				 $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
+    				 $formGroup=$inputplus.closest('.form-group');
     				 $formGroup.remove();
     			}
+    			
+    			xemail = 0; //Initial field counter is 1
+    			$inputplus= $('.input-group').find('#'+valor+xemail+"\\."+modelatt);
+				$formGroup=$inputplus.closest('.form-group');
+				$formGroup.find('.btn').toggleClass('btn-default btn-add btn-danger btn-remove').html("+");
+    			
     		}
 
-            
-       	 	xphone = 0; //Initial field counter is 1
-       	 	xemail =0;
        	 	
     	});
      	
@@ -139,6 +175,7 @@
              var $formGroup = $(this).closest('.form-group');
              var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
              var $formGroupClone = $formGroup.clone();
+             $formGroup.find('input').attr("name",valor+"[]");
 
              $(this)
                  .toggleClass('btn-default btn-add btn-danger btn-remove')
@@ -146,7 +183,8 @@
              
              $formGroupClone.find('input').val('');
              $formGroupClone.find('input').attr("id",valor+xaux+"."+modelatt);
-             $formGroupClone.find('input').attr("name",valor+"["+xaux+"]."+modelatt);
+             //$formGroupClone.find('input').attr("name",valor+"["+xaux+"]."+modelatt);
+             $formGroupClone.find('input').attr("name",valor+"[]");
              $formGroupClone.insertAfter($formGroup);
 
              var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
@@ -173,48 +211,33 @@
  			modelatt="numero"; 
  			var $inputplus= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
  			var $formGroup = $inputplus.closest('.form-group');
- 			console.log("$formGroup length " +$formGroup.length);
  			$formGroup.remove();
  			xphone --;
  			//anterior se convierte en +
  			var $inputplusant= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
- 			//$inputplusant.find('button').toggleClass('btn-default btn-add btn-danger btn-remove').html('+')
-
- 			 //$lastFormGroupLast.find('.btn-add').attr('disabled', true);
+ 			var $formGroupant = $inputplusant.closest('.form-group');
+ 			//toggleClass: método alterna entre la adición y la eliminación de uno o más nombres de las clases de los elementos seleccionados
+ 			//Los nombres de las clases se agregan si falta, y eliminado si ya está establecido
+ 			$formGroupant.find('.btn').toggleClass('btn-default btn-add btn-danger btn-remove').html("+");
  			
  		}
  		if(valor == "emails"){
  			alert("XEMAIL remove "+xemail);
  			modelatt="email";
- 			var $inputplus= $('.input-group').find('#'+valor+xemail+"."+modelatt);
-  			var $formGroup= $inputplus.closest('.form-group');
-  			 $formGroup.remove();
- 			xemail--;
+ 			var $inputplus= $multipleFormGroup.find('#'+valor+xemail+"\\."+modelatt);
+ 			var $formGroup = $inputplus.closest('.form-group');
+ 			$formGroup.remove();
+ 			xemail --;
  			//anterior se convierte en +
- 			//$(this).toggleClass('btn-default btn-add btn-danger btn-remove').html('–');
+ 			var $inputplusant= $multipleFormGroup.find('#'+valor+xemail+"\\."+modelatt);
+ 			var $formGroupant = $inputplusant.closest('.form-group');
+ 			//toggleClass: método alterna entre la adición y la eliminación de uno o más nombres de las clases de los elementos seleccionados
+ 			//Los nombres de las clases se agregan si falta, y eliminado si ya está establecido
+ 			$formGroupant.find('.btn').toggleClass('btn-default btn-add btn-danger btn-remove').html("+");
  			
  			
  		}
 
-         
-        /* var $formGroup = $(this).closest('.form-group');
-         var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-
-         var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-         if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
-            // $lastFormGroupLast.find('.btn-add').attr('disabled', false);
-        	 //$formGroup.find('.btn-add').attr('disabled', false);
-        	 
-         }
-         
-         //$formGroup.remove();
-         
-         $lastFormGroupLast.remove();
-         
-         //var $multipleFormGroupnextDelete=$('.modal-body').find('.inputBox');
-         //  $(this).toggleClass('btn-default btn-add btn-danger btn-remove').html('–');
-         
-         xphone--;*/
      };
 
      var countFormGroup = function ($form) {

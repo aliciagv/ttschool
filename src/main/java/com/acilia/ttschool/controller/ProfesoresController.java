@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acilia.ttschool.constant.ViewConstant;
 import com.acilia.ttschool.model.ProfesorModel;
@@ -88,11 +89,12 @@ public class ProfesoresController {
 	}
 	
 	@PostMapping("/add")
-	public String add(@ModelAttribute(value="profesorModel") ProfesorModel pr,Model model) {
+	public void  add(@ModelAttribute(value="profesorModel") ProfesorModel pr,Model model) {
 
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		profesorService.addProfesor(pr);
-		return "redirect:list";
+		
+		//return "redirect:/profesor/list";
 	}
 
 }

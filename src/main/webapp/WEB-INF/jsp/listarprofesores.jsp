@@ -26,7 +26,7 @@
 	         								<th>Nif</th>
 	         								<th>Curso</th>
 	         								<th>Letra</th>
-	         								<th>TelÃ©fonos</th>
+	         								<th>Teléfonos</th>
 	         								<th>Emails</th>
 	         								<sec:authorize access="hasRole('ADMIN')">
 	         								<th>Editar</th>
@@ -111,7 +111,7 @@
 												<div class="inputBox">
 												<div class="inputText">Telefono</div>
 												<div class="form-group input-group">
-													<form:input path="telefonos[0].numero" type="text" name="telefono[]" class="inputplus" pattern="^[9|8|7|6]\d{8}$" maxlength="9" title="Teléfono con formato inválido. 9 dígitos comenzando con 9,8,7 ó 6"/>
+													<form:input path="telefonos[0].numero" type="text" name="telefonos[]" class="inputplus" pattern="^[9|8|7|6]\d{8}$" maxlength="9" title="Teléfono con formato inválido. 9 dígitos comenzando con 9,8,7 ó 6"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default btn-add" value="telefonos">+</button>
 													</span>
@@ -124,16 +124,16 @@
 												<div class="inputBox">
 													<div class="inputText">Email</div>
 													<div class="form-group input-group">
-													<form:input path="emails[0].email" type="email" name="email[]" class="inputplus" title="El email introducido no es válido"/>
+													<form:input path="emails[0].email" type="email" name="emails[]" class="inputplus" title="El email introducido no es válido"/>
 													<span class="input-group-btn">
-														<button type="button" class="btn btn-default btn-add" value="emails" modelatt="email">+</button>
+														<button type="button" class="btn btn-default btn-add" value="emails">+</button>
 													</span>
 													</div>
-													<span class="help-block" id="error"></span>  
-												</div>
+													<span class="help-block" id="error"></span>
+													</div>
 											</div>
         
-  
+  		<div id="info" style="color: green;"></div>
         </div>
         <div class="modal-footer">
         <input type="submit" class="btn btn-primary" value="Guardar">

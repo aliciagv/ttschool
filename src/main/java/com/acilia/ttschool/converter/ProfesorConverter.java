@@ -40,20 +40,34 @@ public class ProfesorConverter {
 		profesor.setId(profesorModel.getIdPersona());
 		profesor.setNombre(profesorModel.getNombre());
 		profesor.setApellidos(profesorModel.getApellidos());
-		profesor.setNif(profesorModel.getNif());
+		profesor.setNif((profesorModel.getNif()!=null && profesorModel.getNif().equalsIgnoreCase(""))?null:profesorModel.getNif());
 		
+		boolean add=false;
 		if (profesorModel.getEmails()!=null && profesorModel.getEmails().size()>0){
 			List<Email> emails = new  ArrayList<Email>();
-			profesor.setEmails(emails);
 			for (int i=0; i<profesorModel.getEmails().size();i++){
-				profesor.getEmails().add(emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i)));
+				if (profesorModel.getEmails().get(i)!=null && !profesorModel.getEmails().get(i).getEmail().equalsIgnoreCase("")) {
+					emails.add(emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i)));	
+					add=true;
+				}	
+			}
+			if (add){
+				profesor.setEmails(emails);
 			}
 		}
+		
+		add=false;
 		if (profesorModel.getTelefonos()!=null && profesorModel.getTelefonos().size()>0){ 
 			List<Telefono> telefonos = new ArrayList<Telefono>();
-			profesor.setTelefonos(telefonos);
 			for (int i=0; i<profesorModel.getTelefonos().size();i++){
-				profesor.getTelefonos().add(telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i)));
+				if (profesorModel.getTelefonos().get(i)!=null && !profesorModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
+					profesor.getTelefonos().add(telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i)));
+					add=true;
+				}
+				
+			}
+			if (add) {
+				profesor.setTelefonos(telefonos);
 			}
 			
 			
