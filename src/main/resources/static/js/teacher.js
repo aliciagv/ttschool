@@ -327,7 +327,7 @@
 							  $('#mensaje').addClass('alert-success');
 							  $('#mensaje').show();	
 							  $('#smensaje').text("El registro se ha borrado correctamente");
-						    //  $('#mensaje').fadeOut(10000);
+						      $('#mensaje').fadeOut(10000);
 						      $boton = $('#listado').find('#'+button);
 						      console.log ("BOTON " +$boton.length);
 						      $boton.closest('tr').remove();
