@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <div class="navegador">
 	<div class="col-sm-3 col-md-3">
 		<div class="panel-group" id="accordion">
@@ -62,8 +63,9 @@
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<!--  <a href="${pageContext.servletContext.contextPath}/profesor/form">Profesor</a>-->
-                                        		<a id="profesor" href="#">Profesor</a>
+                                        		
+                                        		<a href="<c:url value="/profesor" />">Profesor</a>
+                                        		
                                     		</td>
                                 		</tr>
                                 		<tr>

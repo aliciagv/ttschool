@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <div class="cabecera"> 
 	<div class="navbar" role="navigation">
     	<div class="container"> 
@@ -10,7 +11,9 @@
                 	<span class="icon-bar"></span>
                 	<span class="icon-bar"></span> 
             	</button>
-            	<a target="_blank" href="#" class="navbar-brand"><img src="imgs/ttschool.png" alt="TTSchool""></a>
+            	
+            	<a target="_blank" href="#" class="navbar-brand"><img alt="TTSchool" src="<c:url value="/imgs/ttschool.png" />"></img></a>
+
         	</div> <!-- navbar-header -->
         	
         	<div id="navbar1"class="navbar-collapse collapse">

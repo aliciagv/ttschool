@@ -48,14 +48,21 @@ public class ProfesorServiceImpl implements ProfesorService {
 	}
 
 	@Override
-	public ProfesorModel findProfesorByIdModel(int id) {
+	public ProfesorModel findProfesorByIdModel(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		ProfesorModel profesorModel=null;
+		Profesor profesor = profesorRepository.findById(id);
+		if (profesor!=null){
+			profesorModel= profesorConverter.convetProfesor2ProfesorModel(profesor);
+		}
+		
+		return profesorModel; 
 	}
 
 	@Override
-	public void removeProfesor(int id) {
-		// TODO Auto-generated method stub
+	public void removeProfesor(ProfesorModel profesormodel) {
+		Profesor profesor=profesorConverter.convetProfesorModel2Profesor(profesormodel);
+		profesorRepository.delete(profesor);
 		
 	}
 

@@ -71,20 +71,43 @@
               alert('El formulario ha sido validado correctamente!');
               //form.submit();
               var theURL = form.action;
-              var type = form.methd;
-              var data = $(this).serialize();
+              var type = form.method;
               $.ajax({
-            	  url: theURL,
-                  type: type,
-                  cache: false,
-                  data: data,
-       	          success: function(response){
-       	        	  $('#info').html(response);
+            	  type : "POST",
+            	  data : $(form).serialize(),
+	    		  url : theURL,
 
-//       	        	 $('#AddModalProfesor').modal('hide');
-       	             $('#cuerpo').load(response);
-       	         }
-       	    });
+            	  /*beforeSend: function(x){ 
+            	  alert("antes")
+            	  },*/
+                  success: function(response){
+                	  if (response.validated){
+                		 
+                		  $('#AddModalProfesor').modal('hide');
+                		  $('#mensaje').removeClass('alert-danger');
+              			  $('#mensaje').addClass('alert-success');
+              			  $('#mensaje').show();	
+              			  $('#smensaje').text(response.profesorModel.nombre + " ha sido añadido");
+              		      $('#mensaje').fadeOut(10000);
+              		      appendRow(response);
+                		
+
+                	  } else {
+                		    $('#mensaje').removeClass('alert-success');
+							$('#mensaje').addClass('alert-danger');
+							$('#mensaje').show();	
+							$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde");
+                	  }
+                  },
+                  error: function(e){ 
+                	  ('#mensaje').removeClass('alert-success');
+						$('#mensaje').addClass('alert-danger');
+						$('#mensaje').show();	
+						$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde");
+                }
+    		
+    			
+    		});
             }
         });
 
@@ -101,7 +124,7 @@
      	});
       	
      	
-     	$('.modal').on('hidden.bs.modal', function(){ 
+     	$('#AddModalProfesor').on('hidden.bs.modal', function(){ 
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
@@ -246,9 +269,87 @@
 
      $(document).on('click', '.btn-add', addFormGroup);
      $(document).on('click', '.btn-remove', removeFormGroup);
+     
+
      		
 		
-	
+	 function appendRow(response){
+		 
+		
+				var nuevafila= "<tr><td>" +
+				response.profesorModel.nombre + "</td><td>" +
+				response.profesorModel.apellidos + "</td><td>";
+				
+				if (response.profesorModel.nif==null){
+					nuevafila+= "</td><td>";
+					
+				} else {
+					nuevafila +=response.profesorModel.nif + "</td><td>"; 
+				}
+				
+				nuevafila+="</td><td>" +
+							"</td><td>"
+				
+				if (response.profesorModel.emails!=null){
+					var emails = response.profesorModel.emails.length;
+					for (  i = 0 ; i < emails; i++){
+						if (i >0){
+							nuevafila+= ", "
+						}
+						nuevafila+=response.profesorModel.emails[i]
+					} 
+				}
+				nuevafila+="</td><td>"
+				
+				if (response.profesorModel.telefonos!=null){
+				var telefonos = response.profesorModel.telefonos.length;
+				for (  i = 0 ; i < telefonos; i++){
+					if (i >0){
+						nuevafila+= ", "
+					}
+					nuevafila+=response.profesorModel.telefonos[i]
+				} 
+				}
+				nuevafila+="</td><td></td></td><td></td></tr>"
+					
+				$("#listado").append(nuevafila)
+			
+	 }
+	 
+	 function eliminar(uri, button) {
+
+					$.ajax({
+						type : "GET",
+						url : uri,
+						success : function(data) {
+							if(data=="ok"){
+							  $('#mensaje').removeClass('alert-danger');
+							  $('#mensaje').addClass('alert-success');
+							  $('#mensaje').show();	
+							  $('#smensaje').text("El registro se ha borrado correctamente");
+						    //  $('#mensaje').fadeOut(10000);
+						      $boton = $('#listado').find('#'+button);
+						      console.log ("BOTON " +$boton.length);
+						      $boton.closest('tr').remove();
+						      
+						
+							}else{
+								$('#mensaje').removeClass('alert-success');
+								$('#mensaje').addClass('alert-danger');
+								$('#mensaje').show();	
+								$('#smensaje').text("Ha habido un error al borrar. Intentelo de nuevo más tarde");
+							      
+							}
+						},  
+						error: function(e){ 
+		                	  $('#mensaje').removeClass('alert-success');
+								$('#mensaje').addClass('alert-danger');
+								$('#mensaje').show();	
+								$('#smensaje').text("Ha habido un error al borrar. Intentelo de nuevo más tarde");
+		                }
+					});
+					
+		};
 	
  	
 	
