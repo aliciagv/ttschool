@@ -47,7 +47,13 @@ public class ProfesorConverter {
 			List<Email> emails = new  ArrayList<Email>();
 			for (int i=0; i<profesorModel.getEmails().size();i++){
 				if (profesorModel.getEmails().get(i)!=null && !profesorModel.getEmails().get(i).getEmail().equalsIgnoreCase("")) {
-					emails.add(emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i)));	
+					Email email=null;
+					if (profesorModel.getEmails().get(i).getIdEmail()!=null){
+						email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
+					}else {
+						email=emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i));
+					}
+					emails.add(email);	
 					add=true;
 				}	
 			}
@@ -61,7 +67,15 @@ public class ProfesorConverter {
 			List<Telefono> telefonos = new ArrayList<Telefono>();
 			for (int i=0; i<profesorModel.getTelefonos().size();i++){
 				if (profesorModel.getTelefonos().get(i)!=null && !profesorModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
-					profesor.getTelefonos().add(telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i)));
+					Telefono telefono=null;
+					if (profesorModel.getTelefonos().get(i).getIdTelefono()!=null){
+						telefono = telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);
+						
+					}else {
+						telefono= telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i));
+					
+					}
+					telefonos.add(telefono);
 					add=true;
 				}
 				
@@ -100,7 +114,7 @@ public class ProfesorConverter {
 		if (profesor.getTelefonos()!=null && profesor.getTelefonos().size()>0){
 			List<TelefonoModel> telefonos = new ArrayList<TelefonoModel>();
 			profesorModel.setTelefonos(telefonos);
-			for (int i=0; i<profesor.getEmails().size();i++){
+			for (int i=0; i<profesor.getTelefonos().size();i++){
 				profesorModel.getTelefonos().add(telefonoConverter.convetTelefono2TelefonoModel(profesor.getTelefonos().get(i)));
 			}
 		}

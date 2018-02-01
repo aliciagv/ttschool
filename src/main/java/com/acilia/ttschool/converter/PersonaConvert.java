@@ -39,5 +39,12 @@ public class PersonaConvert {
 		return personaModel;
 		
 	}
+	
+	public Persona convertPersonaModel2Persona(PersonaModel personaModel){
+		Persona persona = new Persona();
+		persona.setId(personaModel.getIdPersona());
+		return persona;
+		
+	}
 
 }

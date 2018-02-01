@@ -96,6 +96,18 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- <dependency> <groupId>org.apache.poi</groupId> <artifactId>poi</artifactId> 
+			<version>3.9</version> </dependency> <dependency> <groupId>org.apache.poi</groupId> 
+			<artifactId>poi-ooxml</artifactId> <version>3.9</version> </dependency> -->
+
+		<!-- -->
+		<!-- <dependency> <groupId>org.apache.poi</groupId> <artifactId>poi</artifactId> 
+			<version>3.9</version> </dependency> <dependency> <groupId>xml-apis</groupId> 
+			<artifactId>xml-apis</artifactId> <version>1.4.01</version> </dependency> 
+			<dependency> <groupId>org.apache.poi</groupId> <artifactId>poi-ooxml</artifactId> 
+			<version>3.9</version> <exclusions> <exclusion> <artifactId>xml-apis</artifactId> 
+			<groupId>xml-apis</groupId> </exclusion> </exclusions> </dependency> -->
+
 
 		<!-- Optional, test for static content, bootstrap CSS -->
 		<dependency>
@@ -103,6 +115,22 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
 		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

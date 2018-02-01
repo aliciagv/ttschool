@@ -82,17 +82,33 @@
             	  },*/
                   success: function(response){
                 	  if (response.validated){
-                		 
-                		  $('#AddModalProfesor').modal('hide');
-                		  $('#mensaje').removeClass('alert-danger');
-              			  $('#mensaje').addClass('alert-success');
-              			  $('#mensaje').show();	
-              			  $('#smensaje').text(response.profesorModel.nombre + " ha sido añadido");
-              		      $('#mensaje').fadeOut(10000);
-              		      appendRow(response);
+ 
+                   		 var nombre= response.profesorModel.nombre;
+
+              		    //  appendRow(response);
+              		      
+              		    $.ajax({
+                 	         type: "GET",
+                 	         cache: false,
+                 	         url: "/TTSchool/profesor/refresh",
+                 	         data: "",
+                 	         success: function(response){
+                 	        	 $('#AddModalProfesor').modal('hide');
+                          		  
+                 	        	 $('#cuerpo').html(response);
+                 	        	 $('#mensaje').removeClass('alert-danger');
+                        		 $('#mensaje').addClass('alert-success');
+                        		 $('#mensaje').show();	
+                        		 $('#smensaje').text(nombre + " ha sido añadido");
+                        		 $('#mensaje').fadeOut(10000);
+                 	        	
+                 	            
+                 	         }
+                 	    });
                 		
 
                 	  } else {
+                		  	$('#AddModalProfesor').modal('hide');
                 		    $('#mensaje').removeClass('alert-success');
 							$('#mensaje').addClass('alert-danger');
 							$('#mensaje').show();	
@@ -100,7 +116,8 @@
                 	  }
                   },
                   error: function(e){ 
-                	  ('#mensaje').removeClass('alert-success');
+                	  	$('#AddModalProfesor').modal('hide');
+                	    $('#mensaje').removeClass('alert-success');
 						$('#mensaje').addClass('alert-danger');
 						$('#mensaje').show();	
 						$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde");
@@ -112,6 +129,7 @@
         });
 
       	$('#listado').stacktable();
+      	$('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
       	
       	 xphone = 0; //Initial field counter is 1
       	 xemail =0;
@@ -128,6 +146,7 @@
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
+     		$(this).find('form').find(".inputplushidden").val(null); // para borrar todos los hidden
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
     		var modelatt,valor;
@@ -138,7 +157,7 @@
     				
     			for (i = xphone; i > 0; i--) { 
     				 $inputplus= $('.input-group').find('#'+valor+i+"\\."+modelatt);
-    				 console.log("$inputplus length " +$inputplus.length);
+    				 //console.log("$inputplus length " +$inputplus.length);
     				 $formGroup=$inputplus.closest('.form-group');
     				 $formGroup.remove();
     				
@@ -180,34 +199,39 @@
 	 var addFormGroup = function (event) {
      		
 		 	event.preventDefault();
-		 	var xaux,modelatt;
+		 	var xaux,modelatt,idmodelatt;
      		var valor = $(this).attr('value');
      		if(valor == "telefonos"){
      			alert("XPHONE "+xphone);
      			xphone++;
      			xaux=xphone;
-     			modelatt="numero";     			
+     			modelatt="numero";     	
+     			idmodelatt="idTelefono";
      		}
      		if(valor == "emails"){
      			alert("XEMAIL "+xemail);
      			xemail++;
      			xaux=xemail;
      			modelatt="email";
+     			idmodelatt="idEmail";
      		}
-     		// "index.htm\" target:\"_self\""
+
              var $formGroup = $(this).closest('.form-group');
              var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
              var $formGroupClone = $formGroup.clone();
-             $formGroup.find('input').attr("name",valor+"[]");
+            // $formGroup.find('.inputplus').attr("name",valor+"[]");
 
              $(this)
                  .toggleClass('btn-default btn-add btn-danger btn-remove')
                  .html('–');
              
-             $formGroupClone.find('input').val('');
-             $formGroupClone.find('input').attr("id",valor+xaux+"."+modelatt);
-             //$formGroupClone.find('input').attr("name",valor+"["+xaux+"]."+modelatt);
-             $formGroupClone.find('input').attr("name",valor+"[]");
+             $formGroupClone.find('.inputplus').val('');
+             $formGroupClone.find('.inputplus').attr("id",valor+xaux+"."+modelatt);
+             $formGroupClone.find('.inputplus').attr("name",valor+"["+xaux+"]."+modelatt);
+             $formGroupClone.find('.inputplushidden').attr("id",valor+xaux+"."+idmodelatt);
+             $formGroupClone.find('.inputplushidden').attr("name",valor+"["+xaux+"]."+idmodelatt);
+             $formGroupClone.find('.inputplushidden').val(null);
+             //$formGroupClone.find('.inputplus').attr("name",valor+"[]");
              $formGroupClone.insertAfter($formGroup);
 
              var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
@@ -273,7 +297,8 @@
 
      		
 		
-	 function appendRow(response){
+	/* METODO ANTERIOR QUE AÑADÍA EL NUEVO CAMPO CREADO, cambio por llamada Ajax refresh
+	 * function appendRow(response){
 		 
 		
 				var nuevafila= "<tr><td>" +
@@ -289,6 +314,17 @@
 				
 				nuevafila+="</td><td>" +
 							"</td><td>"
+				if (response.profesorModel.telefonos!=null){
+					var telefonos = response.profesorModel.telefonos.length;
+					for (  i = 0 ; i < telefonos; i++){
+						if (i >0){
+							nuevafila+= ", "
+						}
+						nuevafila+=response.profesorModel.telefonos[i]
+					} 
+					}
+				
+				nuevafila+="</td><td>"
 				
 				if (response.profesorModel.emails!=null){
 					var emails = response.profesorModel.emails.length;
@@ -299,22 +335,21 @@
 						nuevafila+=response.profesorModel.emails[i]
 					} 
 				}
-				nuevafila+="</td><td>"
 				
-				if (response.profesorModel.telefonos!=null){
-				var telefonos = response.profesorModel.telefonos.length;
-				for (  i = 0 ; i < telefonos; i++){
-					if (i >0){
-						nuevafila+= ", "
-					}
-					nuevafila+=response.profesorModel.telefonos[i]
-				} 
-				}
-				nuevafila+="</td><td></td></td><td></td></tr>"
-					
+				nuevafila+="</td>" +
+						"<sec:authorize access=\"hasRole(\'\/ADMIN\'\/)\">" +
+						"<td>" +
+						"<button id=\"editarProfesor\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#EditModalProfesor\"><span class=\"glyphicon glyphicon-edit\"></span></button>" +
+						"</td>" +
+						"<td>" +
+						"<button id=\"eliminarProfesor${profesorModel.idPersona }\" type=\"button\" class=\"btn btn-danger btn-sm\" data-toggle=\"modal\" data-target=\"#DeleteModalProfesor${profesorModel.idPersona }\"><span class=\"glyphicon glyphicon-trash\"></span></button>" +
+						"</td>" +
+						"</sec:authorize>" +
+						"</tr>"
+		
 				$("#listado").append(nuevafila)
 			
-	 }
+	 }*/
 	 
 	 function eliminar(uri, button) {
 
@@ -352,6 +387,96 @@
 		};
 	
  	
+		 function editar(uri) {
+				$.ajax({
+					type : "GET",
+					url : uri,
+					success : function(data) {
+						alert ("SUCCESS");
+						// Populate the form fields with the data returned from server
+			           // $('#editProfesorForm').find('[name="nombre"]').val(data.nombre)
+						console.log(data);
+						$('#addProfesorForm').find('[name="idPersona"]').val(data.idPersona);
+						
+						$('#addProfesorForm').find('[name="nombre"]').val(data.nombre);
+						$('#addProfesorForm').find('[name="nombre"]').parent().addClass("focus");
+						
+						$('#addProfesorForm').find('[name="apellidos"]').val(data.apellidos);
+						$('#addProfesorForm').find('[name="apellidos"]').parent().addClass("focus");
+						
+						if (data.nif!=null){
+							$('#addProfesorForm').find('[name="nif"]').val(data.nif);
+							$('#addProfesorForm').find('[name="nif"]').parent().addClass("focus");
+						}
+						var $multipleFormGroup,$lastFormGroupLast,$button,$inputplus;
+						var telefonos= data.telefonos;
+						if (telefonos!=null){
+							if (telefonos.length>0){
+								 
+								$('#addProfesorForm').find('[name="telefonos[0].numero"]').parent().parent().addClass("focus");
+							
+							for (i=0; i<telefonos.length; i++){
+
+								if (i>0){
+									 $inputplus= $('#addProfesorForm').find('.input-group').find('#telefono0.numero');
+				    				 $formGroup=$inputplus.closest('.form-group');
+				    				 $multipleFormGroup = $formGroup.find('.multiple-form-group');
+								   //  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
+								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+								     $button=$lastFormGroupLast.find('.btn').click();
+									
+								}
+								$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
+								$('#addProfesorForm').find('[name="telefonos['+i+'].numero"]').val(telefonos[i].numero);
+								
+							}
+						}
+						}
+						var emails= data.emails;
+						
+						if (emails!=null){
+
+							if (emails.length>0){
+
+								$('#addProfesorForm').find('[name="emails[0].email"]').parent().parent().addClass("focus");
+							
+							for (i=0; i<telefonos.length; i++){
+
+								if (i>0){
+									 $inputplus= $('#addProfesorForm').find('.input-group').find('#email0.email');
+				    				 $formGroup=$inputplus.closest('.form-group');
+				    				 $multipleFormGroup = $formGroup.find('.multiple-form-group');
+								   //  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
+								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+								     $button=$lastFormGroupLast.find('.btn').click();
+									
+								}
+								$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(telefonos[i].idEmail);
+								$('#addProfesorForm').find('[name="telefonos['+i+'].email"]').val(telefonos[i].email);
+								
+							}
+						}
+						
+							
+							
+						}
+						$('#modalTitleAddProfesorModal').text("Modificar profesor");
+						$('#btnReset').remove();
+						$('#btnGuardar').val("Modificar");
+						
+						
+						 $("#AddModalProfesor").modal("show");
+						
+						
+					},  
+					error: function(e){
+						alert ("ERROR");
+					}
+				});
+				
+	};
+	
+
 	
 	 
 
