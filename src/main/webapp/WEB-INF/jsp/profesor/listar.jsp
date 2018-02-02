@@ -22,6 +22,7 @@
 			</div>
 			<div class="col-lg-8">
 				<div class="panel panel-default">
+				<h3><a href="profesor/export">Export</a></h3>
 					<div class="panel-body">
 							<table id="listado">
 								<thead>

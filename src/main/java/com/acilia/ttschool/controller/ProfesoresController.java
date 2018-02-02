@@ -23,6 +23,7 @@ import com.acilia.ttschool.model.ProfesorModel;
 import com.acilia.ttschool.model.ProfesorModelJsonResponse;
 import com.acilia.ttschool.service.ProfesorService;
 import com.acilia.ttschool.utils.LogUtils;
+import com.acilia.ttschool.view.ProfesoresListExcel;
 
 
 
@@ -39,6 +40,10 @@ public class ProfesoresController {
 	@Autowired
 	@Qualifier("profesorServiceImpl")
 	private ProfesorService profesorService;
+	
+	@Autowired
+	@Qualifier("profesoresListExcel")
+	private ProfesoresListExcel profesoresListExcel;
 
 
 	@GetMapping()
@@ -110,7 +115,7 @@ public class ProfesoresController {
 	public ModelAndView getExcel() {
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
-		return new ModelAndView("ProfesoresListExcel", "profesores", listProfesorModel);
+		return new ModelAndView(profesoresListExcel, "profesores", listProfesorModel);
 	}
 
 

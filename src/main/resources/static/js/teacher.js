@@ -418,12 +418,14 @@
 							for (i=0; i<telefonos.length; i++){
 
 								if (i>0){
-									 $inputplus= $('#addProfesorForm').find('.input-group').find('#telefono0.numero');
-				    				 $formGroup=$inputplus.closest('.form-group');
-				    				 $multipleFormGroup = $formGroup.find('.multiple-form-group');
-								   //  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
+									//'#'+valor+xemail+"\\."+modelatt
+									 $inputplus= $('#addProfesorForm').find('.input-group').find('#telefonos0\\.numero');
+									$formGroup=$inputplus.closest('.form-group');
+				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
 								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-								     $button=$lastFormGroupLast.find('.btn').click();
+								     $button=$lastFormGroupLast.find('.btn');
+								     $button.click();
 									
 								}
 								$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
@@ -440,19 +442,21 @@
 
 								$('#addProfesorForm').find('[name="emails[0].email"]').parent().parent().addClass("focus");
 							
-							for (i=0; i<telefonos.length; i++){
+							for (i=0; i<emails.length; i++){
 
 								if (i>0){
-									 $inputplus= $('#addProfesorForm').find('.input-group').find('#email0.email');
-				    				 $formGroup=$inputplus.closest('.form-group');
-				    				 $multipleFormGroup = $formGroup.find('.multiple-form-group');
-								   //  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
+									//'#'+valor+xemail+"\\."+modelatt
+									 $inputplus= $('#addProfesorForm').find('.input-group').find('#emails0\\.email');
+									 $formGroup=$inputplus.closest('.form-group');
+				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
 								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
-								     $button=$lastFormGroupLast.find('.btn').click();
+								     $button=$lastFormGroupLast.find('.btn');
+								     $button.click();
 									
 								}
-								$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(telefonos[i].idEmail);
-								$('#addProfesorForm').find('[name="telefonos['+i+'].email"]').val(telefonos[i].email);
+								$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(emails[i].idEmail);
+								$('#addProfesorForm').find('[name="emails['+i+'].email"]').val(emails[i].email);
 								
 							}
 						}
