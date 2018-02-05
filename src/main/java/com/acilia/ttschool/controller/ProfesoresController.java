@@ -20,12 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acilia.ttschool.model.ProfesorModel;
-import com.acilia.ttschool.model.ProfesorModelJsonResponse;
 import com.acilia.ttschool.service.ProfesorService;
 import com.acilia.ttschool.utils.LogUtils;
 import com.acilia.ttschool.view.ProfesoresListExcel;
-
-
 
 @Controller
 @RequestMapping("/profesor")
@@ -40,15 +37,14 @@ public class ProfesoresController {
 	@Autowired
 	@Qualifier("profesorServiceImpl")
 	private ProfesorService profesorService;
-	
+
 	@Autowired
 	@Qualifier("profesoresListExcel")
 	private ProfesoresListExcel profesoresListExcel;
 
-
 	@GetMapping()
-	public String listar (Model model){
-		model.addAttribute("titulo","Listado de profesores");
+	public String listar(Model model) {
+		model.addAttribute("titulo", "Listado de profesores");
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
 		model.addAttribute("profesores", listProfesorModel);
@@ -56,67 +52,60 @@ public class ProfesoresController {
 		model.addAttribute("profesor", profesor);
 		return "profesor/profesores";
 	}
-	
-	
+
 	@GetMapping("/refresh")
-	public String refresh (Model model){
-		model.addAttribute("titulo","Listado de profesores");
+	public String refresh(Model model) {
+		model.addAttribute("titulo", "Listado de profesores");
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
 		model.addAttribute("profesores", listProfesorModel);
 		return "profesor/listar";
 	}
-	
 
-	
 	@PostMapping()
-	public @ResponseBody ProfesorModelJsonResponse add(@ModelAttribute(value="profesor") ProfesorModel pr,BindingResult result) {
-		
-		ProfesorModelJsonResponse response = new ProfesorModelJsonResponse();
+	public @ResponseBody ProfesorModel add(@ModelAttribute(value = "profesor") ProfesorModel pr,
+			BindingResult result)  {
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
-		ProfesorModel profesorModel=profesorService.addProfesor(pr);
-		response.setProfesorModel(profesorModel);
-		response.setValidated(true);
-		return response;
 		
+		ProfesorModel profesorModel = null;
+		profesorModel = profesorService.addProfesor(pr);
+
+		return profesorModel;
 
 	}
-	
 
-	//@RequestMapping(value="{personaId}", method = RequestMethod.GET)
-	@GetMapping (value = "/profesor/{personaId}")
-	public  @ResponseBody ProfesorModel getProfesorModel(@PathVariable("personaId") Long personaId,Model model) {
-		
-		ProfesorModel profesormodel=  profesorService.findProfesorByIdModel(personaId);
+	// @RequestMapping(value="{personaId}", method = RequestMethod.GET)
+	@GetMapping(value = "/profesor/{personaId}")
+	public @ResponseBody ProfesorModel getProfesorModel(@PathVariable("personaId") Long personaId, Model model) {
+
+		ProfesorModel profesormodel = profesorService.findProfesorByIdModel(personaId);
 		return profesormodel;
-		//model.addAttribute("profesor", profesormodel );
-		//model.addAttribute("profesor",  new ProfesorModel());
-		//return "profesor/listarprofesores";
- 
+		// model.addAttribute("profesor", profesormodel );
+		// model.addAttribute("profesor", new ProfesorModel());
+		// return "profesor/listarprofesores";
+
 	}
 
-	
-	@GetMapping (value = "/{personaId}")
-	//@RequestMapping(value = "/{personaId}", method = RequestMethod.DELETE)
+	@GetMapping(value = "/{personaId}")
+	// @RequestMapping(value = "/{personaId}", method = RequestMethod.DELETE)
 	public @ResponseBody String delete(@PathVariable("personaId") Long personaId) {
-		
+
 		ProfesorModel profesorModel = profesorService.findProfesorByIdModel(personaId);
-		
+
 		if (profesorModel == null) {
 			return "error";
 		} else {
 			profesorService.removeProfesor(profesorModel);
 			return "ok";
 		}
-		
-	}	
-	
+
+	}
+
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView getExcel() {
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
 		return new ModelAndView(profesoresListExcel, "profesores", listProfesorModel);
 	}
-
 
 }

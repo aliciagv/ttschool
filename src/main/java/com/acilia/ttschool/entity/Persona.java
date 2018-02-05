@@ -39,11 +39,11 @@ public class Persona {
 	@Temporal(TemporalType.DATE)
 	private Date fcreacion;
 	
-	@OneToMany(cascade= CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="idpersona")
 	private List<Email> emails;
 
-	@OneToMany(cascade= CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="idpersona")
 	private List<Telefono> telefonos;
 

@@ -81,9 +81,8 @@
             	  alert("antes")
             	  },*/
                   success: function(response){
-                	  if (response.validated){
- 
-                   		 var nombre= response.profesorModel.nombre;
+                	  var nombre= response.profesorModel.nombre;
+                   		 
 
               		    //  appendRow(response);
               		      
@@ -107,20 +106,15 @@
                  	    });
                 		
 
-                	  } else {
-                		  	$('#AddModalProfesor').modal('hide');
-                		    $('#mensaje').removeClass('alert-success');
-							$('#mensaje').addClass('alert-danger');
-							$('#mensaje').show();	
-							$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde");
-                	  }
+                	 
                   },
                   error: function(e){ 
                 	  	$('#AddModalProfesor').modal('hide');
                 	    $('#mensaje').removeClass('alert-success');
 						$('#mensaje').addClass('alert-danger');
 						$('#mensaje').show();	
-						$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde");
+						$('#smensaje').text("Ha habido un error al crear. Intentelo de nuevo más tarde"+ e.responseJSON.errorMessage);
+						
                 }
     		
     			
@@ -420,7 +414,7 @@
 								if (i>0){
 									//'#'+valor+xemail+"\\."+modelatt
 									 $inputplus= $('#addProfesorForm').find('.input-group').find('#telefonos0\\.numero');
-									$formGroup=$inputplus.closest('.form-group');
+									 $formGroup=$inputplus.closest('.form-group');
 				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
 				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
 								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
