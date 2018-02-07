@@ -31,7 +31,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 	public ProfesorModel addProfesor(ProfesorModel profesormodel){
 		ProfesorModel rprofesormodel=null;
 		Profesor profesor = profesorRepository.save(profesorConverter.convetProfesorModel2Profesor(profesormodel));
-		profesormodel=profesorConverter.convetProfesor2ProfesorModel(profesor);
+		rprofesormodel=profesorConverter.convetProfesor2ProfesorModel(profesor);
 		return rprofesormodel;
 		
 		

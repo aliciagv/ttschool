@@ -21,8 +21,12 @@
 			<div class="col-lg-1">
 			</div>
 			<div class="col-lg-8">
+			<div id="dexcel" align="right">
+			<a href="profesor/export"><img  alt="excel" width="5%" height="5%" src="<c:url value="/imgs/Excel-icon.png" />"> </a>
+			</div>
 				<div class="panel panel-default">
-				<h3><a href="profesor/export">Export</a></h3>
+				
+				<!--  <h3><a href="profesor/export">Export</a></h3>-->
 					<div class="panel-body">
 							<table id="listado">
 								<thead>
@@ -47,8 +51,8 @@
 	         									<td>${profesorModel.nombre}</td>
 	         									<td>${profesorModel.apellidos}</td>
 	         									<td>${profesorModel.nif}</td>
-	         									<td>1</td>
-	         									<td>A</td>
+	         									<td>${profesorModel.curso.nombre}</td>
+	         									<td>${profesorModel.curso.letra}</td>
 	         									<td>
 	         										<c:forEach var="telefonoModel" items="${profesorModel.telefonos}">
 	         											${telefonoModel.numero}</br>

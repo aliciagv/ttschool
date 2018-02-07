@@ -2,9 +2,7 @@ package com.acilia.ttschool.model;
 
 import java.io.Serializable;
 
-import org.springframework.hateoas.ResourceSupport;
-
-public class EmailModel extends ResourceSupport implements Serializable{
+public class EmailModel implements Serializable{
 
 	/**
 	 * 

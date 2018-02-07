@@ -2,14 +2,8 @@ package com.acilia.ttschool.model;
 
 import java.io.Serializable;
 
-import org.springframework.hateoas.ResourceSupport;
+public class TelefonoModel implements Serializable {
 
-public class TelefonoModel extends ResourceSupport implements Serializable {
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4552267034905268432L;
 
 	private Long idTelefono;

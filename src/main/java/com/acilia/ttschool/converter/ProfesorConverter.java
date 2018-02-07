@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.acilia.ttschool.entity.Alumno;
+import com.acilia.ttschool.entity.Curso;
 import com.acilia.ttschool.entity.Email;
 import com.acilia.ttschool.entity.Persona;
 import com.acilia.ttschool.entity.Profesor;
@@ -34,6 +35,10 @@ public class ProfesorConverter {
 	@Autowired
 	@Qualifier("telefonoConverter")
 	private TelefonoConverter telefonoConverter;
+	
+	@Autowired
+	@Qualifier("cursoConverter")
+	private CursoConverter cursoConverter;
 
 	public Profesor convetProfesorModel2Profesor(ProfesorModel profesorModel) {
 		Profesor profesor = new Profesor();
@@ -47,12 +52,7 @@ public class ProfesorConverter {
 			List<Email> emails = new  ArrayList<Email>();
 			for (int i=0; i<profesorModel.getEmails().size();i++){
 				if (profesorModel.getEmails().get(i)!=null && !profesorModel.getEmails().get(i).getEmail().equalsIgnoreCase("")) {
-					Email email=null;
-					if (profesorModel.getEmails().get(i).getIdEmail()!=null){
-						email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
-					}else {
-						email=emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i));
-					}
+					Email email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
 					emails.add(email);	
 					add=true;
 				}	
@@ -67,14 +67,7 @@ public class ProfesorConverter {
 			List<Telefono> telefonos = new ArrayList<Telefono>();
 			for (int i=0; i<profesorModel.getTelefonos().size();i++){
 				if (profesorModel.getTelefonos().get(i)!=null && !profesorModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
-					Telefono telefono=null;
-					if (profesorModel.getTelefonos().get(i).getIdTelefono()!=null){
-						telefono = telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);
-						
-					}else {
-						telefono= telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i));
-					
-					}
+					Telefono telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);;	
 					telefonos.add(telefono);
 					add=true;
 				}
@@ -83,6 +76,13 @@ public class ProfesorConverter {
 			if (add) {
 				profesor.setTelefonos(telefonos);
 			}
+		if (profesorModel.getCurso()!=null){
+			Curso curso=null;
+			if (profesorModel.getCurso().getIdCurso()!=0){
+				curso = cursoConverter.convertCursoModel2Curso(profesorModel.getCurso());
+			}
+			profesor.setCurso(curso);
+		}	
 			
 			
 		}
@@ -117,6 +117,9 @@ public class ProfesorConverter {
 			for (int i=0; i<profesor.getTelefonos().size();i++){
 				profesorModel.getTelefonos().add(telefonoConverter.convetTelefono2TelefonoModel(profesor.getTelefonos().get(i)));
 			}
+		}
+		if (profesor.getCurso()!=null){
+			profesorModel.setCurso(cursoConverter.convertCurso2CursoModel(profesor.getCurso()));
 		}
 		
 		return profesorModel;

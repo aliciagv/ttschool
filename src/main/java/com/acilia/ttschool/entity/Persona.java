@@ -1,5 +1,6 @@
 package com.acilia.ttschool.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,11 +42,11 @@ public class Persona {
 	
 	@OneToMany(cascade= CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="idpersona")
-	private List<Email> emails;
+	private List<Email> emails=new ArrayList<Email>();
 
 	@OneToMany(cascade= CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="idpersona")
-	private List<Telefono> telefonos;
+	private List<Telefono> telefonos=new ArrayList<Telefono>();
 
 	
 	public Persona() {
@@ -96,7 +97,8 @@ public class Persona {
 	}
 
 	public void setEmails(List<Email> emails) {
-		this.emails = emails;
+		this.emails.clear();
+		this.emails.addAll(emails);
 	}
 
 	public List<Telefono> getTelefonos() {
@@ -104,7 +106,11 @@ public class Persona {
 	}
 
 	public void setTelefonos(List<Telefono> telefonos) {
-		this.telefonos = telefonos;
+		//this.telefonos=telefonos;
+		
+		this.telefonos.clear();
+	    this.telefonos.addAll(telefonos);
+	    
 	}
 	
 	

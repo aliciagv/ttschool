@@ -41,7 +41,7 @@
           <h4 class="modal-title" id="modalTitleAddProfesorModal">Registrar nuevo profesor</h4>
         </div>
         <div class="modal-body">
-        	<div class="inputBox">
+        									<div class="inputBox">
 												<div class="inputText">Nombre</div>
 												<form:input path="nombre" type="text" name="nombre" class="input" required="required" pattern="[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃÃÃÃÃÃ±Ã ]{1,50}" maxlength="50"/>
 												<form:input type="hidden" path="idPersona" name="idPersona"/>
@@ -58,7 +58,21 @@
 												<form:input path="nif" type="text" name="nif" class="input"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
+											
+											<div class="inputBox">
+											<div class="inputText">Curso</div>
+											<form:input type="hidden" path="curso.nombre"  name="curso.nombre" />
+												<form:select path="curso.idCurso" name="curso" id="curso" class="input focus">
+												 	<form:option value="0" label="Seleccionar..." />
+        											<form:options items="${cursos}"  
+        											itemValue="idCurso" 
+        											itemLabel="descripcion"/>
+												</form:select>
+									  			<span class="help-block" id="error"></span>
+											</div>
+											
 
+												
 											<div class="form-group multiple-form-group" data-max=3>
 												<div class="inputBox">
 												<div class="inputText">Telefono</div>

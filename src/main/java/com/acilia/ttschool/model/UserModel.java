@@ -5,9 +5,7 @@ package com.acilia.ttschool.model;
 
 import java.io.Serializable;
 
-import org.springframework.hateoas.ResourceSupport;
-
-public class UserModel  extends ResourceSupport implements Serializable {
+public class UserModel implements Serializable {
 
 	/**
 	 * 

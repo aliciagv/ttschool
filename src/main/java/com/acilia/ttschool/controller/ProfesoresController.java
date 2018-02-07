@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acilia.ttschool.model.CursoModel;
 import com.acilia.ttschool.model.ProfesorModel;
+import com.acilia.ttschool.service.CursoService;
 import com.acilia.ttschool.service.ProfesorService;
 import com.acilia.ttschool.utils.LogUtils;
 import com.acilia.ttschool.view.ProfesoresListExcel;
@@ -37,6 +39,10 @@ public class ProfesoresController {
 	@Autowired
 	@Qualifier("profesorServiceImpl")
 	private ProfesorService profesorService;
+	
+	@Autowired
+	@Qualifier("cursoServiceImpl")
+	private CursoService cursoService;
 
 	@Autowired
 	@Qualifier("profesoresListExcel")
@@ -47,6 +53,9 @@ public class ProfesoresController {
 		model.addAttribute("titulo", "Listado de profesores");
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
+		List<CursoModel> listCursoModel =new ArrayList<CursoModel>();
+		listCursoModel= cursoService.listAllCurso();
+		model.addAttribute("cursos",listCursoModel);
 		model.addAttribute("profesores", listProfesorModel);
 		ProfesorModel profesor = new ProfesorModel();
 		model.addAttribute("profesor", profesor);

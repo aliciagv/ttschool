@@ -81,7 +81,7 @@
             	  alert("antes")
             	  },*/
                   success: function(response){
-                	  var nombre= response.profesorModel.nombre;
+                	  var nombre= response.nombre;
                    		 
 
               		    //  appendRow(response);

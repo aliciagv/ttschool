@@ -2,7 +2,6 @@ package com.acilia.ttschool.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +18,7 @@ public class Curso {
 	@Id
 	@GeneratedValue
 	@Column(name="id", nullable=false)
-	Long id;
+	private Long id;
 	
 	@Column (name="nombre", nullable=false, length=50)
 	private String nombre;
@@ -31,9 +29,9 @@ public class Curso {
 	@Column (name="descripcion", length=200)
 	private String descripcion;
 		
-	@JoinColumn(name = "profesor_id", referencedColumnName = "id")
+	/*@JoinColumn(name = "profesor_id", referencedColumnName = "id")
 	@ManyToOne(optional = true)
-	private Profesor profesor;
+	private Profesor profesor;*/
 
 	@ManyToMany
 	private List<Notificaciones> notificaciones;
@@ -89,13 +87,13 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
-	public Profesor getProfesor() {
+	/*public Profesor getProfesor() {
 		return profesor;
 	}
 
 	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
-	}
+	}*/
 
 	public List<Notificaciones> getNotificaciones() {
 		return notificaciones;

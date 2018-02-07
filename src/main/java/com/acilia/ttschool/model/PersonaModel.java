@@ -3,16 +3,14 @@ package com.acilia.ttschool.model;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.hateoas.ResourceSupport;
-
-public  class PersonaModel extends ResourceSupport implements Serializable {
+public  class PersonaModel  implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5964624344994118158L;
 
-	Long idPersona;
+	private Long idPersona;
 	
 	private String nif;
 	
