@@ -9,7 +9,9 @@ public interface CursoService {
 	
 	public abstract CursoModel addCurso(CursoModel cursomodel);
 	
-	public abstract List<CursoModel>listAllCurso();
+	public abstract List<CursoModel>listAll();
+	
+	public abstract List<CursoModel>listNotAssigned();
 	
 	public CursoModel findCursoByIdModel(Long id);
 	

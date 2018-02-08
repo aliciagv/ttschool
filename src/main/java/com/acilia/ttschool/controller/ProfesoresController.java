@@ -54,7 +54,7 @@ public class ProfesoresController {
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
 		List<CursoModel> listCursoModel =new ArrayList<CursoModel>();
-		listCursoModel= cursoService.listAllCurso();
+		listCursoModel= cursoService.listNotAssigned();
 		model.addAttribute("cursos",listCursoModel);
 		model.addAttribute("profesores", listProfesorModel);
 		ProfesorModel profesor = new ProfesorModel();
@@ -66,6 +66,9 @@ public class ProfesoresController {
 	public String refresh(Model model) {
 		model.addAttribute("titulo", "Listado de profesores");
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
+		List<CursoModel> listCursoModel =new ArrayList<CursoModel>();
+		listCursoModel= cursoService.listNotAssigned();
+		model.addAttribute("cursos",listCursoModel);
 		listProfesorModel = profesorService.listAllProfesor();
 		model.addAttribute("profesores", listProfesorModel);
 		return "profesor/listar";
@@ -78,7 +81,7 @@ public class ProfesoresController {
 		
 		ProfesorModel profesorModel = null;
 		profesorModel = profesorService.addProfesor(pr);
-
+		
 		return profesorModel;
 
 	}
@@ -86,7 +89,7 @@ public class ProfesoresController {
 	// @RequestMapping(value="{personaId}", method = RequestMethod.GET)
 	@GetMapping(value = "/profesor/{personaId}")
 	public @ResponseBody ProfesorModel getProfesorModel(@PathVariable("personaId") Long personaId, Model model) {
-
+		
 		ProfesorModel profesormodel = profesorService.findProfesorByIdModel(personaId);
 		return profesormodel;
 		// model.addAttribute("profesor", profesormodel );

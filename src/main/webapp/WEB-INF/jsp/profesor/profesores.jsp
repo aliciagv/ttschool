@@ -63,7 +63,7 @@
 											<div class="inputText">Curso</div>
 											<form:input type="hidden" path="curso.nombre"  name="curso.nombre" />
 												<form:select path="curso.idCurso" name="curso" id="curso" class="input focus">
-												 	<form:option value="0" label="Seleccionar..." />
+												 	<form:option value="0" label=" " />
         											<form:options items="${cursos}"  
         											itemValue="idCurso" 
         											itemLabel="descripcion"/>

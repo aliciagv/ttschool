@@ -30,7 +30,7 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
-	public List<CursoModel> listAllCurso() {
+	public List<CursoModel> listAll() {
 		List<Curso> listacurso=cursoRepository.findAll();
 		List<CursoModel> listacursoModel = new ArrayList<CursoModel>();
 		for (int i=0;i<listacurso.size();i++){
@@ -39,6 +39,16 @@ public class CursoServiceImpl implements CursoService {
 		return listacursoModel;
 	}
 	
+	@Override
+	public List<CursoModel> listNotAssigned() {
+		
+		List<Curso> listacurso=cursoRepository.findNotAssigned();
+		List<CursoModel> listacursoModel = new ArrayList<CursoModel>();
+		for (int i=0;i<listacurso.size();i++){
+			listacursoModel.add(cursoConverter.convertCurso2CursoModel(listacurso.get(i)));
+		}
+		return listacursoModel;
+	}
 
 	@Override
 	public CursoModel findCursoByIdModel(Long id) {
@@ -51,5 +61,7 @@ public class CursoServiceImpl implements CursoService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

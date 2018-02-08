@@ -28,13 +28,13 @@ $.validator.addMethod('customphone', function (value, element) {
  
 }, "El teléfono introducido no es válido");
 
-$.validator.addMethod('customemail', function (value, element) {
+/*$.validator.addMethod('customemail', function (value, element) {
 	/* Inicio validacion PHONE */
-	console.log("EMAIL" + value);
+	/*console.log("EMAIL" + value);
 	var pattern = new RegExp("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	 return this.optional(element) ||pattern.test(value);
  
-}, "El email introducido no es válido");
+}, "El email introducido no es válido");*/
 
 
 

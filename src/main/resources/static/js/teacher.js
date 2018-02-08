@@ -22,19 +22,31 @@
             		},
             		
             	"telefonos[0].numero":{
-                		required:false,
-                		customphone:true
-                		},	
-            	
-            	"telefonos[]":{
             		required:false,
             		customphone:true
-            		},
+            	},
+                		
+               	"telefonos[1].numero":{
+            		required:false,
+            		customphone:true
+            	},
+                    		
+                "telefonos[2].numero":{
+                	required:false,
+                	customphone:true
+                },
+                
+                /*"telefonos[]":{
+                	required:false,
+                	customphone:true
+                },*/
+                           		
+	
             		
-            	"emails[]":{
+            	/*"emails[]":{
                 		required:false,
                 		customemail:true
-                		},            		
+                		},*/            		
 
             		
             	
@@ -82,19 +94,26 @@
             	  },*/
                   success: function(response){
                 	  var nombre= response.nombre;
-                   		 
+                	  $('#AddModalProfesor').modal('hide');
+
+                	 $('#mensaje').removeClass('alert-danger');
+              		 $('#mensaje').addClass('alert-success');
+              		 $('#mensaje').show();	
+              		 $('#smensaje').text(nombre + " ha sido añadido");
+              		 $('#mensaje').fadeOut(2000);
+              		 window.setTimeout(function(){location.reload()},2000)
+              		
 
               		    //  appendRow(response);
               		      
-              		    $.ajax({
+              		 /*   $.ajax({
                  	         type: "GET",
                  	         cache: false,
                  	         url: "/TTSchool/profesor/refresh",
                  	         data: "",
                  	         success: function(response){
                  	        	 $('#AddModalProfesor').modal('hide');
-                          		  
-                 	        	 $('#cuerpo').html(response);
+                 	        	 //$('#cuerpo').load(response);
                  	        	 $('#mensaje').removeClass('alert-danger');
                         		 $('#mensaje').addClass('alert-success');
                         		 $('#mensaje').show();	
@@ -103,7 +122,7 @@
                  	        	
                  	            
                  	         }
-                 	    });
+                 	    });*/
                 		
 
                 	 
@@ -123,6 +142,43 @@
         });
 
       	$('#listado').stacktable();
+      	
+        $('th').click(function() {
+            var table = $(this).parents('table').eq(0)
+            var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+            this.asc = !this.asc
+            if (!this.asc) {
+              rows = rows.reverse()
+            }
+            for (var i = 0; i < rows.length; i++) {
+              table.append(rows[i])
+            }
+            setIcon($(this), this.asc);
+          })
+
+          function comparer(index) {
+            return function(a, b) {
+              var valA = getCellValue(a, index),
+                valB = getCellValue(b, index)
+              return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+            }
+          }
+
+          function getCellValue(row, index) {
+            return $(row).children('td').eq(index).html()
+          }
+
+          function setIcon(element, asc) {
+            $("th").each(function(index) {
+              $(this).removeClass("sorting");
+              $(this).removeClass("asc");
+              $(this).removeClass("desc");
+            });
+            element.addClass("sorting");
+            if (asc) element.addClass("asc");
+            else element.addClass("desc");
+          }
+
       	$('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
       	
       	 xphone = 0; //Initial field counter is 1
@@ -143,6 +199,7 @@
      		$(this).find('form').find(".inputplushidden").val(null); // para borrar todos los hidden
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
+    		$('#addProfesorForm').find('select').find('option').not(':first').remove();
     		var modelatt,valor;
     		var $formGroup,$inputplus;
     		if (xphone>0){
@@ -222,6 +279,7 @@
              $formGroupClone.find('.inputplus').val('');
              $formGroupClone.find('.inputplus').attr("id",valor+xaux+"."+modelatt);
              $formGroupClone.find('.inputplus').attr("name",valor+"["+xaux+"]."+modelatt);
+             //$formGroupClone.find('.inputplus').attr("name",valor+"[]");
              $formGroupClone.find('.inputplushidden').attr("id",valor+xaux+"."+idmodelatt);
              $formGroupClone.find('.inputplushidden').attr("name",valor+"["+xaux+"]."+idmodelatt);
              $formGroupClone.find('.inputplushidden').val(null);
@@ -402,6 +460,13 @@
 							$('#addProfesorForm').find('[name="nif"]').val(data.nif);
 							$('#addProfesorForm').find('[name="nif"]').parent().addClass("focus");
 						}
+						if (data.curso!=null){
+							if (data.curso.idCurso!=null){
+								$('#addProfesorForm').find('select').append(new Option(data.curso.descripcion, data.curso.idCurso, true, true));
+								$('#addProfesorForm').find('select').parent().addClass("focus");
+								
+							}
+						}
 						var $multipleFormGroup,$lastFormGroupLast,$button,$inputplus;
 						var telefonos= data.telefonos;
 						if (telefonos!=null){
@@ -422,9 +487,11 @@
 								     $button.click();
 									
 								}
-								$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
-								$('#addProfesorForm').find('[name="telefonos['+i+'].numero"]').val(telefonos[i].numero);
-								
+								//$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
+								//$('#addProfesorForm').find('[name="telefonos['+i+'].numero"]').val(telefonos[i].numero);
+								//#emails0\\.email
+								$('#addProfesorForm').find('#telefonos'+i+'\\.idTelefono').val(telefonos[i].idTelefono);
+								$('#addProfesorForm').find('#telefonos'+i+'\\.numero').val(telefonos[i].numero);
 							}
 						}
 						}
@@ -449,8 +516,11 @@
 								     $button.click();
 									
 								}
-								$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(emails[i].idEmail);
-								$('#addProfesorForm').find('[name="emails['+i+'].email"]').val(emails[i].email);
+								//$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(emails[i].idEmail);
+								//$('#addProfesorForm').find('[name="emails['+i+'].email"]').val(emails[i].email);
+								//#emails0\\.email
+								$('#addProfesorForm').find('#emails'+i+'\\.idEmail').val(emails[i].idEmail);
+								$('#addProfesorForm').find('#emails'+i+'\\.email').val(emails[i].email);
 								
 							}
 						}
