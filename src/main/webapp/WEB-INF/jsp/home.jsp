@@ -4,7 +4,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 	<head>
-	
 		<jsp:include page="cabeceraTag.jsp" />
 
 	</head>
@@ -15,18 +14,13 @@
     			<div class="row">
     				<jsp:include page="menu.jsp"/>
     				<div id="cuerpo" class="cuerpo">
-        				<div class="col-sm-9 col-md-9">
-            				<div class="well">
-	            				<div class="container">
-		           					 <div class="page-header">
-		             					 <h1 class="all-tittles">TTSchool <small>Inicio</small></h1>
-		           					</div>
-	        					</div><!-- container -->
-            				</div><!-- well -->
-            			</div><!-- col9 -->
+    				 	<jsp:include page="inicio.jsp"/>
+        	
             		</div><!-- cuerpo -->
     			</div> <!-- row -->
     		</div><!-- wrapper principal -->
     	</div> <!--  container principal -->
+			<jsp:include page="footer.jsp"/>
+
 	</body>
 </html>

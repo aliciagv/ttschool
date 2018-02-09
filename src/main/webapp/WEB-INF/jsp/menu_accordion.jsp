@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-
 <div class="navegador">
 	<div class="col-sm-3 col-md-3">
 		<div class="panel-group" id="accordion">
@@ -7,12 +6,13 @@
             	
             	<div class="panel-heading">
             		<h4 class="panel-title">
-            			<span class="glyphicon glyphicon-folder-close"></span>Administración
-            			
+            			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            				<span class="glyphicon glyphicon-folder-close"></span>Administración
+            			</a>
 					</h4> <!-- panel-title -->
 				</div> <!--  div panel-heading -->
 				
-				
+				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
 						<table class="table">
 	               			<tr>
@@ -42,17 +42,18 @@
 	                 		</tr>
 	                 	</table>
                       </div><!-- panel-body -->
+                 	</div><!-- collapseOne -->
                	</div><!-- panel panel-default -->
                 
                 <div class="panel panel-default">
                 	<div class="panel-heading">
                         		<h4 class="panel-title">
-                            		
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
                             		</span>Registro</a>
                         		</h4>
                     		</div> <!-- pannel-heading -->
                     		
-                    		
+                    		<div id="collapseTwo" class="panel-collapse collapse">
                     			<div class="panel-body">
                             		<table class="table">
                                 		<tr>
@@ -84,7 +85,7 @@
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                    			<a href="<c:url value="/curso" />">Cursos</a>
+                                        		<a href="http://www.jquery2dotnet.com">Cursos</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
@@ -94,17 +95,19 @@
                                 		</tr>
                             		</table>
                         		</div><!-- panel-body -->
+                    		</div> <!--  collapseTwo -->
                 		</div><!-- panel panel-default -->
                 		
                 		<div class="panel panel-default">
                     		
                     		<div class="panel-heading">
                         		<h4 class="panel-title">
-                            		
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-bullhorn">
                             		</span>Notificaciones</a>
                         		</h4>
                     		</div> <!-- panel-heading -->
                     		
+                    		<div id="collapseThree" class="panel-collapse collapse">
                         		<div class="panel-body">
                             		<table class="table">
                                 		<tr>
@@ -124,18 +127,19 @@
                                 		</tr>
                             		</table>
                         		</div><!-- panel body -->
+                    		</div><!-- collapseThree -->
                 		</div> <!--  panel-default-->
                 		
                 		<div class="panel panel-default">
                     		
                     		<div class="panel-heading">
                         		<h4 class="panel-title">
-                            		
+                            		<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
                             		</span>Informes</a>
                         		</h4>
                     		</div><!-- panel-heading -->
                     		
-                    		
+                    		<div id="collapseFour" class="panel-collapse collapse">
                         		<div class="panel-body">
                             		<table class="table">
 	                                	<tr>
@@ -158,8 +162,9 @@
                                 		</tr>
                             		</table>
                         		</div> <!-- panel body -->
+                    		</div> <!-- collapseFour -->
                 		</div> <!-- panelDefault -->
 		</div> <!--  panel-group -->
 	</div> <!-- div col3 -->
+</div><!-- div navegador -->
 
-</div>

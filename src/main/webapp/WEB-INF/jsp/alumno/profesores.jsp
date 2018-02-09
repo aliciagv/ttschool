@@ -6,7 +6,11 @@
 <html>
 	<head>
 		<jsp:include page="../cabeceraTag.jsp" />
-		<link href="<c:url value="/stacktable-1.0.2-13/stacktable.css" />" rel="stylesheet" />
+		
+      	<link href="<c:url value="/stacktable-1.0.2-13/stacktable.css" />" rel="stylesheet" />
+
+        
+        
 	</head>
 	<body>
 		<jsp:include page="../cabecera.jsp"/>
@@ -20,13 +24,15 @@
     			</div> <!-- row -->
     		</div><!-- wrapper principal -->
     	</div> <!--  container principal -->
-    	<jsp:include page="../footer.jsp"/>
-   		 <!-- Modal AddModalProfesor-->
-  		<div class="modal fade" id="AddModalProfesor" role="dialog">
-    		<div class="modal-dialog">
-    		<!-- Modal content-->
-      		<c:url var="addAction" value="/profesor" ></c:url>
-			<form:form action="${addAction}" id="addProfesorForm" commandName="profesor" method="post">
+    	
+    <!-- Modal AddModalProfesor-->
+  <div class="modal fade" id="AddModalProfesor" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <c:url var="addAction" value="/profesor" ></c:url>
+										
+	 <form:form action="${addAction}" id="addProfesorForm" commandName="profesor" method="post">
       
 
       <div class="modal-content">
@@ -37,13 +43,13 @@
         <div class="modal-body">
         									<div class="inputBox">
 												<div class="inputText">Nombre</div>
-												<form:input path="nombre" type="text" name="nombre" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50"/>
+												<form:input path="nombre" type="text" name="nombre" class="input" required="required" pattern="[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃÃÃÃÃÃ±Ã ]{1,50}" maxlength="50"/>
 												<form:input type="hidden" path="idPersona" name="idPersona"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
 											<div class="inputBox">
 												<div class="inputText">Apellidos</div>
-												<form:input path="apellidos" type="text" name="apellidos" class="input" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,100}" maxlength="100"/>
+												<form:input path="apellidos" type="text" name="apellidos" class="input" required="required" pattern="[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃÃÃÃÃÃ±Ã ]{1,100}" maxlength="100"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
 											
@@ -94,6 +100,8 @@
 													<span class="help-block" id="error"></span>
 													</div>
 											</div>
+        
+  		<div id="info" style="color: green;"></div>
         </div>
         <div class="modal-footer">
         <input type="submit" id="btnGuardar" class="btn btn-primary" value="Guardar">

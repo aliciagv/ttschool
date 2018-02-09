@@ -26,7 +26,10 @@ public class CursoServiceImpl implements CursoService {
 	
 	@Override
 	public CursoModel addCurso(CursoModel cursomodel) {
-		return null;
+		CursoModel rcursomodel=null;
+		Curso curso=cursoRepository.save(cursoConverter.convertCursoModel2Curso(cursomodel));
+		rcursomodel=cursoConverter.convertCurso2CursoModel(curso);
+		return rcursomodel;
 	}
 
 	@Override
@@ -52,13 +55,18 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public CursoModel findCursoByIdModel(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		CursoModel cursomodel = null;
+		Curso curso = cursoRepository.findById(id);
+		if (curso!=null){
+			cursomodel= cursoConverter.convertCurso2CursoModel(curso);
+		}
+		return cursomodel;
 	}
 
 	@Override
 	public void removeCurso(CursoModel cursomodel) {
-		// TODO Auto-generated method stub
+		Curso curso= cursoConverter.convertCursoModel2Curso(cursomodel);
+		cursoRepository.delete(curso);
 		
 	}
 

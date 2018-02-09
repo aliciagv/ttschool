@@ -10,6 +10,5 @@ import com.acilia.ttschool.entity.Profesor;
 @Repository("profesorrepository")
 public interface ProfesorRepository  extends JpaRepository<Profesor,Serializable>{
 	
-	
 	public abstract Profesor findById(Long id);
 }
