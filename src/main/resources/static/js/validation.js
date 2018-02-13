@@ -36,7 +36,13 @@ $.validator.addMethod('customphone', function (value, element) {
  
 }, "El email introducido no es válido");*/
 
-
+$.validator.addMethod("greaterThan",function(value, element, params) {
+		    if (!/Invalid|NaN/.test(new Date(value))) {
+		        return this.optional(element) || new Date(value) >= new Date($(params).val());
+		    }
+		    return this.optional(element)||  isNaN(value) && isNaN($(params).val()) 
+		        || (Number(value) >= Number($(params).val())); 
+		},'La fecha de fin debe ser mayor o igual que la de inicio.');
 
 
 

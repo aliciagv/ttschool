@@ -12,7 +12,7 @@
 
 <!-- Archivos CSS Propios -->
 <link href="<c:url value="/css/menu.css" />" rel="stylesheet" />
-<link href="<c:url value="/css/profesores.css" />" rel="stylesheet" />
+<link href="<c:url value="/css/estilos.css" />" rel="stylesheet" />
 
 
 <!-- Icono -->

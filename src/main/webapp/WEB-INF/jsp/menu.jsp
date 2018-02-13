@@ -109,7 +109,7 @@
                             		<table class="table">
                                 		<tr>
                                     		<td>
-                                    			<a href="http://www.jquery2dotnet.com">Globales</a>
+                                    			<a href="<c:url value="/global" />">Globales</a>
                                     		</td>
                                		 	</tr>
                                 		<tr>

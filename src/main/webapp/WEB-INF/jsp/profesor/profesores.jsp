@@ -21,6 +21,7 @@
     		</div><!-- wrapper principal -->
     	</div> <!--  container principal -->
     	<jsp:include page="../footer.jsp"/>
+    	
    		 <!-- Modal AddModalProfesor-->
   		<div class="modal fade" id="AddModalProfesor" role="dialog">
     		<div class="modal-dialog">

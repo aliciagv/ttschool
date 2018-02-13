@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,10 +28,16 @@ public class Colegio {
 
 	@Column(name="direccion",length=200,nullable=true)
 	private String direccion;
-	
-	
-	@ManyToMany
-	private List<Notificaciones> notificaciones;
+		
+	 @ManyToMany(fetch = FetchType.LAZY,
+	            cascade = {
+	                CascadeType.PERSIST,
+	                CascadeType.MERGE
+	            })
+	    @JoinTable(name = "colegio_eventos",
+	            joinColumns = { @JoinColumn(name = "colegio_id", referencedColumnName = "id") },
+	            inverseJoinColumns = { @JoinColumn(name = "eventos_id", referencedColumnName = "id") })
+	private List<Event> eventos;
 
 
 	public Colegio() {
@@ -67,14 +75,16 @@ public class Colegio {
 	}
 
 
-	public List<Notificaciones> getNotificaciones() {
-		return notificaciones;
+	public List<Event> getEventos() {
+		return eventos;
 	}
 
 
-	public void setNotificaciones(List<Notificaciones> notificaciones) {
-		this.notificaciones = notificaciones;
+	public void setEventos(List<Event> eventos) {
+		this.eventos = eventos;
 	}
+
+
 	
 	
 

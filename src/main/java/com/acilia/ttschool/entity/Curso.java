@@ -34,7 +34,7 @@ public class Curso {
 	private Profesor profesor;*/
 
 	@ManyToMany
-	private List<Notificaciones> notificaciones;
+	private List<Event> eventos;
 
 
 	public Curso() {
@@ -87,6 +87,14 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
+	public List<Event> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Event> eventos) {
+		this.eventos = eventos;
+	}
+
 	/*public Profesor getProfesor() {
 		return profesor;
 	}
@@ -95,13 +103,7 @@ public class Curso {
 		this.profesor = profesor;
 	}*/
 
-	public List<Notificaciones> getNotificaciones() {
-		return notificaciones;
-	}
-
-	public void setNotificaciones(List<Notificaciones> notificaciones) {
-		this.notificaciones = notificaciones;
-	}
+	
 	
 
 	

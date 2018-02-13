@@ -10,7 +10,7 @@ public interface ProfesorService {
 	
 	public abstract List<ProfesorModel>listAllProfesor();
 	
-	public ProfesorModel findProfesorByIdModel(Long id);
+	public abstract ProfesorModel findProfesorByIdModel(Long id);
 	
 	public abstract void removeProfesor(ProfesorModel profesormodel);
 

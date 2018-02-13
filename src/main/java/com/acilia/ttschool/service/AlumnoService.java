@@ -6,12 +6,12 @@ import com.acilia.ttschool.model.AlumnoModel;
 
 public interface AlumnoService {
 	
-	public abstract AlumnoModel addAlumno(AlumnoModel alumnomodel);
+	public  AlumnoModel addAlumno(AlumnoModel alumnomodel);
 	
-	public abstract List<AlumnoModel>listAllAlumno();
+	public  List<AlumnoModel>listAllAlumno();
 	
 	public AlumnoModel findAlumnoByIdModel(int id);
 	
-	public abstract void removeAlumno(int id);
+	public  void removeAlumno(int id);
 
 }

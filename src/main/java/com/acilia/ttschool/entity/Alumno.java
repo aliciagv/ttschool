@@ -35,7 +35,7 @@ public class Alumno extends Persona{
 	
 	
 	@ManyToMany
-	private List<Notificaciones> notificaciones;
+	private List<Event> eventos;
 	
 	
 	public Alumno() {
@@ -83,13 +83,22 @@ public class Alumno extends Persona{
 		this.asignaturas = asignaturas;
 	}
 
-	public List<Notificaciones> getNotificaciones() {
-		return notificaciones;
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setNotificaciones(List<Notificaciones> notificaciones) {
-		this.notificaciones = notificaciones;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
+
+	public List<Event> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Event> eventos) {
+		this.eventos = eventos;
+	}
+
 	
 	
 	
