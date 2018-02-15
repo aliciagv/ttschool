@@ -134,12 +134,13 @@ $(document).ready(function() {
         	  data : $(form).serialize(),
     		  url : theURL,
               success: function(response){
-            	 var nombre= response.nombre;
+            	// var nombre= response.nombre;
             	 $('#CreateModalEvent').modal('hide');
             	 $('#mensaje').removeClass('alert-danger');
           		 $('#mensaje').addClass('alert-success');
           		 $('#mensaje').show();	
-          		 $('#smensaje').text(nombre + " ha sido añadido");
+          		 // $('#smensaje').text(nombre + " ha sido añadido");
+          		 $('#smensaje').text("El evento ha sido añadido");
           		 $('#mensaje').fadeOut(2000);
           		 window.setTimeout(function(){location.reload()},2000)                	 
               },

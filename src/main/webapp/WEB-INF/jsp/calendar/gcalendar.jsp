@@ -26,7 +26,7 @@
 					<!-- Modal Create Event -->
 					<div class="modal fade" id="CreateModalEvent">
   						<div class="modal-dialog" role="document">
-  						<c:url var="addAction" value="/global" ></c:url>
+  						<c:url var="addAction" value="/colegio/global/event" ></c:url>
 						<form:form action="${addAction}" id="createEventForm" commandName="event" method="post">
     						<div class="modal-content">
       							<div class="modal-header">

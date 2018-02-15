@@ -109,7 +109,7 @@
                             		<table class="table">
                                 		<tr>
                                     		<td>
-                                    			<a href="<c:url value="/global" />">Globales</a>
+                                    			<a href="<c:url value="/colegio/global" />">Globales</a>
                                     		</td>
                                		 	</tr>
                                 		<tr>

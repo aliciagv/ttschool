@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.acilia.ttschool.entity.Colegio;
 import com.acilia.ttschool.entity.Curso;
+import com.acilia.ttschool.entity.Event;
 import com.acilia.ttschool.model.ColegioModel;
 import com.acilia.ttschool.model.EventModel;
 
@@ -20,19 +21,24 @@ public class ColegioConverter {
 	@Qualifier("eventConverter")
 	private EventConverter eventConverter;
 	
-	public Colegio convertColegioModel2Colegio(ColegioModel colegioModel){
+	public Colegio convertColegioModel2Colegio(ColegioModel colegioModel,EventModel eventmodel){
 		Colegio colegio = new Colegio();
 		colegio.setId(colegioModel.getIdColegio());
 		colegio.setNombre(colegioModel.getNombre());
 		colegio.setDireccion(colegioModel.getDireccion());
-		
-		/*if (colegioModel.getEventos()!=null && colegioModel.getEventos().size()>0){
-			for (int i=0; i<colegioModel.getEventos().size();i++){
-				 
+		Event evento=eventConverter.convertEventModel2Event(eventmodel);
+		if (colegioModel.getEventos()==null){
+			List<Event> listevento= new ArrayList<Event>();
+			listevento.add(evento);
+			colegio.setEventos(listevento);
+		} else {
+			List<Event> listeventos= new ArrayList<Event>();
+			colegio.setEventos(listeventos);
+			for (int i=0;i<colegioModel.getEventos().size();i++){
+				colegio.getEventos().add(eventConverter.convertEventModel2Event(colegioModel.getEventos().get(i)));
 			}
-		}*/
-		
-		
+			colegio.getEventos().add(evento);
+		}
 		return colegio;
 		
 	}
@@ -48,6 +54,7 @@ public class ColegioConverter {
 			for (int i=0; i<colegio.getEventos().size();i++){
 				eventos.add(eventConverter.convertEvent2EventModel(colegio.getEventos().get(i)));
 			}
+			colegiomodel.setEventos(eventos);
 		}
 		
 		return colegiomodel;

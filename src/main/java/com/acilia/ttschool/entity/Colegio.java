@@ -28,8 +28,9 @@ public class Colegio {
 
 	@Column(name="direccion",length=200,nullable=true)
 	private String direccion;
-		
-	 @ManyToMany(fetch = FetchType.LAZY,
+	
+	//owner of the relationship
+	@ManyToMany(fetch = FetchType.LAZY,
 	            cascade = {
 	                CascadeType.PERSIST,
 	                CascadeType.MERGE

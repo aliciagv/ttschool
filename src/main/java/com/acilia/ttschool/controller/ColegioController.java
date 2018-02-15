@@ -24,8 +24,8 @@ import com.acilia.ttschool.service.EventService;
 import com.acilia.ttschool.utils.LogUtils;
 
 @Controller
-@RequestMapping("/global")
-public class GlobalController {
+@RequestMapping("/colegio")
+public class ColegioController {
 	
 	private static final Log LOG = LogFactory.getLog(CursoController.class);
 	
@@ -33,16 +33,16 @@ public class GlobalController {
 	@Qualifier("logutils")
 	private LogUtils logutils;
 
-	@Autowired
+	/*@Autowired
 	@Qualifier("eventServiceImpl")
-	private EventService eventService;
+	private EventService eventService;*/
 	
 	
 	@Autowired
 	@Qualifier("colegioServiceImpl")
 	private ColegioService colegioService;
 
-	@GetMapping()
+	@GetMapping("/global")
 	public String listar(Model model) {
 		
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
@@ -51,24 +51,29 @@ public class GlobalController {
 		model.addAttribute("event", evento);
 		return "calendar/global";
 	}
-	@GetMapping("/events")
+	@GetMapping("/global/events")
 	public @ResponseBody List<EventModel> getEventos() {
-		List<EventModel> eventos = new ArrayList();
+		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
+		List<EventModel> eventos = new ArrayList<EventModel>();
+		//CAMBIO POR entidad colegio que es la propietaria de la relación
 		//eventos=eventService.findEventGlobal(); // eventos que son del colegio 1
-		
 		ColegioModel colegiomodel=colegioService.findColegioByIdModel(new Long(1));
-		eventos=colegiomodel.getEventos();
+		if (colegiomodel.getEventos()!=null){
+			eventos=colegiomodel.getEventos();
+		}
 		return eventos;
 		
 	}
 	
-	@PostMapping()
+	@PostMapping("/global/event")
 	public @ResponseBody EventModel add(@ModelAttribute(value = "event") EventModel ev,
 			BindingResult result)  {
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
 		EventModel eventModel = null;
-		eventModel = eventService.addEvent(ev);
+		
+		ColegioModel colegiomodel = colegioService.findColegioByIdModel(new Long(1));
+		eventModel=colegioService.addEvent(colegiomodel, ev);
 		
 		
 		return eventModel;
