@@ -42,14 +42,55 @@ $(document).ready(function() {
     	    eventClick: function(calEvent, jsEvent, view) {
 
     	        alert('Event: ' + calEvent.title);
-    	        jsEvent
     	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
     	        alert('View: ' + view.name);
 
     	        // change the border color just for fun
     	        $(this).css('border-color', 'red');
 
-    	    }    	    
+    	    },
+    	    eventDrop: function(event, delta, revertFunc) {
+
+    	       
+
+    	        if (!confirm("¿Esta seguro modificar "+ event.title +" al día " +event.start.format())) {
+    	            revertFunc();
+    	        }
+    	        else {
+    	        	alert("Llamar a modificar");
+    	        	 
+    	        	var eventData;
+    	        	eventData = {
+    						id: event.id,
+    						title: event.title,
+    						start: event.start.format(),
+    						end:  (event.end == null) ? event.start.format() : event.end.format(),
+    						url: event.url,
+    						className:event.className
+    						
+    				};
+    	           
+    	            $.ajax({
+    	            	type: "POST",
+    				    url: "global/event",
+    				    data: JSON.stringify(eventData),
+    				    contentType: "application/json; charset=utf-8",
+    				    dataType: "json",
+    				    headers: {
+    	                    'X-CSRF-TOKEN':  ${_csrf.token}
+    	                },
+    	                success: function(response){
+    	                	$('#calendar').fullCalendar();
+    	                    
+    	                },
+    	                error: function(e){                     
+    	                    revertFunc();
+    	                    alert('Error al modificar: '+e.responseText);
+    	                }
+    	            });
+    	            }
+    	        }
+
     	/* events :[
     		{
     			//id:1,

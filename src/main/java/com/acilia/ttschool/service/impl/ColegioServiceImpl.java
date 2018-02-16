@@ -26,6 +26,7 @@ public class ColegioServiceImpl implements ColegioService {
 	@Qualifier("colegioConverter")
 	private ColegioConverter colegioConverter;
 	
+	
 	@Override
 	public ColegioModel findColegioByIdModel(Long id) {
 		ColegioModel colegiomodel =null;
@@ -39,7 +40,9 @@ public class ColegioServiceImpl implements ColegioService {
 	
 		EventModel reventmodel=null;
 		Colegio colegio=colegioRepository.save(colegioConverter.convertColegioModel2Colegio(colegiomodel, eventmodel));
-		return null;
+		//reventmodel=eventConverter.convertEventModel2Event(eventModel);
+		return reventmodel;
+		
 	}
 
 
