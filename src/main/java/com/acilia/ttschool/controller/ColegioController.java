@@ -33,10 +33,6 @@ public class ColegioController {
 	@Qualifier("logutils")
 	private LogUtils logutils;
 
-	/*@Autowired
-	@Qualifier("eventServiceImpl")
-	private EventService eventService;*/
-	
 	
 	@Autowired
 	@Qualifier("colegioServiceImpl")
@@ -71,12 +67,12 @@ public class ColegioController {
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
 		EventModel eventModel = null;
-		
 		ColegioModel colegiomodel = colegioService.findColegioByIdModel(new Long(1));
 		eventModel=colegioService.addEvent(colegiomodel, ev);
-		
+
 		
 		return eventModel;
 
 	}
+	
 }

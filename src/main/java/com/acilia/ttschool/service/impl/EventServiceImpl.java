@@ -48,4 +48,13 @@ public class EventServiceImpl implements EventService {
 		return listeventModel;
 	}
 
+
+	@Override
+	public EventModel modifyEvent(EventModel event) {
+		EventModel eventmodel=null;
+		Event evento = eventRepository.save(eventConverter.convertEventModel2Event(event));
+		eventmodel=eventConverter.convertEvent2EventModel(evento);
+		return eventmodel;
+	}
+
 }

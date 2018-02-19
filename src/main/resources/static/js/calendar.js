@@ -61,7 +61,7 @@ $(document).ready(function() {
     	        	 
     	        	var eventData;
     	        	eventData = {
-    						id: event.id,
+    						idEvent: event.idEvent,
     						title: event.title,
     						start: event.start.format(),
     						end:  (event.end == null) ? event.start.format() : event.end.format(),
@@ -72,13 +72,11 @@ $(document).ready(function() {
     	           
     	            $.ajax({
     	            	type: "POST",
-    				    url: "global/event",
-    				    data: JSON.stringify(eventData),
-    				    contentType: "application/json; charset=utf-8",
-    				    dataType: "json",
-    				    headers: {
-    	                    'X-CSRF-TOKEN':  ${_csrf.token}
-    	                },
+    				    //url: "global/event",
+    	            	url:"../event",
+    				    headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},
+    				    data: eventData,
+    				 
     	                success: function(response){
     	                	$('#calendar').fullCalendar();
     	                    

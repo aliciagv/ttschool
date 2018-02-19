@@ -10,5 +10,7 @@ public interface EventService {
 	public abstract List<EventModel> listAllEvent();
 	
 	public abstract List<EventModel> findEventGlobal();
+	
+	public abstract EventModel modifyEvent(EventModel eventmodel);
 
 }
