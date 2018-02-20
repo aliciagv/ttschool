@@ -9,7 +9,7 @@ public interface ColegioService {
 	
 	public EventModel addEvent(ColegioModel colegiomodel,EventModel eventmodel);
 	
-	
+	public abstract void removeEvent(ColegioModel colegiomodel,EventModel eventmodel);
 	
 
 }

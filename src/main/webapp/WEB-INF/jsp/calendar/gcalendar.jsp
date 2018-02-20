@@ -39,7 +39,8 @@
       								<div class="inputBox">
       									<div class="inputText">Inicio</div>
       									<form:input type="text" path="start" name="start"  class="input"/>
-										<span class="help-block" id="error"></span>
+      									<form:input type="hidden" path="idEvent" name="idEvent"/>
+      									<span class="help-block" id="error"></span>
 									</div>
 									<div class="inputBox">
       									<div class="inputText">Fin</div>
@@ -55,13 +56,42 @@
       							</div>
       							<div class="modal-footer">
         							<input type="submit" id="btnGuardar" class="btn btn-primary" value="Guardar">
-         							<input type="reset" id="btnReset" class="btn btn-info" value="Limpiar">
+        							
+         							
+         							<button type="button"  id="btnReset" class="btn btn-primary" data-id=" " data-toggle="modal" data-target="#DeleteModalEvent" >Borrar</button>
           							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       							</div>
     						</div>
+    						
+
     					</form:form>
   						</div>
 					</div>
+					
+					
+					    							<div id="DeleteModalEvent" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmación de Borrado</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>¿Estas seguro que quieres borrar la Notificación? </p>
+                <input type="hidden" name="idEvento" id="idEvento"/>
+            </div>
+            <div class="modal-footer">
+
+                 <button id="btnBorrar" type="button" class="btn btn-default" data-dismiss="modal">Borrar</button>
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div> 
+					
+					
+
 				</div>
 			</div>
 		</div> <!-- row -->

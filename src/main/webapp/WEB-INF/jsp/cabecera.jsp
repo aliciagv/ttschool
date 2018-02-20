@@ -49,8 +49,8 @@
                             	<div class="navbar-login navbar-login-session">
                                 	<div class="row">
                                     	<div class="col-lg-12">
-                                    		<!--  <form action="${pageContext.request.contextPath}/logout" method="post">---->
-											<form action="logout" method="post">
+                                    		  <form action="${pageContext.request.contextPath}/logout" method="post">
+											<!--  <form action="logout" method="post">-->
    												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
    												<input class="btn btn-danger btn-block" type="submit" value="Log out" />
 											</form>

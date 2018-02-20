@@ -57,4 +57,24 @@ public class EventServiceImpl implements EventService {
 		return eventmodel;
 	}
 
+
+	@Override
+	public EventModel findEventByIdModel(Long id) {
+		EventModel eventmodel=null;
+		Event event= eventRepository.findById(id);
+		if (event!=null){
+			eventmodel=eventConverter.convertEvent2EventModel(event);
+		}
+		
+		return eventmodel;
+	}
+
+
+	@Override
+	public void removeEvent(EventModel eventmodel) {
+		Event event=eventConverter.convertEventModel2Event(eventmodel);
+		eventRepository.delete(event);
+		
+	}
+
 }

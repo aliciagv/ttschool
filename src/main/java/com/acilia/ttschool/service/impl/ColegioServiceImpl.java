@@ -14,6 +14,7 @@ import com.acilia.ttschool.model.ColegioModel;
 import com.acilia.ttschool.model.EventModel;
 import com.acilia.ttschool.repository.ColegioRepository;
 import com.acilia.ttschool.service.ColegioService;
+import com.acilia.ttschool.service.EventService;
 
 @Service("colegioServiceImpl")
 public class ColegioServiceImpl implements ColegioService {
@@ -25,6 +26,10 @@ public class ColegioServiceImpl implements ColegioService {
 	@Autowired
 	@Qualifier("colegioConverter")
 	private ColegioConverter colegioConverter;
+	
+	@Autowired
+	@Qualifier("eventServiceImpl")
+	private EventService eventService;
 	
 	
 	@Override
@@ -39,9 +44,18 @@ public class ColegioServiceImpl implements ColegioService {
 	public EventModel addEvent(ColegioModel colegiomodel,EventModel eventmodel) {
 	
 		EventModel reventmodel=null;
-		Colegio colegio=colegioRepository.save(colegioConverter.convertColegioModel2Colegio(colegiomodel, eventmodel));
+		Colegio colegio=colegioRepository.save(colegioConverter.convertColegioModel2Colegioadd(colegiomodel, eventmodel));
 		//reventmodel=eventConverter.convertEventModel2Event(eventModel);
 		return reventmodel;
+		
+	}
+
+	@Override
+	public void removeEvent(ColegioModel colegiomodel, EventModel eventmodel) {
+		Colegio colegio=colegioConverter.convertColegioModel2Colegioremove(colegiomodel, eventmodel);
+		colegioRepository.save(colegio);
+		eventService.removeEvent(eventmodel);
+		
 		
 	}
 

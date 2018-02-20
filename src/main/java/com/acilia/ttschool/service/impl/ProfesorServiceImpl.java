@@ -39,7 +39,6 @@ public class ProfesorServiceImpl implements ProfesorService {
 
 	@Override
 	public List<ProfesorModel> listAllProfesor() {
-		// TODO Auto-generated method stub
 		List<Profesor> listaprofesor=profesorRepository.findAll();
 		List<ProfesorModel> listaprofesorModel = new ArrayList<ProfesorModel>();
 		for (int i=0;i<listaprofesor.size();i++){
@@ -50,7 +49,6 @@ public class ProfesorServiceImpl implements ProfesorService {
 
 	@Override
 	public ProfesorModel findProfesorByIdModel(Long id) {
-		// TODO Auto-generated method stub
 		ProfesorModel profesorModel=null;
 		Profesor profesor = profesorRepository.findById(id);
 		if (profesor!=null){

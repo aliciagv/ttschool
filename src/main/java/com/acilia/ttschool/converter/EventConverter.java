@@ -17,7 +17,7 @@ import com.acilia.ttschool.model.ColegioModel;
 @Component("eventConverter")
 public class EventConverter {
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	
 	public Event convertEventModel2Event(EventModel eventModel){
 		Event event = new Event();
@@ -35,6 +35,7 @@ public class EventConverter {
 		return event;
 		
 	}
+
 
 	public EventModel convertEvent2EventModel(Event event){
 		EventModel eventmodel = new EventModel();

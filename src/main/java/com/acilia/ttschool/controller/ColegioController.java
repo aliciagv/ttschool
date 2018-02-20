@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +34,9 @@ public class ColegioController {
 	@Qualifier("logutils")
 	private LogUtils logutils;
 
+	@Autowired
+	@Qualifier("eventServiceImpl")
+	private EventService eventService;
 	
 	@Autowired
 	@Qualifier("colegioServiceImpl")
@@ -62,8 +66,7 @@ public class ColegioController {
 	}
 	
 	@PostMapping("/global/event")
-	public @ResponseBody EventModel add(@ModelAttribute(value = "event") EventModel ev,
-			BindingResult result)  {
+	public @ResponseBody EventModel add(@ModelAttribute(value = "event") EventModel ev)  {
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
 		EventModel eventModel = null;
@@ -73,6 +76,18 @@ public class ColegioController {
 		
 		return eventModel;
 
+	}
+	@GetMapping(value = "/global/event/{eventoId}")
+	public @ResponseBody String  delete (@PathVariable("eventoId") Long eventoId){
+		
+		EventModel eventModel = eventService.findEventByIdModel(eventoId);
+		if (eventModel==null){
+			return "error";
+		} else {
+			ColegioModel colegiomodel = colegioService.findColegioByIdModel(new Long(1));
+			colegioService.removeEvent(colegiomodel, eventModel);
+			return "ok";
+		}
 	}
 	
 }

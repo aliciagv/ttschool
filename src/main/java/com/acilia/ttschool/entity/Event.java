@@ -40,10 +40,7 @@ public class Event {
 	private String className;
 	
 	@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
+            cascade = CascadeType.ALL,
             mappedBy = "eventos")
 	private List<Colegio> colegio;
 	

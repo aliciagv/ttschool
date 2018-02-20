@@ -1,5 +1,6 @@
 package com.acilia.ttschool.entity;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,10 +32,7 @@ public class Colegio {
 	
 	//owner of the relationship
 	@ManyToMany(fetch = FetchType.LAZY,
-	            cascade = {
-	                CascadeType.PERSIST,
-	                CascadeType.MERGE
-	            })
+	            cascade = CascadeType.ALL)
 	    @JoinTable(name = "colegio_eventos",
 	            joinColumns = { @JoinColumn(name = "colegio_id", referencedColumnName = "id") },
 	            inverseJoinColumns = { @JoinColumn(name = "eventos_id", referencedColumnName = "id") })
@@ -85,8 +83,6 @@ public class Colegio {
 		this.eventos = eventos;
 	}
 
-
-	
 	
 
 	

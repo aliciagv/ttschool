@@ -5,7 +5,8 @@
 <html>
 	<head>
 		<jsp:include page="cabeceraTag.jsp" />
-
+		
+	
 	</head>
 	<body>
 		<jsp:include page="cabecera.jsp"/>

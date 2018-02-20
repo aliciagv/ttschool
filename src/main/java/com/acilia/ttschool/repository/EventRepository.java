@@ -14,6 +14,8 @@ public interface EventRepository  extends JpaRepository<Event,Serializable>{
 	
 	 @Query("select  e from Event e INNER JOIN  e.colegio c where c.id=1)")
 	 public abstract List<Event> findEventGlobal();
+	 
+	 public abstract Event findById(Long i);
 
 	 
 }

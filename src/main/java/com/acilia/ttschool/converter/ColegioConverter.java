@@ -21,7 +21,7 @@ public class ColegioConverter {
 	@Qualifier("eventConverter")
 	private EventConverter eventConverter;
 	
-	public Colegio convertColegioModel2Colegio(ColegioModel colegioModel,EventModel eventmodel){
+	public Colegio convertColegioModel2Colegioadd(ColegioModel colegioModel,EventModel eventmodel){
 		Colegio colegio = new Colegio();
 		colegio.setId(colegioModel.getIdColegio());
 		colegio.setNombre(colegioModel.getNombre());
@@ -39,6 +39,22 @@ public class ColegioConverter {
 			}
 			colegio.getEventos().add(evento);
 		}
+		return colegio;
+		
+	}
+	
+	public Colegio convertColegioModel2Colegioremove(ColegioModel colegioModel,EventModel eventmodel){
+		Colegio colegio = new Colegio();
+		colegio.setId(colegioModel.getIdColegio());
+		colegio.setNombre(colegioModel.getNombre());
+		colegio.setDireccion(colegioModel.getDireccion());
+		List<Event> listeventos= new ArrayList<Event>();
+		colegio.setEventos(listeventos);
+		for (int i=0;i<colegioModel.getEventos().size();i++){
+			if (!colegioModel.getEventos().get(i).getIdEvent().equals(eventmodel.getIdEvent()))
+			colegio.getEventos().add(eventConverter.convertEventModel2Event(colegioModel.getEventos().get(i)));
+			}
+			
 		return colegio;
 		
 	}
