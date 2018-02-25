@@ -6,11 +6,7 @@
 <html>
 	<head>
 		<jsp:include page="../cabeceraTag.jsp" />
-		
-      	<link href="<c:url value="/stacktable-1.0.2-13/stacktable.css" />" rel="stylesheet" />
-
-        
-        
+		<link href="<c:url value="/stacktable-1.0.2-13/stacktable.css" />" rel="stylesheet" />  
 	</head>
 	<body>
 		<jsp:include page="../cabecera.jsp"/>
@@ -24,21 +20,21 @@
     			</div> <!-- row -->
     		</div><!-- wrapper principal -->
     	</div> <!--  container principal -->
-    	
+    	<jsp:include page="../footer.jsp"/>
     <!-- Modal AddModalProfesor-->
-  <div class="modal fade" id="AddModalProfesor" role="dialog">
+  <div class="modal fade" id="AddModalAlumno" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <c:url var="addAction" value="/profesor" ></c:url>
+      <c:url var="addAction" value="/alumno" ></c:url>
 										
-	 <form:form action="${addAction}" id="addProfesorForm" commandName="profesor" method="post">
+	 <form:form action="${addAction}" id="addAlumnoForm" commandName="alumno" method="post">
       
 
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="modalTitleAddProfesorModal">Registrar nuevo profesor</h4>
+          <h4 class="modal-title" id="modalTitleAddAlumnoModal">Registrar nuevo alumno</h4>
         </div>
         <div class="modal-body">
         									<div class="inputBox">
@@ -58,7 +54,17 @@
 												<form:input path="nif" type="text" name="nif" class="input"/>
 									  			<span class="help-block" id="error"></span>
 											</div>
-											
+											<div class="inputBox">
+												<div class="inputText">Dirección</div>
+												<form:input path="direccion" type="text" name="direccion" class="input"/>
+									  			<span class="help-block" id="error"></span>
+											</div>
+											<div class="inputBox">
+      											<div class="inputText">Fecha Nacimiento</div>
+      											<form:input type="text" path="fNacimiento" name="fNacimiento"  class="input" data-date-format="yyyy-mm-dd"/>
+		      									<span class="help-block" id="error"></span>
+											</div>
+
 											<div class="inputBox">
 											<div class="inputText">Curso</div>
 											<form:input type="hidden" path="curso.nombre"  name="curso.nombre" />
@@ -75,7 +81,7 @@
 												
 											<div class="form-group multiple-form-group" data-max=3>
 												<div class="inputBox">
-												<div class="inputText">Telefono</div>
+												<div class="inputText">Teléfono</div>
 												<div class="form-group input-group">
 													<form:input path="telefonos[0].numero" type="text" name="telefonos[]" class="inputplus" pattern="^[9|8|7|6]\d{8}$" maxlength="9" title="Teléfono con formato inválido. 9 dígitos comenzando con 9,8,7 ó 6"/>
 													<form:input type="hidden" path="telefonos[0].idTelefono" class="inputplushidden" name="telefonos[0].idTelefono"/>
@@ -115,11 +121,11 @@
   
  
   
-  
+  		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
   		<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 		<script src="<c:url value="/stacktable-1.0.2-13/stacktable.js" />"></script>
 		<script src="<c:url value="/js/validation.js" />"></script>
-    	<script src="<c:url value="/js/teacher.js" />"></script>
+    	<script src="<c:url value="/js/student.js" />"></script>
     	<script src="<c:url value="/js/pagination.js" />"></script>
 
 

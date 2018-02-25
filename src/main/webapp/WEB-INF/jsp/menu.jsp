@@ -18,26 +18,26 @@
 	               			<tr>
 	               				<td>
 	               					<span class="glyphicon glyphicon-info-sign text-info"></span>
-	               					<a href="http://www.jquery2dotnet.com">Información</a>
+	               					<a href="#">Información</a>
 	                    		</td>
 	                		</tr>
 	                		<tr>
 	                			<td>
 	                				<span class="glyphicon glyphicon-flash text-info"></span>
-	                				<a href="http://www.jquery2dotnet.com">Servicios</a>
+	                				<a href="#">Servicios</a>
 	                    		</td>
 	                		</tr>
 	                		<tr>
 	                			<td>
 	                				<span class="glyphicon glyphicon-book text-info"></span>
-	                				<a href="http://www.jquery2dotnet.com">Libros de Texto</a>
+	                				<a href="<c:url value="/libro" />">Libros de Texto</a>
 	                        			
 								</td>
 							</tr>
 	                 		<tr>
 	                 			<td>
 	                 				<span class="glyphicon glyphicon-paperclip text-info"></span>
-	                 				<a href="http://www.jquery2dotnet.com">Impresos y Autorizaciones</a>
+	                 				<a href="#">Impresos y Autorizaciones</a>
 	                         	</td>
 	                 		</tr>
 	                 	</table>
@@ -57,7 +57,7 @@
                             		<table class="table">
                                 		<tr>
                                     		<td>
-                                    		<span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Administrador</a>
+                                    		<span class="glyphicon glyphicon-user"></span><a href="#">Administrador</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
@@ -69,17 +69,17 @@
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		 <span class="glyphicon glyphicon-education"></span><a href="http://www.jquery2dotnet.com">Alumno</a>
+                                        		 <span class="glyphicon glyphicon-education"></span><a href="<c:url value="/alumno" />">Alumno</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<span class="glyphicons glyphicons-parents"></span><a href="http://www.jquery2dotnet.com">Tutor</a>
+                                        		<span class="glyphicons glyphicons-parents"></span><a href="#">Tutor</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<a href="http://www.jquery2dotnet.com">Asignaturas</a>
+                                        		<a href="#">Asignaturas</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
@@ -89,7 +89,7 @@
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<a href="http://www.jquery2dotnet.com">Notas</a>
+                                        		<a href="#">Notas</a>
                                     		</td>
                                 		</tr>
                             		</table>
@@ -114,12 +114,12 @@
                                		 	</tr>
                                 		<tr>
                                     		<td>
-                                        		<a href="http://www.jquery2dotnet.com">Curso</a>
+                                        		<a href="#">Curso</a>
                                     		</td>
                                 		</tr>
                                 		<tr>
                                     		<td>
-                                        		<a href="http://www.jquery2dotnet.com">Personales</a> 
+                                        		<a href="#">Personales</a> 
                                     		</td>
                                 		</tr>
                             		</table>
@@ -141,19 +141,19 @@
 	                                	<tr>
     		                                <td>
             		                            <span class="glyphicon glyphicon-user"></span>
-            		                            <a href="http://www.jquery2dotnet.com">Profesores</a>
+            		                            <a href="#">Profesores</a>
                     		                </td>
                             		    </tr>
                                 		<tr>
                               		      	<td>
 	                                	        <span class="glyphicon glyphicon-education"></span>
-	                                	        <a href="http://www.jquery2dotnet.com">Alumnos</a>
+	                                	        <a href="#">Alumnos</a>
     	                                	</td>
         		                        </tr>
                                 		<tr>
                                     		<td>
                                         		<span class="glyphicon glyphicon-shopping-cart"></span>
-                                        		<a href="http://www.jquery2dotnet.com">Notas</a>
+                                        		<a href="#">Notas</a>
                                     		</td>
                                 		</tr>
                             		</table>

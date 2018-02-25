@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acilia.ttschool.model.CursoModel;
 import com.acilia.ttschool.model.ProfesorModel;
@@ -105,12 +107,12 @@ public class CursoController {
 		}
 
 	}
-/*
+
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView getExcel() {
-		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
-		listProfesorModel = profesorService.listAllProfesor();
-		return new ModelAndView(profesoresListExcel, "profesores", listProfesorModel);
-	}*/
+		List<CursoModel> listCursoModel =new ArrayList<CursoModel>();
+		listCursoModel= cursoService.listAll();
+		return new ModelAndView(cursoListExcel, "cursos", listCursoModel);
+	}
 
 }

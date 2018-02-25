@@ -50,9 +50,10 @@ public class ProfesorConverter {
 		boolean add=false;
 		if (profesorModel.getEmails()!=null && profesorModel.getEmails().size()>0){
 			List<Email> emails = new  ArrayList<Email>();
+			Email email=null;
 			for (int i=0; i<profesorModel.getEmails().size();i++){
 				if (profesorModel.getEmails().get(i)!=null && !profesorModel.getEmails().get(i).getEmail().equalsIgnoreCase("")) {
-					Email email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
+					email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
 					emails.add(email);	
 					add=true;
 				}	
@@ -65,9 +66,10 @@ public class ProfesorConverter {
 		add=false;
 		if (profesorModel.getTelefonos()!=null && profesorModel.getTelefonos().size()>0){ 
 			List<Telefono> telefonos = new ArrayList<Telefono>();
+			Telefono telefono=null;
 			for (int i=0; i<profesorModel.getTelefonos().size();i++){
 				if (profesorModel.getTelefonos().get(i)!=null && !profesorModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
-					Telefono telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);;	
+					telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);;	
 					telefonos.add(telefono);
 					add=true;
 				}
@@ -76,6 +78,7 @@ public class ProfesorConverter {
 			if (add) {
 				profesor.setTelefonos(telefonos);
 			}
+		}
 		if (profesorModel.getCurso()!=null){
 			Curso curso=null;
 			if (profesorModel.getCurso().getIdCurso()!=0){
@@ -85,7 +88,7 @@ public class ProfesorConverter {
 		}	
 			
 			
-		}
+		
 		
 		
 		return profesor;

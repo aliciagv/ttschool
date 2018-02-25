@@ -10,8 +10,8 @@ public interface AlumnoService {
 	
 	public  List<AlumnoModel>listAllAlumno();
 	
-	public AlumnoModel findAlumnoByIdModel(int id);
+	public AlumnoModel findAlumnoByIdModel(Long id);
 	
-	public  void removeAlumno(int id);
+	public  void removeAlumno(AlumnoModel alumnoModel);
 
 }

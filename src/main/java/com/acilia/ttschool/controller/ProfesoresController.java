@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acilia.ttschool.constant.AttributeNameViewConstant;
+import com.acilia.ttschool.constant.AttributeValueViewConstant;
+import com.acilia.ttschool.constant.ViewConstant;
 import com.acilia.ttschool.model.CursoModel;
 import com.acilia.ttschool.model.ProfesorModel;
 import com.acilia.ttschool.service.CursoService;
@@ -50,19 +53,19 @@ public class ProfesoresController {
 
 	@GetMapping()
 	public String listar(Model model) {
-		model.addAttribute("titulo", "Listado de profesores");
+		model.addAttribute("titulo", AttributeValueViewConstant.TITLE_TEACHER_LIST);
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
 		listProfesorModel = profesorService.listAllProfesor();
 		List<CursoModel> listCursoModel =new ArrayList<CursoModel>();
 		listCursoModel= cursoService.listNotAssigned();
-		model.addAttribute("cursos",listCursoModel);
-		model.addAttribute("profesores", listProfesorModel);
+		model.addAttribute(AttributeNameViewConstant.COURSES,listCursoModel);
+		model.addAttribute(AttributeNameViewConstant.TEACHERS, listProfesorModel);
 		ProfesorModel profesor = new ProfesorModel();
-		model.addAttribute("profesor", profesor);
-		return "profesor/profesores";
+		model.addAttribute(AttributeNameViewConstant.TEACHER, profesor);
+		return ViewConstant.TEACHER_VIEW;
 	}
 
-	@GetMapping("/refresh")
+	/*@GetMapping("/refresh")
 	public String refresh(Model model) {
 		model.addAttribute("titulo", "Listado de profesores");
 		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
@@ -70,9 +73,9 @@ public class ProfesoresController {
 		listCursoModel= cursoService.listNotAssigned();
 		model.addAttribute("cursos",listCursoModel);
 		listProfesorModel = profesorService.listAllProfesor();
-		model.addAttribute("profesores", listProfesorModel);
+		model.addAttribute(AttributeNameViewConstant.TEACHERS, listProfesorModel);
 		return "profesor/listar";
-	}
+	}*/
 
 	@PostMapping()
 	public @ResponseBody ProfesorModel add(@ModelAttribute(value = "profesor") ProfesorModel pr,

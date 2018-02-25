@@ -13,11 +13,13 @@ public class AlumnoModel extends PersonaModel {
 	private static final long serialVersionUID = 980511289615583102L;
 
 
-	private Date fNacimiento;
+	private String fNacimiento;
 	
 	
 	private String direccion;
 	
+	
+	private CursoModel curso;
 	
 	private List<TutorModel> tutores;
 	
@@ -39,7 +41,7 @@ public class AlumnoModel extends PersonaModel {
 
 	
 
-	public AlumnoModel(Date fNacimiento, String direccion, List<TutorModel> tutores,
+	public AlumnoModel(String fNacimiento, String direccion, List<TutorModel> tutores,
 			List<AsignaturaModel> asignaturas) {
 		super();
 		this.fNacimiento = fNacimiento;
@@ -49,12 +51,12 @@ public class AlumnoModel extends PersonaModel {
 	}
 
 
-	public Date getfNacimiento() {
+	public String getfNacimiento() {
 		return fNacimiento;
 	}
 
 
-	public void setfNacimiento(Date fNacimiento) {
+	public void setfNacimiento(String fNacimiento) {
 		this.fNacimiento = fNacimiento;
 	}
 
@@ -87,6 +89,17 @@ public class AlumnoModel extends PersonaModel {
 	public void setAsignaturas(List<AsignaturaModel> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
+
+
+	public CursoModel getCurso() {
+		return curso;
+	}
+
+
+	public void setCurso(CursoModel curso) {
+		this.curso = curso;
+	}
+	
 	
 	
 	

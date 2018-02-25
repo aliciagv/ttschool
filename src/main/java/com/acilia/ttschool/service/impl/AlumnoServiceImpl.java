@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.acilia.ttschool.converter.AlumnoConverter;
-import com.acilia.ttschool.converter.StudentConverter;
 import com.acilia.ttschool.entity.Alumno;
 import com.acilia.ttschool.model.AlumnoModel;
 import com.acilia.ttschool.repository.AlumnoRepository;
@@ -46,14 +45,20 @@ public class AlumnoServiceImpl  implements AlumnoService{
 	}
 
 	@Override
-	public AlumnoModel findAlumnoByIdModel(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public AlumnoModel findAlumnoByIdModel(Long id) {
+		AlumnoModel alumnoModel=null;	
+		Alumno alumno= alumnoRepository.findById(id);
+		if (alumno!=null)
+			alumnoModel=alumnoConverter.convetAlumno2AlumnoModel(alumno);
+		return alumnoModel;
 	}
 
 	@Override
-	public void removeAlumno(int id) {
-		// TODO Auto-generated method stub
+	public void removeAlumno(AlumnoModel alumnoModel) {
+		Alumno alumno=alumnoConverter.convetAlumnoModel2Alumno(alumnoModel);
+		alumnoRepository.delete(alumno);
+		
+		
 		
 	}
 

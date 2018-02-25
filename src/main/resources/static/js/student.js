@@ -1,6 +1,6 @@
  $(document).ready(function() {
 	 
-	$("#AddModalProfesor form").validate({
+	$("#AddModalAlumno form").validate({
             rules: {
             	nombre: { 
             		required: true, 
@@ -36,20 +36,6 @@
                 	customphone:true
                 },
                 
-                /*"telefonos[]":{
-                	required:false,
-                	customphone:true
-                },*/
-                           		
-	
-            		
-            	/*"emails[]":{
-                		required:false,
-                		customemail:true
-                		},*/            		
-
-            		
-            	
             	
             },
             messages: {
@@ -89,12 +75,9 @@
             	  data : $(form).serialize(),
 	    		  url : theURL,
 
-            	  /*beforeSend: function(x){ 
-            	  alert("antes")
-            	  },*/
                   success: function(response){
                 	  var nombre= response.nombre;
-                	  $('#AddModalProfesor').modal('hide');
+                	  $('#AddModalAlumno').modal('hide');
 
                 	 $('#mensaje').removeClass('alert-danger');
               		 $('#mensaje').addClass('alert-success');
@@ -102,30 +85,7 @@
               		 $('#smensaje').text(nombre + " ha sido añadido");
               		 $('#mensaje').fadeOut(2000);
               		 window.setTimeout(function(){location.reload()},2000)
-              		
-
-              		    //  appendRow(response);
-              		      
-              		 /*   $.ajax({
-                 	         type: "GET",
-                 	         cache: false,
-                 	         url: "/TTSchool/profesor/refresh",
-                 	         data: "",
-                 	         success: function(response){
-                 	        	 $('#AddModalProfesor').modal('hide');
-                 	        	 //$('#cuerpo').load(response);
-                 	        	 $('#mensaje').removeClass('alert-danger');
-                        		 $('#mensaje').addClass('alert-success');
-                        		 $('#mensaje').show();	
-                        		 $('#smensaje').text(nombre + " ha sido añadido");
-                        		 $('#mensaje').fadeOut(10000);
-                 	        	
-                 	            
-                 	         }
-                 	    });*/
-                		
-
-                	 
+	 
                   },
                   error: function(e){ 
                 	  	$('#AddModalProfesor').modal('hide');
@@ -142,6 +102,17 @@
         });
 
       	$('#listado').stacktable();
+    	var date_input=$('input[name="fNacimiento"]'); //our date input has the name "date"
+    	var container=$('#AddModalAlumno  form').length>0 ? $('#AddModalAlumno  form').parent() : "body";
+    	date_input.datepicker({
+    		container: container,
+    		todayHighlight: true,
+    		autoclose: true,
+    		changeMonth: true,
+    		changeYear: true,
+    		minDate: "01/01/1920",
+    		maxDate: "-3y"
+    	});
       	
         $('th').click(function() {
             var table = $(this).parents('table').eq(0)
@@ -192,7 +163,7 @@
      	});
       	
      	
-     	$('#AddModalProfesor').on('hidden.bs.modal', function(){ 
+     	$('#AddModalAlumno').on('hidden.bs.modal', function(){ 
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
@@ -348,60 +319,7 @@
      
 
      		
-		
-	/* METODO ANTERIOR QUE AÑADÍA EL NUEVO CAMPO CREADO, cambio por llamada Ajax refresh
-	 * function appendRow(response){
-		 
-		
-				var nuevafila= "<tr><td>" +
-				response.profesorModel.nombre + "</td><td>" +
-				response.profesorModel.apellidos + "</td><td>";
-				
-				if (response.profesorModel.nif==null){
-					nuevafila+= "</td><td>";
-					
-				} else {
-					nuevafila +=response.profesorModel.nif + "</td><td>"; 
-				}
-				
-				nuevafila+="</td><td>" +
-							"</td><td>"
-				if (response.profesorModel.telefonos!=null){
-					var telefonos = response.profesorModel.telefonos.length;
-					for (  i = 0 ; i < telefonos; i++){
-						if (i >0){
-							nuevafila+= ", "
-						}
-						nuevafila+=response.profesorModel.telefonos[i]
-					} 
-					}
-				
-				nuevafila+="</td><td>"
-				
-				if (response.profesorModel.emails!=null){
-					var emails = response.profesorModel.emails.length;
-					for (  i = 0 ; i < emails; i++){
-						if (i >0){
-							nuevafila+= ", "
-						}
-						nuevafila+=response.profesorModel.emails[i]
-					} 
-				}
-				
-				nuevafila+="</td>" +
-						"<sec:authorize access=\"hasRole(\'\/ADMIN\'\/)\">" +
-						"<td>" +
-						"<button id=\"editarProfesor\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#EditModalProfesor\"><span class=\"glyphicon glyphicon-edit\"></span></button>" +
-						"</td>" +
-						"<td>" +
-						"<button id=\"eliminarProfesor${profesorModel.idPersona }\" type=\"button\" class=\"btn btn-danger btn-sm\" data-toggle=\"modal\" data-target=\"#DeleteModalProfesor${profesorModel.idPersona }\"><span class=\"glyphicon glyphicon-trash\"></span></button>" +
-						"</td>" +
-						"</sec:authorize>" +
-						"</tr>"
-		
-				$("#listado").append(nuevafila)
-			
-	 }*/
+
 	 
 	 function eliminar(uri, button) {
 
@@ -445,25 +363,33 @@
 					url : uri,
 					success : function(data) {
 						//alert ("SUCCESS");
-						// Populate the form fields with the data returned from server
-			           // $('#editProfesorForm').find('[name="nombre"]').val(data.nombre)
+						
 						console.log(data);
-						$('#addProfesorForm').find('[name="idPersona"]').val(data.idPersona);
+						$('#addAlumnoForm').find('[name="idPersona"]').val(data.idPersona);
 						
-						$('#addProfesorForm').find('[name="nombre"]').val(data.nombre);
-						$('#addProfesorForm').find('[name="nombre"]').parent().addClass("focus");
+						$('#addAlumnoForm').find('[name="nombre"]').val(data.nombre);
+						$('#addAlumnoForm').find('[name="nombre"]').parent().addClass("focus");
 						
-						$('#addProfesorForm').find('[name="apellidos"]').val(data.apellidos);
-						$('#addProfesorForm').find('[name="apellidos"]').parent().addClass("focus");
+						$('#addAlumnoForm').find('[name="apellidos"]').val(data.apellidos);
+						$('#addAlumnoForm').find('[name="apellidos"]').parent().addClass("focus");
 						
 						if (data.nif!=null){
-							$('#addProfesorForm').find('[name="nif"]').val(data.nif);
-							$('#addProfesorForm').find('[name="nif"]').parent().addClass("focus");
+							$('#addAlumnoForm').find('[name="nif"]').val(data.nif);
+							$('#addAlumnoForm').find('[name="nif"]').parent().addClass("focus");
 						}
+						if (data.direccion!=null){
+							$('#addAlumnoForm').find('[name="direccion"]').val(data.direccion);
+							$('#addAlumnoForm').find('[name="direccion"]').parent().addClass("focus");
+						}
+						if (data.fNacimiento!=null){
+							$('#addAlumnoForm').find('[name="fNacimiento"]').val(data.fNacimiento);
+							$('#addAlumnoForm').find('[name="fNacimiento"]').parent().addClass("focus");
+						}
+						
 						if (data.curso!=null){
 							if (data.curso.idCurso!=null){
-								$('#addProfesorForm').find('select').append(new Option(data.curso.descripcion, data.curso.idCurso, true, true));
-								$('#addProfesorForm').find('select').parent().addClass("focus");
+								$('#addAlumnoForm').find('select').append(new Option(data.curso.descripcion, data.curso.idCurso, true, true));
+								$('#addAlumnoForm').find('select').parent().addClass("focus");
 								
 							}
 						}
@@ -472,13 +398,13 @@
 						if (telefonos!=null){
 							if (telefonos.length>0){
 								 
-								$('#addProfesorForm').find('[name="telefonos[0].numero"]').parent().parent().addClass("focus");
+								$('#addAlumnoForm').find('[name="telefonos[0].numero"]').parent().parent().addClass("focus");
 							
 							for (i=0; i<telefonos.length; i++){
 
 								if (i>0){
 									//'#'+valor+xemail+"\\."+modelatt
-									 $inputplus= $('#addProfesorForm').find('.input-group').find('#telefonos0\\.numero');
+									 $inputplus= $('#addAlumnoForm').find('.input-group').find('#telefonos0\\.numero');
 									 $formGroup=$inputplus.closest('.form-group');
 				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
 				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
@@ -490,8 +416,8 @@
 								//$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
 								//$('#addProfesorForm').find('[name="telefonos['+i+'].numero"]').val(telefonos[i].numero);
 								//#emails0\\.email
-								$('#addProfesorForm').find('#telefonos'+i+'\\.idTelefono').val(telefonos[i].idTelefono);
-								$('#addProfesorForm').find('#telefonos'+i+'\\.numero').val(telefonos[i].numero);
+								$('#addAlumnoForm').find('#telefonos'+i+'\\.idTelefono').val(telefonos[i].idTelefono);
+								$('#addAlumnoForm').find('#telefonos'+i+'\\.numero').val(telefonos[i].numero);
 							}
 						}
 						}
@@ -501,7 +427,7 @@
 
 							if (emails.length>0){
 
-								$('#addProfesorForm').find('[name="emails[0].email"]').parent().parent().addClass("focus");
+								$('#addAlumnoForm').find('[name="emails[0].email"]').parent().parent().addClass("focus");
 							
 							for (i=0; i<emails.length; i++){
 
@@ -519,8 +445,8 @@
 								//$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(emails[i].idEmail);
 								//$('#addProfesorForm').find('[name="emails['+i+'].email"]').val(emails[i].email);
 								//#emails0\\.email
-								$('#addProfesorForm').find('#emails'+i+'\\.idEmail').val(emails[i].idEmail);
-								$('#addProfesorForm').find('#emails'+i+'\\.email').val(emails[i].email);
+								$('#addAlumnoForm').find('#emails'+i+'\\.idEmail').val(emails[i].idEmail);
+								$('#addAlumnoForm').find('#emails'+i+'\\.email').val(emails[i].email);
 								
 							}
 						}
@@ -528,12 +454,12 @@
 							
 							
 						}
-						$('#modalTitleAddProfesorModal').text("Modificar profesor");
+						$('#modalTitleAddAlumnoModal').text("Modificar profesor");
 						$('#btnReset').remove();
 						$('#btnGuardar').val("Modificar");
 						
 						
-						 $("#AddModalProfesor").modal("show");
+						 $("#AddModalAlumno").modal("show");
 						
 						
 					},  

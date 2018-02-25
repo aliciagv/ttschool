@@ -1,10 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="col-sm-9 col-md-9">
 	<div class="container">
 		<div class="row">
+		<sec:authorize access="hasRole('ADMIN')">
 			<div class="col-lg-12">
 				<button type="button" class="btn btn-info btn-sm btmodal" data-toggle="modal" data-target="#AddModalCurso">Nuevo curso</button>
 			</div><!-- /.col-lg-12 -->
+		</sec:authorize>
 			<div class="col-lg-8">
 			
 			  <div id="mensaje" class="alert alert-dismissable" hidden="true">
@@ -18,7 +21,7 @@
 		</div> <!-- row -->
 		<div class="row">
 			<div class="col-lg-1"></div>
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				<div id="dexcel" align="right">
 					<a href="curso/export"><img  alt="excel" width="5%" height="5%" src="<c:url value="/imgs/Excel-icon.png" />"> </a>
 				</div>

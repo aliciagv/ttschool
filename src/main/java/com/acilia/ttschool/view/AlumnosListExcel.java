@@ -16,11 +16,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import com.acilia.ttschool.model.CursoModel;
 import com.acilia.ttschool.model.ProfesorModel;
 
-@Component("cursoListExcel")
-public class CursoListExcel extends AbstractXlsView {
+@Component("alumnosListExcel")
+public class AlumnosListExcel extends AbstractXlsView {
 
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
@@ -28,17 +27,17 @@ public class CursoListExcel extends AbstractXlsView {
 		// TODO Auto-generated method stub
 		// change the file name
 		Date now = new Date();
-        response.setHeader("Content-Disposition", "attachment; filename=\"cursos"+now.toString()+".xls\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"profesores"+now.toString()+".xls\"");
 		
 	    @SuppressWarnings("unchecked")
-		List<CursoModel> listCursoModel =  (List<CursoModel>) model.get("cursos");
+		List<ProfesorModel> listProfesorModel =  (List<ProfesorModel>) model.get("profesores");
 
-	    Sheet sheet=  workbook.createSheet("Cursos");
+	    Sheet sheet=  workbook.createSheet("Profesores");
 	   
 	    CellStyle styleheader = setSytleHeaderCell(workbook);
 	    setExcelHeader(sheet, styleheader);
 	    
-	    setExcelRows(sheet,listCursoModel);
+	    setExcelRows(sheet,listProfesorModel);
 	    
 	 // create style for header cells
         
@@ -74,22 +73,22 @@ public class CursoListExcel extends AbstractXlsView {
 		excelHeader.createCell(1).setCellValue("Nombre");
 		//excelHeader.getCell(1).setCellStyle(styleheader);
 
-		excelHeader.createCell(2).setCellValue("Letra");
+		excelHeader.createCell(2).setCellValue("Apellidos");
 		//excelHeader.getCell(2).setCellStyle(styleheader);
 
-		excelHeader.createCell(3).setCellValue("Descripción");
+		excelHeader.createCell(3).setCellValue("Nif");
 		//excelHeader.getCell(3).setCellStyle(styleheader);
 
 	}
 
-	private void setExcelRows(Sheet excelSheet, List<CursoModel> listCursoModel) {
+	private void setExcelRows(Sheet excelSheet, List<ProfesorModel> listProfesorModel) {
 		int record = 1;
-		for (CursoModel curso : listCursoModel) {
+		for (ProfesorModel profesor : listProfesorModel) {
 			Row excelRow = excelSheet.createRow(record++);
-			excelRow.createCell(0).setCellValue(curso.getIdCurso().toString());
-			excelRow.createCell(1).setCellValue(curso.getNombre());
-			excelRow.createCell(2).setCellValue(curso.getLetra());
-			excelRow.createCell(3).setCellValue(curso.getDescripcion());
+			excelRow.createCell(0).setCellValue(profesor.getIdPersona().toString());
+			excelRow.createCell(1).setCellValue(profesor.getNombre());
+			excelRow.createCell(2).setCellValue(profesor.getApellidos());
+			excelRow.createCell(3).setCellValue(profesor.getNif());
 
 		}
 	}

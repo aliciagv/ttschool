@@ -21,7 +21,7 @@ import com.acilia.ttschool.service.StudentService;
 @RequestMapping("/students")
 public class RestStudentController {
 	
-	private static final Log LOG = LogFactory.getLog(StudentController.class);
+	private static final Log LOG = LogFactory.getLog(RestStudentController.class);
 
 	
 	@Autowired

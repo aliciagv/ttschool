@@ -11,5 +11,5 @@ import com.acilia.ttschool.entity.Alumno;
 @Repository("alumnorepository")
 public interface AlumnoRepository  extends JpaRepository<Alumno,Serializable>{
 
-	
+	public abstract Alumno findById(Long id);
 }

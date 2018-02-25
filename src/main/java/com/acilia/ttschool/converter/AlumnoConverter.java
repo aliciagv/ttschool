@@ -3,6 +3,8 @@
  */
 package com.acilia.ttschool.converter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.acilia.ttschool.entity.Alumno;
+import com.acilia.ttschool.entity.Curso;
 import com.acilia.ttschool.entity.Email;
 import com.acilia.ttschool.entity.Telefono;
 import com.acilia.ttschool.model.AlumnoModel;
@@ -24,6 +27,8 @@ import com.acilia.ttschool.model.TelefonoModel;
 @Component("alumnoConverter")
 public class AlumnoConverter {
 	
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+	
 	@Autowired
 	@Qualifier("emailConverter")
 	private EmailConverter emailConverter;
@@ -31,6 +36,10 @@ public class AlumnoConverter {
 	@Autowired
 	@Qualifier("telefonoConverter")
 	private TelefonoConverter telefonoConverter;
+	
+	@Autowired
+	@Qualifier("cursoConverter")
+	private CursoConverter cursoConverter;
 
 	/**
 	 * Convet alumno model 2 alumno.
@@ -43,25 +52,58 @@ public class AlumnoConverter {
 		alumno.setId(alumnoModel.getIdPersona());
 		alumno.setNombre(alumnoModel.getNombre());
 		alumno.setApellidos(alumnoModel.getApellidos());
-		alumno.setNif(alumno.getNif());
+		alumno.setNif((alumno.getNif()!=null && alumno.getNif().equalsIgnoreCase(""))?null:alumno.getNif());
 		alumno.setDireccion(alumnoModel.getDireccion());
-		alumno.setfNacimiento(alumnoModel.getfNacimiento());
+		if (alumnoModel.getfNacimiento()!=null && !alumnoModel.getfNacimiento().equalsIgnoreCase("")){
+			try {
+				alumno.setfNacimiento(sdf.parse(alumnoModel.getfNacimiento()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			alumno.setfNacimiento(null);
+		}
+		
+		boolean add=false;
 		if (alumnoModel.getEmails()!=null && alumnoModel.getEmails().size()>0){
 			List<Email> emails = new  ArrayList<Email>();
-			alumno.setEmails(emails);
+			Email email=null;
 			for (int i=0; i<alumnoModel.getEmails().size();i++){
-				alumno.getEmails().add(emailConverter.convetEmailModel2Email(alumnoModel.getEmails().get(i)));
+				if (alumnoModel.getEmails().get(i)!=null && !alumnoModel.getEmails().get(i).getEmail().equalsIgnoreCase("")){
+					email=emailConverter.convetEmailModel2Email(alumnoModel.getEmails().get(i));
+					emails.add(email);
+					add=true;
+				}
+			}
+			if (add){
+				alumno.setEmails(emails);
 			}
 		}
+		add=false;
 		if (alumnoModel.getTelefonos()!=null && alumnoModel.getTelefonos().size()>0){ 
 			List<Telefono> telefonos = new ArrayList<Telefono>();
-			alumno.setTelefonos(telefonos);
+			Telefono telefono=null;
 			for (int i=0; i<alumnoModel.getTelefonos().size();i++){
-				alumno.getTelefonos().add(telefonoConverter.convetTelefonoModel2Telefono(alumnoModel.getTelefonos().get(i)));
+				if (alumnoModel.getTelefonos().get(i)!=null && !alumnoModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
+					telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(alumnoModel.getTelefonos().get(i), alumnoModel);;	
+					telefonos.add(telefono);
+					add=true;
+				}
+				
 			}
-			
-			
+			if (add) {
+				alumno.setTelefonos(telefonos);
+			}
 		}
+		if (alumnoModel.getCurso()!=null){
+			Curso curso=null;
+			if (alumnoModel.getCurso().getIdCurso()!=0){
+				curso = cursoConverter.convertCursoModel2Curso(alumnoModel.getCurso());
+			}
+			alumno.setCurso(curso);
+		}	
+			
 		
 		return alumno;
 	}
@@ -79,7 +121,9 @@ public class AlumnoConverter {
 		alumnoModel.setApellidos(alumno.getApellidos());
 		alumnoModel.setNif(alumno.getNif());
 		alumnoModel.setDireccion(alumno.getDireccion());
-		alumnoModel.setfNacimiento(alumno.getfNacimiento());
+		if (alumno.getfNacimiento()!=null){
+			alumnoModel.setfNacimiento(sdf.format(alumno.getfNacimiento()));
+		}
 		if (alumno.getEmails()!=null && alumno.getEmails().size()>0){
 			List<EmailModel> emails = new ArrayList<EmailModel>();
 			alumnoModel.setEmails(emails);
@@ -94,6 +138,9 @@ public class AlumnoConverter {
 			for (int i=0; i<alumno.getEmails().size();i++){
 				alumnoModel.getTelefonos().add(telefonoConverter.convetTelefono2TelefonoModel(alumno.getTelefonos().get(i)));
 			}
+		}
+		if (alumno.getCurso()!=null){
+			alumnoModel.setCurso(cursoConverter.convertCurso2CursoModel(alumno.getCurso()));
 		}
 		
 		return alumnoModel;
