@@ -66,7 +66,7 @@
     	         
     		submitHandler: function(form)
             {
-              alert('El formulario ha sido validado correctamente!');
+             // alert('El formulario ha sido validado correctamente!');
               //form.submit();
               var theURL = form.action;
               var type = form.method;
@@ -102,17 +102,7 @@
         });
 
       	$('#listado').stacktable();
-    	var date_input=$('input[name="fNacimiento"]'); //our date input has the name "date"
-    	var container=$('#AddModalAlumno  form').length>0 ? $('#AddModalAlumno  form').parent() : "body";
-    	date_input.datepicker({
-    		container: container,
-    		todayHighlight: true,
-    		autoclose: true,
-    		changeMonth: true,
-    		changeYear: true,
-    		minDate: "01/01/1920",
-    		maxDate: "-3y"
-    	});
+
       	
         $('th').click(function() {
             var table = $(this).parents('table').eq(0)
@@ -163,6 +153,20 @@
      	});
       	
      	
+     	$('#AddModalAlumno').on('show.bs.modal', function(){ 
+        	
+     	  	$('#addAlumnoForm').find('[name="fNacimiento"]').datepicker({ 
+    	        todayHighlight: true,
+        		autoclose: true,
+        		changeMonth: true,
+        		changeYear: true,
+    	        maxDate: '-3y' 
+    	    });
+        	 
+      
+       	 	
+    	});
+     	
      	$('#AddModalAlumno').on('hidden.bs.modal', function(){ 
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
@@ -170,7 +174,9 @@
      		$(this).find('form').find(".inputplushidden").val(null); // para borrar todos los hidden
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
-    		$('#addProfesorForm').find('select').find('option').not(':first').remove();
+    		$('#addAlumnoForm').find('select').val('0');
+    		$('#btnGuardar').val("Guardar");// por si se hace un close sin reload, ya que no envie peticion al servidor
+    		$('#btnReset').show();
     		var modelatt,valor;
     		var $formGroup,$inputplus;
     		if (xphone>0){
@@ -224,14 +230,14 @@
 		 	var xaux,modelatt,idmodelatt;
      		var valor = $(this).attr('value');
      		if(valor == "telefonos"){
-     			alert("XPHONE "+xphone);
+     			//alert("XPHONE "+xphone);
      			xphone++;
      			xaux=xphone;
      			modelatt="numero";     	
      			idmodelatt="idTelefono";
      		}
      		if(valor == "emails"){
-     			alert("XEMAIL "+xemail);
+     			//alert("XEMAIL "+xemail);
      			xemail++;
      			xaux=xemail;
      			modelatt="email";
@@ -277,7 +283,7 @@
         var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
         
  		if(valor == "telefonos"){
- 			alert("XPHONE remove "+xphone);
+ 			//alert("XPHONE remove "+xphone);
  			modelatt="numero"; 
  			var $inputplus= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
  			var $formGroup = $inputplus.closest('.form-group');
@@ -292,7 +298,7 @@
  			
  		}
  		if(valor == "emails"){
- 			alert("XEMAIL remove "+xemail);
+ 			//alert("XEMAIL remove "+xemail);
  			modelatt="email";
  			var $inputplus= $multipleFormGroup.find('#'+valor+xemail+"\\."+modelatt);
  			var $formGroup = $inputplus.closest('.form-group');
@@ -388,7 +394,8 @@
 						
 						if (data.curso!=null){
 							if (data.curso.idCurso!=null){
-								$('#addAlumnoForm').find('select').append(new Option(data.curso.descripcion, data.curso.idCurso, true, true));
+								//$('#addAlumnoForm').find('select').append(new Option(data.curso.descripcion, data.curso.idCurso, true, true));
+								$('#addAlumnoForm').find('select').val(data.curso.idCurso);
 								$('#addAlumnoForm').find('select').parent().addClass("focus");
 								
 							}
@@ -407,15 +414,13 @@
 									 $inputplus= $('#addAlumnoForm').find('.input-group').find('#telefonos0\\.numero');
 									 $formGroup=$inputplus.closest('.form-group');
 				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
+				  
 								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
 								     $button=$lastFormGroupLast.find('.btn');
 								     $button.click();
 									
 								}
-								//$('#addProfesorForm').find('[name="telefonos['+i+'].idTelefono"]').val(telefonos[i].idTelefono);
-								//$('#addProfesorForm').find('[name="telefonos['+i+'].numero"]').val(telefonos[i].numero);
-								//#emails0\\.email
+								
 								$('#addAlumnoForm').find('#telefonos'+i+'\\.idTelefono').val(telefonos[i].idTelefono);
 								$('#addAlumnoForm').find('#telefonos'+i+'\\.numero').val(telefonos[i].numero);
 							}
@@ -433,18 +438,15 @@
 
 								if (i>0){
 									//'#'+valor+xemail+"\\."+modelatt
-									 $inputplus= $('#addProfesorForm').find('.input-group').find('#emails0\\.email');
+									 $inputplus= $('#addAlumnoForm').find('.input-group').find('#emails0\\.email');
 									 $formGroup=$inputplus.closest('.form-group');
 				    				 $multipleFormGroup = $formGroup.closest('.multiple-form-group');
-				    				//  $multipleFormGroup = $('#addProfesorForm').find('.multiple-form-group');
 								     $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
 								     $button=$lastFormGroupLast.find('.btn');
 								     $button.click();
 									
 								}
-								//$('#addProfesorForm').find('[name="emails['+i+'].idEmail"]').val(emails[i].idEmail);
-								//$('#addProfesorForm').find('[name="emails['+i+'].email"]').val(emails[i].email);
-								//#emails0\\.email
+								
 								$('#addAlumnoForm').find('#emails'+i+'\\.idEmail').val(emails[i].idEmail);
 								$('#addAlumnoForm').find('#emails'+i+'\\.email').val(emails[i].email);
 								
@@ -455,7 +457,7 @@
 							
 						}
 						$('#modalTitleAddAlumnoModal').text("Modificar profesor");
-						$('#btnReset').remove();
+						$('#btnReset').hide();
 						$('#btnGuardar').val("Modificar");
 						
 						

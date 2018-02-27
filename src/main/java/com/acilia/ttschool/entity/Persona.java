@@ -112,6 +112,16 @@ public class Persona {
 	    this.telefonos.addAll(telefonos);
 	    
 	}
+
+	public Date getFcreacion() {
+		return fcreacion;
+	}
+
+	public void setFcreacion(Date fcreacion) {
+		this.fcreacion = fcreacion;
+	}
+	
+	
 	
 	
 	

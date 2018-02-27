@@ -129,11 +129,13 @@
      	});
      	
 
-     	$('#AddModalCurso').on('hidden.bs.modal', function(){      		
+     	$('#AddModalCurso').on('hidden.bs.modal', function(){   
+     		
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
-
+    		$('#btnGuardar').val("Guardar");
+    		$('#btnReset').show();
     	});
      	 	
 });
@@ -193,7 +195,7 @@ $.ajax({
 		}
 
 		$('#modalTitleAddCursoModal').text("Modificar curso");
-		$('#btnReset').remove();
+		$('#btnReset').hide();
 		$('#btnGuardar').val("Modificar");
 		
 		

@@ -4,6 +4,7 @@
 package com.acilia.ttschool.converter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,12 @@ public class ProfesorConverter {
 	public Profesor convetProfesorModel2Profesor(ProfesorModel profesorModel) {
 		Profesor profesor = new Profesor();
 		profesor.setId(profesorModel.getIdPersona());
+		if (profesorModel.getIdPersona()==null) {
+			profesor.setFcreacion(new Date());
+		}
 		profesor.setNombre(profesorModel.getNombre());
 		profesor.setApellidos(profesorModel.getApellidos());
-		profesor.setNif((profesorModel.getNif()!=null && profesorModel.getNif().equalsIgnoreCase(""))?null:profesorModel.getNif());
+		profesor.setNif((profesorModel.getNif()!=null && !profesorModel.getNif().equalsIgnoreCase(""))?profesorModel.getNif():null);
 		
 		boolean add=false;
 		if (profesorModel.getEmails()!=null && profesorModel.getEmails().size()>0){
@@ -53,7 +57,11 @@ public class ProfesorConverter {
 			Email email=null;
 			for (int i=0; i<profesorModel.getEmails().size();i++){
 				if (profesorModel.getEmails().get(i)!=null && !profesorModel.getEmails().get(i).getEmail().equalsIgnoreCase("")) {
-					email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
+					if (profesorModel.getEmails().get(i).getIdEmail()!=null){
+						email=emailConverter.convertEmailModel2EmailWithPerson(profesorModel.getEmails().get(i),profesorModel);
+					}else {
+						email=emailConverter.convetEmailModel2Email(profesorModel.getEmails().get(i));
+					}
 					emails.add(email);	
 					add=true;
 				}	
@@ -69,7 +77,11 @@ public class ProfesorConverter {
 			Telefono telefono=null;
 			for (int i=0; i<profesorModel.getTelefonos().size();i++){
 				if (profesorModel.getTelefonos().get(i)!=null && !profesorModel.getTelefonos().get(i).getNumero().equalsIgnoreCase("")) {
-					telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);;	
+					if (profesorModel.getTelefonos().get(i).getIdTelefono()!=null){
+						telefono=telefonoConverter.convetTelefonoModel2TelefonoWithPerson(profesorModel.getTelefonos().get(i), profesorModel);;	
+					}else {
+						telefono=telefonoConverter.convetTelefonoModel2Telefono(profesorModel.getTelefonos().get(i));
+					}
 					telefonos.add(telefono);
 					add=true;
 				}
@@ -80,11 +92,12 @@ public class ProfesorConverter {
 			}
 		}
 		if (profesorModel.getCurso()!=null){
-			Curso curso=null;
 			if (profesorModel.getCurso().getIdCurso()!=0){
+				Curso curso=null;
 				curso = cursoConverter.convertCursoModel2Curso(profesorModel.getCurso());
+				profesor.setCurso(curso);
 			}
-			profesor.setCurso(curso);
+			
 		}	
 			
 			

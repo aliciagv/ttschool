@@ -23,14 +23,10 @@ import com.acilia.ttschool.constant.AttributeNameViewConstant;
 import com.acilia.ttschool.constant.AttributeValueViewConstant;
 import com.acilia.ttschool.model.AlumnoModel;
 import com.acilia.ttschool.model.CursoModel;
-import com.acilia.ttschool.model.ProfesorModel;
 import com.acilia.ttschool.service.AlumnoService;
 import com.acilia.ttschool.service.CursoService;
-import com.acilia.ttschool.service.ProfesorService;
-import com.acilia.ttschool.service.StudentService;
 import com.acilia.ttschool.utils.LogUtils;
 import com.acilia.ttschool.view.AlumnosListExcel;
-import com.acilia.ttschool.view.ProfesoresListExcel;
 
 @Controller
 @RequestMapping("/alumno")
@@ -106,11 +102,11 @@ public class AlumnosController {
 
 	}
 
-	/*@RequestMapping(value = "/export", method = RequestMethod.GET)
+	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView getExcel() {
-		List<ProfesorModel> listProfesorModel = new ArrayList<ProfesorModel>();
-		listProfesorModel = profesorService.listAllProfesor();
-		return new ModelAndView(profesoresListExcel, "profesores", listProfesorModel);
-	} */
+		List<AlumnoModel> listAlumnoModel = new ArrayList<AlumnoModel>();
+		listAlumnoModel = alumnoService.listAllAlumno();
+		return new ModelAndView(alumnosListExcel, "alumnos", listAlumnoModel);
+	} 
 
 }

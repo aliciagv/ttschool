@@ -80,10 +80,11 @@
     	         
     		submitHandler: function(form)
             {
-              alert('El formulario ha sido validado correctamente!');
+              //alert('El formulario ha sido validado correctamente!');
               //form.submit();
               var theURL = form.action;
               var type = form.method;
+         
               $.ajax({
             	  type : "POST",
             	  data : $(form).serialize(),
@@ -95,7 +96,6 @@
                   success: function(response){
                 	  var nombre= response.nombre;
                 	  $('#AddModalProfesor').modal('hide');
-
                 	 $('#mensaje').removeClass('alert-danger');
               		 $('#mensaje').addClass('alert-success');
               		 $('#mensaje').show();	
@@ -195,11 +195,22 @@
      	$('#AddModalProfesor').on('hidden.bs.modal', function(){ 
      		//xphone = 0; //Initial field counter is 1
     		//$("#profesor").click();
+     		var idPersona=$(this).find('form').find('[name="idPersona"]').val();
+     		if( idPersona != "" ) {
+     			var idselect=$('#addProfesorForm').find('select').val();
+     			if (idselect!="0") {
+     			$('#addProfesorForm').find('select').find('option:last').remove();
+     			}
+     		}
      		$(this).find('form')[0].reset(); //para borrar todos los datos que tenga los input, textareas, select.
      		$(this).find('form').find(".inputplushidden").val(null); // para borrar todos los hidden
+     		$(this).find('form').find('[name="idPersona"]').val(null); // para borrar todos los hidden
     		$('.modal-body').find('.help-block').text(''); // eliminar todos los mensajes de validación
     		$('.modal-body').find('.inputBox').removeClass("focus"); // remove class focus
-    		$('#addProfesorForm').find('select').find('option').not(':first').remove();
+    		//$('#addProfesorForm').find('select').find('option').not(':first').remove();
+    		$('#addProfesorForm').find('select').val('0')
+    		$('#btnGuardar').val("Guardar");
+    		$('#btnReset').show();
     		var modelatt,valor;
     		var $formGroup,$inputplus;
     		if (xphone>0){
@@ -253,14 +264,14 @@
 		 	var xaux,modelatt,idmodelatt;
      		var valor = $(this).attr('value');
      		if(valor == "telefonos"){
-     			alert("XPHONE "+xphone);
+     			//alert("XPHONE "+xphone);
      			xphone++;
      			xaux=xphone;
      			modelatt="numero";     	
      			idmodelatt="idTelefono";
      		}
      		if(valor == "emails"){
-     			alert("XEMAIL "+xemail);
+     			//alert("XEMAIL "+xemail);
      			xemail++;
      			xaux=xemail;
      			modelatt="email";
@@ -306,7 +317,7 @@
         var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
         
  		if(valor == "telefonos"){
- 			alert("XPHONE remove "+xphone);
+ 			//alert("XPHONE remove "+xphone);
  			modelatt="numero"; 
  			var $inputplus= $multipleFormGroup.find('#'+valor+xphone+"\\."+modelatt);
  			var $formGroup = $inputplus.closest('.form-group');
@@ -321,7 +332,7 @@
  			
  		}
  		if(valor == "emails"){
- 			alert("XEMAIL remove "+xemail);
+ 			//alert("XEMAIL remove "+xemail);
  			modelatt="email";
  			var $inputplus= $multipleFormGroup.find('#'+valor+xemail+"\\."+modelatt);
  			var $formGroup = $inputplus.closest('.form-group');
@@ -438,7 +449,6 @@
 					
 		};
 	
- 	
 		 function editar(uri) {
 				$.ajax({
 					type : "GET",
@@ -529,7 +539,7 @@
 							
 						}
 						$('#modalTitleAddProfesorModal').text("Modificar profesor");
-						$('#btnReset').remove();
+						$('#btnReset').hide();
 						$('#btnGuardar').val("Modificar");
 						
 						

@@ -78,14 +78,16 @@ public class ProfesoresController {
 	}*/
 
 	@PostMapping()
+  
 	public @ResponseBody ProfesorModel add(@ModelAttribute(value = "profesor") ProfesorModel pr,
-			BindingResult result)  {
+			BindingResult result) throws Exception {
 		logutils.inMetodo(LOG, LogUtils.getNombreMetodo(), null);
 		
 		ProfesorModel profesorModel = null;
 		profesorModel = profesorService.addProfesor(pr);
-		
 		return profesorModel;
+		
+		
 
 	}
 

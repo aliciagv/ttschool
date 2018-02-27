@@ -29,12 +29,12 @@ public class Curso {
 	@Column (name="descripcion", length=200)
 	private String descripcion;
 		
-	/*@JoinColumn(name = "profesor_id", referencedColumnName = "id")
-	@ManyToOne(optional = true)
-	private Profesor profesor;*/
 
 	@ManyToMany
 	private List<Event> eventos;
+	
+	@ManyToMany
+	private List<Asignatura> asignaturas;
 
 
 	public Curso() {
@@ -95,13 +95,15 @@ public class Curso {
 		this.eventos = eventos;
 	}
 
-	/*public Profesor getProfesor() {
-		return profesor;
+	public List<Asignatura> getAsignaturas() {
+		return asignaturas;
 	}
 
-	public void setProfesor(Profesor profesor) {
-		this.profesor = profesor;
-	}*/
+	public void setAsignaturas(List<Asignatura> asignaturas) {
+		this.asignaturas = asignaturas;
+	}
+
+	
 
 	
 	

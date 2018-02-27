@@ -23,7 +23,7 @@
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10">
 				<div id="dexcel" align="right">
-					<a href="curso/export"><img  alt="excel" width="5%" height="5%" src="<c:url value="/imgs/Excel-icon.png" />"> </a>
+					<a href="curso/export"><img  alt="excel" width="4%" height="4%" src="<c:url value="/imgs/Excel-icon.png" />"> </a>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">

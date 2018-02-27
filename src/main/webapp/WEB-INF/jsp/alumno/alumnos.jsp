@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<jsp:include page="../cabeceraTag.jsp" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css"/>
 		<link href="<c:url value="/stacktable-1.0.2-13/stacktable.css" />" rel="stylesheet" />  
 	</head>
 	<body>

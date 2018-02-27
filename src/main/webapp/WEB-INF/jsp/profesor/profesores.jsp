@@ -98,7 +98,8 @@
         <div class="modal-footer">
         <input type="submit" id="btnGuardar" class="btn btn-primary" value="Guardar">
          <input type="reset" id="btnReset" class="btn btn-info" value="Limpiar">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         
         </div>
       </div>
       </form:form>
