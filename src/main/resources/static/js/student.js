@@ -456,7 +456,7 @@
 							
 							
 						}
-						$('#modalTitleAddAlumnoModal').text("Modificar profesor");
+						$('#modalTitleAddAlumnoModal').text("Modificar alumno");
 						$('#btnReset').hide();
 						$('#btnGuardar').val("Modificar");
 						

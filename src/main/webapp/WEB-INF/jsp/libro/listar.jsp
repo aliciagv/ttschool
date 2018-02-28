@@ -217,7 +217,7 @@
                     	<div class="card-content">
                     	
                     		<div class="card-header-pink">
-                          		 <h1 class="card-heading">2º Primaria</h1>
+                          		 <h1 class="card-heading">5º Primaria</h1>
                        		</div>
                        		
                        		<div class="card-body">
@@ -270,7 +270,7 @@
                     	<div class="card-content">
                     	
                     		<div class="card-header-green">
-                          		 <h1 class="card-heading">2º Primaria</h1>
+                          		 <h1 class="card-heading">6º Primaria</h1>
                        		</div>
                        		
                        		<div class="card-body">
